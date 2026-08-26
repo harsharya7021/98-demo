@@ -71,8 +71,11 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   width:120px;height:1px;background:rgba(233,234,228,.12)}
 #rev i{display:block;height:100%;width:0%;background:var(--red);transition:width .18s linear}
 
-#dir{position:fixed;left:50%;bottom:72px;transform:translateX(-50%);z-index:24;
-  display:flex;gap:clamp(12px,2.4vw,34px);flex-wrap:wrap;justify-content:center}
+/* Full-bleed, not left:50% — a fixed box anchored at 50% with no width is
+   capped at half the viewport, so the fifth section wrapped onto a second row
+   and landed on top of the speed bar. */
+#dir{position:fixed;left:0;right:0;bottom:72px;z-index:24;padding:0 26px;
+  display:flex;gap:clamp(10px,2.1vw,30px);flex-wrap:wrap;justify-content:center}
 #dir a{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--dim);text-decoration:none;transition:color .3s;white-space:nowrap}
 #dir a:hover{color:var(--ink)}
@@ -121,6 +124,7 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
 
 <script src="data.js"></script>
 <script src="curation.js"></script>
+<script src="nav.js"></script>
 <script>
 (function(){
   const W=window.WORK, field=document.getElementById('field'),
