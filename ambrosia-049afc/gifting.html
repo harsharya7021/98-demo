@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Gifting &amp; seeding — The Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+:root{
+  --ink:#E9EAE4; --bg:#0A0A0A; --dim:rgba(233,234,228,.44); --dimmer:rgba(233,234,228,.16);
+  --red:#E4322B; --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
+  --pad:clamp(20px,4vw,56px);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+
+header{position:sticky;top:0;z-index:30;background:rgba(10,10,10,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--dimmer)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px var(--pad)}
+.bar a,.bar span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;transition:color .3s}
+.bar a:hover{color:var(--red)}
+.secs{display:flex;align-items:center;gap:clamp(10px,1.8vw,26px);flex-wrap:nowrap;overflow:hidden}
+.secs a{white-space:nowrap}
+.secs a.on{color:var(--ink)}
+@media(max-width:1040px){.secs{display:none}}
+
+
+/* ---- masthead ---- */
+.mast{padding:clamp(56px,11vh,132px) var(--pad) clamp(30px,5vh,56px);max-width:1500px;margin:0 auto}
+.mast .code{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
+.mast h1{font-size:clamp(40px,8.4vw,124px);font-weight:600;letter-spacing:-.042em;line-height:.94;margin:16px 0 0}
+.mast .sub{font-size:clamp(15px,1.6vw,21px);line-height:1.55;color:rgba(233,234,228,.82);
+  max-width:56ch;margin-top:26px}
+.flag{margin-top:30px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);border:1px dashed var(--dimmer);padding:13px 15px;display:inline-block;max-width:76ch;
+  line-height:1.75}
+
+/* ---- headline totals ---- */
+.tot{max-width:1500px;margin:clamp(30px,5vh,54px) auto 0;padding:0 var(--pad);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:clamp(16px,3vw,44px)}
+.tot div{border-top:1.5px solid var(--ink);padding-top:14px}
+.tot b{display:block;font-size:clamp(30px,4.6vw,58px);font-weight:600;letter-spacing:-.04em;
+  line-height:1;font-variant-numeric:tabular-nums}
+.tot span{display:block;margin-top:9px;font-family:var(--mono);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);line-height:1.6}
+
+/* ---- group rule ---- */
+.rule{max-width:1500px;margin:clamp(60px,11vh,124px) auto clamp(8px,2vh,20px);padding:0 var(--pad);
+  display:flex;align-items:baseline;gap:16px}
+.rule h2{font-size:clamp(20px,2.4vw,32px);font-weight:600;letter-spacing:-.02em}
+.rule i{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--red);white-space:nowrap}
+.rule .ln{flex:1;height:1px;background:var(--dimmer)}
+.rule+p.gl{max-width:1500px;margin:0 auto;padding:6px var(--pad) 0;
+  font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+
+/* ---- the ledger ---- */
+.ledger{max-width:1500px;margin:0 auto;padding:0 var(--pad)}
+.row{display:grid;grid-template-columns:64px 1.55fr 1fr;gap:clamp(18px,3.4vw,56px);
+  padding:clamp(26px,4.6vh,48px) 0;border-top:1px solid var(--dimmer);position:relative;
+  text-decoration:none;color:inherit;
+  opacity:0;transform:translateY(18px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.row.in{opacity:1;transform:none}
+.row:last-child{border-bottom:1px solid var(--dimmer)}
+.row::before{content:'';position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--red);
+  transition:width .55s cubic-bezier(.2,.7,.2,1)}
+.row:hover::before{width:100%}
+.row .idx{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--dim);padding-top:9px;
+  transition:color .3s}
+.row:hover .idx{color:var(--red)}
+.row h3{font-size:clamp(26px,3.6vw,50px);font-weight:600;letter-spacing:-.035em;line-height:1.02;
+  transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.row:hover h3{transform:translateX(9px)}
+.row .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin-top:13px}
+.row p.s{font-size:14.5px;line-height:1.62;color:rgba(233,234,228,.8);margin-top:18px;max-width:58ch}
+.row blockquote{margin-top:20px;padding-left:16px;border-left:2px solid var(--red);
+  font-size:clamp(14px,1.4vw,18px);line-height:1.45;color:rgba(233,234,228,.92);max-width:38ch}
+.row .open{display:inline-block;margin-top:20px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--red)}
+.row .open i{font-style:normal;display:inline-block;transition:transform .4s}
+.row:hover .open i{transform:translateX(5px)}
+
+/* right column */
+.row .side{padding-top:6px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:16px 20px}
+.stats div b{display:block;font-size:clamp(19px,2.1vw,27px);font-weight:600;letter-spacing:-.025em;
+  line-height:1.05;font-variant-numeric:tabular-nums}
+.stats div span{display:block;margin-top:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim);line-height:1.55}
+.did{list-style:none;margin-top:22px}
+.did li{position:relative;padding-left:17px;margin-bottom:8px;font-size:12.5px;line-height:1.55;
+  color:rgba(233,234,228,.68)}
+.did li::before{content:'';position:absolute;left:0;top:8px;width:7px;height:1px;background:var(--red)}
+.note{margin-top:20px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);border:1px dashed var(--dimmer);padding:9px 11px;line-height:1.7}
+.role{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--red);margin-bottom:16px}
+
+@media(max-width:900px){
+  .row{grid-template-columns:40px 1fr;gap:16px}
+  .row .side{grid-column:2;padding-top:20px}
+}
+
+.pager{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding:clamp(40px,7vh,80px) var(--pad) 90px;max-width:1500px;margin:clamp(48px,8vh,96px) auto 0;
+  border-top:1px solid var(--dimmer)}
+.pager a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;transition:color .3s}
+.pager a:hover{color:var(--red)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a href="index.html">← All sections</a>
+    <nav class="secs" id="snsecs"></nav>
+    <span id="count"></span>
+  </div>
+</header>
+
+<section class="mast">
+  <div class="code">Section 03 · Prepared for Ambrosia</div>
+  <h1 id="h1">Gifting &amp; seeding</h1>
+  <p class="sub" id="sub"></p>
+  <div class="flag">
+    No photography on this page, by design. This half of the book is operational —
+    lists, dispatch, box faces and motion. It is documented in writing here;
+    the boxes and the films come to the walkthrough.
+  </div>
+</section>
+
+<div class="tot" id="tot"></div>
+
+<div class="rule"><i>01</i><h2>The gift itself</h2><span class="ln"></span></div>
+<p class="gl">Campaign, packaging and festive creative — the parts a receiver actually holds</p>
+<div class="ledger" id="g1"></div>
+
+<div class="rule"><i>02</i><h2>Getting it into the right hands</h2><span class="ln"></span></div>
+<p class="gl">Seeding programmes and creator activations — the machinery behind a gifting push</p>
+<div class="ledger" id="g2"></div>
+
+<nav class="pager">
+  <a href="index.html">← All sections</a>
+  <a href="folders.html">Chosen case studies</a>
+  <a href="campaign.html?c=wellgiven">Well Given — made for you →</a>
+</nav>
+
+<script src="data.js"></script>
+<script src="curation.js"></script>
+<script src="nav.js"></script>
+<script>
+(function(){
+  const W=window.WORK;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+  const sec=W.sections.find(s=>s.id==='gifting');
+  const all=W.cases.filter(c=>c.sec==='gifting');
+  const by=id=>all.find(c=>c.id===id);
+
+  window.NAV.render(document.getElementById('snsecs'),'gifting');
+  document.getElementById('sub').textContent=sec.d;
+  document.getElementById('count').textContent=all.length+' entries';
+
+  /* Two readings of the same section. The first group is the gift — what gets
+     made and handed over. The second is distribution: seeding programmes and
+     the creator activations that put product in front of a room. Splitting
+     them is what stops a page with no pictures reading as a page with
+     missing pictures. Anything new in data.js falls into group 2. */
+  const G1=['borges','prbox','diwali'];
+  const G2=['seeding','cs-fastup','cs-iskate','cs-tgisf'];
+
+  /* Totals are summed off the cases' own stat rows — never typed in here, so
+     they cannot drift out of step with the case pages. */
+  const num=s=>{
+    const m=String(s).match(/([\d.]+)\s*M/i);
+    if(m) return parseFloat(m[1])*1e6;
+    const n=parseFloat(String(s).replace(/[^\d.]/g,''));
+    return isNaN(n)?0:n;
+  };
+  let reach=0, creators=0;
+  all.forEach(c=>(c.stats||[]).forEach(([v,l])=>{
+    if(/reach/i.test(l)) reach+=num(v);
+    if(/creators?/i.test(l)) creators+=num(v);
+  }));
+  document.getElementById('tot').innerHTML=
+    '<div><b>'+all.length+'</b><span>Entries in this section</span></div>'+
+    '<div><b>'+creators+'</b><span>Creators seeded &amp; activated</span></div>'+
+    '<div><b>'+(reach/1e6).toFixed(2)+' M</b><span>Combined reach, activations</span></div>'+
+    '<div><b>In-house</b><span>Box design, dispatch &amp; festive motion</span></div>';
+
+  const render=(ids,el,offset)=>{
+    document.getElementById(el).innerHTML=ids.map((id,i)=>{
+      const c=by(id); if(!c) return '';
+      const href=c.casepage||('roll.html?c='+c.id);
+      return '<a class="row" href="'+esc(href)+'">'+
+        '<div class="idx">'+String(offset+i+1).padStart(2,'0')+'</div>'+
+        '<div>'+
+          '<h3>'+esc(c.n)+'</h3>'+
+          '<div class="k">'+esc(c.k)+'</div>'+
+          '<p class="s">'+esc(c.s)+'</p>'+
+          (c.pull?'<blockquote>'+esc(c.pull)+'</blockquote>':'')+
+          '<span class="open">Open the case <i>↗</i></span>'+
+        '</div>'+
+        '<div class="side">'+
+          (c.role?'<div class="role">'+esc(c.role)+'</div>':'')+
+          (c.stats&&c.stats.length?'<div class="stats">'+c.stats.map(s=>
+            '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>').join('')+'</div>':'')+
+          (c.did&&c.did.length?'<ul class="did">'+c.did.map(d=>'<li>'+esc(d)+'</li>').join('')+'</ul>':'')+
+          (c.note?'<div class="note">'+esc(c.note)+'</div>':'')+
+        '</div>'+
+      '</a>';
+    }).join('');
+  };
+  render(G1,'g1',0);
+  render(G2,'g2',G1.length);
+
+  /* anything added to the section later still shows up */
+  const known=new Set(G1.concat(G2));
+  const extra=all.filter(c=>!known.has(c.id)).map(c=>c.id);
+  if(extra.length){
+    const host=document.getElementById('g2');
+    const prev=host.innerHTML;
+    render(G2.concat(extra),'g2',G1.length);
+    if(!host.innerHTML) host.innerHTML=prev;
+  }
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+  }),{rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.row').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Curate — The Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#E9EAE4;--bg:#0A0A0A;--dim:rgba(233,234,228,.44);--dimmer:rgba(233,234,228,.16);
+  --red:#E4322B;--green:#26A65B;--mono:"Space Mono",monospace;--sans:"Archivo",sans-serif}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;padding-bottom:120px}
+a{color:inherit}
+header{position:sticky;top:0;z-index:30;background:rgba(10,10,10,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--dimmer);padding:14px clamp(18px,3vw,44px);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:26px}
+.brand span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  background:none;border:1px solid var(--dimmer);color:var(--dim);padding:8px 13px;border-radius:2px;
+  cursor:pointer;transition:.25s;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{color:var(--ink);border-color:var(--dim)}
+button.pri{border-color:var(--green);color:var(--green)}
+button.dgr{border-color:var(--red);color:var(--red)}
+.wrap{padding:0 clamp(18px,3vw,44px)}
+.note{margin:26px 0 8px;font-size:13.5px;color:var(--dim);max-width:78ch}
+.note b{color:var(--ink);font-weight:600}
+h2{font-size:clamp(20px,2.4vw,30px);font-weight:600;letter-spacing:-.02em;margin:44px 0 4px}
+h2 em{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--red);
+  text-transform:uppercase;display:block;margin-bottom:8px}
+.hero{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0 10px;
+  padding:12px;border:1px dashed var(--dimmer);border-radius:3px}
+.hero img{width:96px;height:60px;object-fit:cover;border-radius:2px}
+.hero .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.case{border-top:1px solid var(--dimmer);padding:20px 0}
+.case h3{font-size:16px;font-weight:600;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.case h3 code{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--red)}
+.case h3 .cnt{font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px;margin-top:14px}
+.cell{position:relative;aspect-ratio:4/3;border-radius:2px;overflow:hidden;cursor:pointer;
+  border:1px solid transparent;transition:.2s}
+.cell img{width:100%;height:100%;object-fit:cover;display:block;transition:.25s}
+.cell.off img{opacity:.18;filter:grayscale(1)}
+.cell.off{border-color:var(--dimmer)}
+.cell .tick{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;
+  display:grid;place-items:center;font-size:11px;font-weight:700;
+  background:var(--green);color:#04170c}
+.cell.off .tick{background:rgba(233,234,228,.18);color:var(--dim)}
+.cell .up{position:absolute;bottom:6px;left:6px;font-family:var(--mono);font-size:8px;
+  letter-spacing:.12em;background:rgba(0,0,0,.7);padding:2px 5px;border-radius:2px;color:var(--ink)}
+.cell.hero-on{border-color:var(--green)}
+.addbox{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+input[type=file]{display:none}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(10,10,10,.95);
+  backdrop-filter:blur(14px);border-top:1px solid var(--dimmer);
+  padding:12px clamp(18px,3vw,44px);display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.bar .stat{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.bar .stat b{color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(10px);z-index:50;
+  background:var(--green);color:#04170c;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;padding:9px 16px;border-radius:2px;opacity:0;transition:.35s;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><img src="logo98.png" alt="98"><span>Curate the showcase</span></div>
+  <div class="acts">
+    <a class="btn" href="index.html">← Site</a>
+    <button id="exp">Export selection</button>
+    <button id="rst" class="dgr">Reset all</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="note">Click any frame to <b>drop it from the showcase</b> — click again to bring it back. Use <b>Add images</b> to upload your own into a case. The green tick means it's live on the site. Pick the <b>orbit card</b> for each section at the top of that section.<br>
+  Changes save to this browser instantly and apply across the site. When you're happy, hit <b>Export selection</b> and send me the file — I'll bake it in permanently so it travels with the site.</p>
+  <div id="body"></div>
+</div>
+
+<div class="bar">
+  <span class="stat" id="stat">—</span>
+  <span class="stat">Saved automatically to this browser</span>
+</div>
+<div class="toast" id="toast">Saved</div>
+
+<script src="data.js"></script>
+<script src="curation.js"></script>
+<script src="nav.js"></script>
+<script>
+(function(){
+  const W=window.WORK, CU=window.CURATION, body=document.getElementById('body');
+  const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+  const toast=(msg)=>{const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');
+    clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove('on'),1400);};
+
+  function stat(){
+    let on=0,tot=0,add=0;
+    W.cases.forEach(c=>{
+      (c.frames||[]).forEach(f=>{tot++; if(!CU.isHidden(c.id,f.f)) on++;});
+      add+=((CU.data.added[c.id]||[]).length);
+    });
+    document.getElementById('stat').innerHTML='<b>'+(on+add)+'</b> live · '+(tot-on)+' hidden · <b>'+add+'</b> uploaded';
+  }
+
+  function render(){
+    body.innerHTML='';
+    W.sections.forEach(sec=>{
+      const h=document.createElement('div');
+      const hero=CU.heroFor(sec,W);
+      h.innerHTML='<h2><em>Section</em>'+esc(sec.n)+'</h2>'+
+        '<div class="hero"><img src="'+hero+'" alt=""><div><div class="lbl">Orbit card on the home page</div>'+
+        '<div class="lbl" style="color:var(--dim);margin-top:4px">Click any frame below and choose “Make orbit card”</div></div>'+
+        '<button data-clearhero="'+sec.id+'" style="margin-left:auto">Use default</button></div>';
+      body.appendChild(h);
+
+      W.cases.filter(c=>c.sec===sec.id).forEach(c=>{
+        const wrap=document.createElement('div');
+        wrap.className='case';
+        const imgs=(c.frames||[]).map(f=>({src:'frames/'+c.id+'/'+f.f,key:f.f,added:false}))
+          .concat((CU.data.added[c.id]||[]).map((a,i)=>({src:a.f,key:'added:'+i,added:true,idx:i})));
+        wrap.innerHTML='<h3>'+esc(c.n)+' <code>'+esc(c.code)+'</code><span class="cnt">'+imgs.length+' frames</span></h3>'+
+          '<div class="grid"></div>'+
+          '<div class="addbox"><button data-add="'+c.id+'">+ Add images</button>'+
+          '<input type="file" accept="image/*" multiple id="f-'+c.id+'"></div>';
+        const g=wrap.querySelector('.grid');
+        imgs.forEach(im=>{
+          const off=!im.added && CU.isHidden(c.id,im.key);
+          const cell=document.createElement('div');
+          cell.className='cell'+(off?' off':'')+(hero===im.src?' hero-on':'');
+          cell.innerHTML='<img src="'+im.src+'" alt=""><span class="tick">'+(off?'':'✓')+'</span>'+
+            (im.added?'<span class="up">Uploaded</span>':'');
+          cell.title=im.added?'Uploaded — click to remove':'Click to hide / show';
+          cell.addEventListener('click',e=>{
+            if(e.shiftKey){ CU.setHero(sec.id,im.src); toast('Orbit card set'); render(); return; }
+            if(im.added){ if(confirm('Remove this uploaded image?')){ CU.removeAdded(c.id,im.idx); render(); } return; }
+            CU.toggle(c.id,im.key); render(); toast(CU.isHidden(c.id,im.key)?'Hidden':'Shown');
+          });
+          cell.addEventListener('contextmenu',e=>{ e.preventDefault(); CU.setHero(sec.id,im.src); toast('Orbit card set'); render(); });
+          g.appendChild(cell);
+        });
+        body.appendChild(wrap);
+      });
+    });
+
+    body.querySelectorAll('[data-add]').forEach(b=>{
+      b.onclick=()=>document.getElementById('f-'+b.dataset.add).click();
+    });
+    body.querySelectorAll('input[type=file]').forEach(inp=>{
+      inp.onchange=()=>{
+        const cid=inp.id.slice(2), files=[...inp.files]; let n=0;
+        if(!files.length) return;
+        files.forEach(f=>CU.ingest(f,item=>{
+          CU.add(cid,item); n++;
+          if(n===files.length){ render(); toast(n+' image'+(n>1?'s':'')+' added'); }
+        }));
+      };
+    });
+    body.querySelectorAll('[data-clearhero]').forEach(b=>{
+      b.onclick=()=>{ CU.setHero(b.dataset.clearhero,null); render(); toast('Default restored'); };
+    });
+    stat();
+  }
+
+  document.getElementById('rst').onclick=()=>{
+    if(confirm('Reset every hidden frame, upload and orbit card?')){ CU.reset(); render(); toast('Reset'); }
+  };
+  document.getElementById('exp').onclick=()=>{
+    const blob=new Blob([JSON.stringify(CU.data,null,2)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='curation.json'; a.click();
+    toast('Exported');
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × The Weekend · Campaign Case Study (Deep)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html" class="on">Chosen case studies</a><a href="../map.html?s=production">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>The Setting<br>Is The<br>Story<span class="dot">.</span></h1>
+    <p class="deck">A constellation creator launch for The Weekend Wine &amp; More — a Moroccan-inspired
+    fine-dining and wine destination on the upper deck of Gardens Galleria Mall, Noida.
+    Ten creators across four audience verticals. Combined reach 1.45M. One venue, one
+    weekend, one cultural arrival.</p>
+  </section>
+
+<!-- ====== COVER ====== -->
+<section class="sec">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+<!-- ====== 01 SNAPSHOT ====== -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">01</div><div class="title">The Snapshot</div></div>
+
+  <p class="body-p">
+    <strong>The Weekend Wine &amp; More</strong> opened on the upper deck of Gardens Galleria Mall,
+    Noida — a saturated F&amp;B floor with established competition. The brief to 98 was not
+    "promote a restaurant"; it was "make sure the city's content audiences walk through this
+    venue's door before the algorithm decides what it is".
+  </p>
+  <p class="body-p">
+    98 designed the launch as a <em>constellation</em>: ten creators chosen across four
+    distinct audience verticals, each shooting the venue through their own grammar, all
+    sharing a tag-stack and geo-pin discipline. The Moroccan room — teal chandeliers,
+    floral wine-bottle installation, brass-tassel column lamps, deep imported-spirits
+    cellar — was the consistent star.
+  </p>
+
+  <div class="kpi-row">
+    <div><div class="kpi-num">10</div><div class="kpi-label">Creators activated</div></div>
+    <div><div class="kpi-num">1.45<span class="small">M</span></div><div class="kpi-label">Combined follower reach</div></div>
+    <div><div class="kpi-num">4</div><div class="kpi-label">Audience verticals</div></div>
+    <div><div class="kpi-num">3<span class="small">wk</span></div><div class="kpi-label">Concentrated launch window</div></div>
+  </div>
+
+  <div class="snap-grid">
+    <div class="snap-cell"><h4>Client</h4><p>The Weekend Wine &amp; More — fine-dining wine bar
+      at Gardens Galleria Mall, Noida (also under @weekendatgallerianoida).</p></div>
+    <div class="snap-cell"><h4>Format</h4><p>Multi-creator UGC seeding — Reels, four-up Story
+      collages, brand-curated portrait shoot. 2–4 frames per creator visit.</p></div>
+    <div class="snap-cell"><h4>Agency</h4><p>98 Entertainment — constellation launch for The Weekend Wine & More, Gardens Galleria.</p></div>
+    <div class="snap-cell"><h4>Engagement Layer</h4><p>Standardised tag stack
+      (@theweekendwineandmore + @98.entertainment + Gardens Galleria geo-tag) on every
+      visit to compound the venue's location pin.</p></div>
+  </div>
+
+  
+</section>
+
+<!-- ====== 02 CHALLENGE ====== -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">02</div><div class="title">The Challenge</div></div>
+
+  <p class="body-p">
+    Gardens Galleria already had an established F&amp;B floor in mid-2022. The Weekend was the
+    new tenant on a deck where every neighbouring window already had foot traffic, regular guests,
+    and an Instagram tag stack. A maximalist Moroccan wine bar opening into that ecosystem could
+    not announce itself with a hoarding or a Zomato listing — both would read as "another opening".
+    It had to enter the city's content stream as a place that was <em>already a story</em>.
+  </p>
+
+  <ul class="dash">
+    <li><strong>The setting is the proposition.</strong> The Weekend isn't selling pasta or
+      pinot. It's selling a maximalist Arab-Mediterranean drawing room. That world doesn't
+      photograph through stock-photo restaurant content. It needs creators whose feeds reward
+      <em>setting</em>, not bites.</li>
+    <li><strong>Three audiences, one window.</strong> The launch had to land with food creators
+      (saves, recipes), aesthetic / lifestyle creators (saved as inspo), <em>and</em> fashion /
+      portrait creators (saved as a backdrop). Three different feeds, one restaurant, one
+      three-week window before the algorithm decided what the venue is.</li>
+    <li><strong>A saturated mall floor.</strong> Discovery on Gardens Galleria's geo-pin is
+      contested. Without a coordinated tag-stack policy across creators, every visit would
+      have leaked into a different cluster of searches.</li>
+    <li><strong>Asset compounding for after the window.</strong> A new venue's first month sets
+      the tone for its first quarter. The launch had to leave the brand with creative it could
+      keep using — for Diwali service, anniversary covers, menu drops.</li>
+  </ul>
+
+  
+</section>
+
+<!-- ====== 03 STRATEGIC MOVE ====== -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">03</div><div class="title">The Strategic Move</div></div>
+
+  <p class="big-quote">
+    Don't sell the menu.<br>
+    Build a <span class="accent">constellation.</span>
+  </p>
+
+  <p class="body-p">
+    A single hero creator post would have been an ad. Three would have been a campaign. We
+    chose <strong>ten</strong>, mapped across four audience pools, each picked for the specific
+    audience moment they could capture inside the room. Each creator's content reads as their
+    own; the consistent grammar (the Moroccan setting, the tag stack, the geo-pin) does the work
+    of making them feel like a chorus.
+  </p>
+
+  <div class="three-col">
+    <div>
+      <div class="num">01</div>
+      <h5>Mix the verticals</h5>
+      <p>Food creators alone would have made the launch feel like a soft opening. Lifestyle
+        alone would have felt like a vibe-piece. The combination — food + design / aesthetic +
+        fashion / portrait + couples / luxury — made the launch read as <em>cultural</em>, not
+        commercial.</p>
+    </div>
+    <div>
+      <div class="num">02</div>
+      <h5>Mix the reach tiers</h5>
+      <p>Verified Tier-1 (Sonali Arora, Mandeep Singh) carried the broadcast layer. Mid-tier
+        (Veronica, Sara Malhotra, Anchit &amp; Surabhi) carried weekend-bookings intent.
+        Niche-but-deep (Sukriti the architect, Stillsbyayushjain the F&amp;B photographer)
+        carried credibility — different leverage from the same constellation.</p>
+    </div>
+    <div>
+      <div class="num">03</div>
+      <h5>One tag-stack discipline</h5>
+      <p>Same handle pair on every visit (@theweekendwineandmore + @98.entertainment), founder
+        re-share via @harsh.aryaa, geo-tag locked to Gardens Galleria. Ten creators behaved like
+        one source for the location pin's algorithm.</p>
+    </div>
+  </div>
+
+  
+</section>
+
+<!-- ====== 04 ROSTER MAP ====== -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">04</div><div class="title">The Roster Map</div></div>
+
+  <p class="body-p">
+    Ten creators across four verticals. The roster is read on two axes: <strong>vertical</strong>
+    (the audience pool the creator owns) and <strong>tier</strong> (verified broadcast vs.
+    mid-tier intent vs. niche credibility).
+  </p>
+
+  <div class="roster-map">
+    <div class="vert"><h4>Lifestyle &amp;<br>Reach</h4><div class="role">Tier-1 broadcast</div></div>
+    <div class="creators">
+      <div class="creator"><span class="h">@sonaliarora__</span><span class="n">303.7K</span><span class="v">V</span></div>
+      <div class="creator"><span class="h">@mandeepgujjar_</span><span class="n">253.8K</span><span class="v">V</span></div>
+      <div class="creator"><span class="h">@food_travel_etc</span><span class="n">257.4K</span></div>
+      <div class="creator"><span class="h">@veronniiccca</span><span class="n">163.8K</span></div>
+    </div>
+
+    <div class="vert"><h4>Fashion &amp;<br>Portrait</h4><div class="role">Aspirational / Gen-Z</div></div>
+    <div class="creators">
+      <div class="creator"><span class="h">@malhotra_sara</span><span class="n">124.4K</span></div>
+      <div class="creator"><span class="h">@aaanchalll__</span><span class="n">95.6K</span></div>
+    </div>
+
+    <div class="vert"><h4>Aesthetic &amp;<br>Discovery</h4><div class="role">Saved-content / inspo</div></div>
+    <div class="creators">
+      <div class="creator"><span class="h">@shatakshitomar</span><span class="n">137.9K</span><span class="v">V</span></div>
+      <div class="creator"><span class="h">@legallypinteresty</span><span class="n">41.0K</span></div>
+    </div>
+
+    <div class="vert"><h4>Design &amp;<br>Production</h4><div class="role">Credibility / asset</div></div>
+    <div class="creators">
+      <div class="creator"><span class="h">@_sukku_</span><span class="n">55.3K</span><span class="v">V</span></div>
+      <div class="creator"><span class="h">@stillsbyayushjain</span><span class="n">17.9K</span></div>
+    </div>
+  </div>
+
+  <p class="body-p" style="margin-top:8mm">
+    <strong>Read this map and the campaign explains itself.</strong> Three of the four verified
+    handles sit on the Tier-1 broadcast row. The Design &amp; Production vertical (architect
+    Sukriti, F&amp;B photographer Ayush Jain) has the lowest combined follower count but the
+    highest creative leverage — those two creators produced content the brand still uses as
+    evergreen assets. Each row is a lever; the campaign pulled all four.
+  </p>
+
+  
+</section>
+
+<!-- ====== CREATOR PAGES — 10 ====== -->
+
+<!-- 1 · Sonali Arora -->
+<section class="sec">
+  <div class="creator-marker"><span>0 5&nbsp;&nbsp;·&nbsp;&nbsp;Creator 1 of 10</span><span>Lifestyle &amp; Reach</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Sonali<br>Arora</div>
+    <div class="creator-meta">
+      <div class="handle">@sonaliarora__</div>
+      <div class="role">Delhi · Digital Creator</div>
+      <div class="verified">✓ Verified</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">303.7K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">394</div><div class="cs-label">Posts</div></div>
+    <div><div class="cs-num">Tier-1</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Verified</div><div class="cs-label">Status</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — overhead pizza + signature pink cocktail · golden tassel column lamp · &quot;Yummiest 🍇&quot; hook ]</div>
+  <div class="creator-block">
+    <h4>Why we chose her</h4>
+    <p>Sonali's verified 300K reach already over-indexes on cocktails, dining and travel —
+      the cleanest demographic match for a wine bar in the launch's first three weeks. The
+      verified tick was the leverage: it told her audience this venue had been validated by
+      a creator they already trust on F&amp;B picks.</p>
+    <h4>What she posted</h4>
+    <p>Two frames in 98's launch highlight: an interior shot framing the floral wine-bottle
+      installation against the gold-tassel column lamps and mustard couches, then an overhead
+      tasting flat-lay — pizza with rocket, signature pink cocktail with citrus garnish, whisky
+      sour, tea-base mocktail. Hook: <em>"Yummiest 🍇"</em>.</p>
+    <h4>The value brought</h4>
+    <p>Saves. Sonali's audience screenshots her cocktail picks and DMs them. The Weekend got
+      bookmarked, not just impressioned — exactly the behaviour that converts to weekend
+      reservations rather than one-tap watches.</p>
+  </div>
+  
+</section>
+
+<!-- 2 · Sukriti -->
+<section class="sec">
+  <div class="creator-marker"><span>0 6&nbsp;&nbsp;·&nbsp;&nbsp;Creator 2 of 10</span><span>Design &amp; Production</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Sukriti<br><span class="small">_sukku_</span></div>
+    <div class="creator-meta">
+      <div class="handle">@_sukku_</div>
+      <div class="role">Delhi · Architect / Design</div>
+      <div class="verified">✓ Verified</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">55.3K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">298</div><div class="cs-label">Posts</div></div>
+    <div><div class="cs-num">Niche</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Verified</div><div class="cs-label">Status</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — dining table close-up · tall stemware glass with apricot drink · menu card with QR code · plated crepe ]</div>
+  <div class="creator-block">
+    <h4>Why we chose her</h4>
+    <p>Sukriti is an architect — design partner at @urbanregenerationproject. We picked her
+      precisely <em>because</em> her audience knows her as an architect, not an influencer. When
+      she tags a venue, she's not endorsing the food — she's endorsing the room. For The Weekend's
+      maximalist Moroccan brief, that's the strongest possible third-party validation: a designer
+      pointing at a designed space.</p>
+    <h4>What she posted</h4>
+    <p>Composed dining-table frame: tall stemware glass with apricot-coloured drink, crepe-style
+      plate with sauce dotted artfully, menu card with QR. The composition reads as a still-life,
+      not a food shot.</p>
+    <h4>The value brought</h4>
+    <p>Architectural credibility. 55K followers but the right 55K — design-conscious diners,
+      practising architects, hospitality owners who book entire floors for design retreats.
+      Lower reach, higher conversion-to-experience.</p>
+  </div>
+  
+</section>
+
+<!-- 3 · Shatakshi Tomar -->
+<section class="sec">
+  <div class="creator-marker"><span>0 7&nbsp;&nbsp;·&nbsp;&nbsp;Creator 3 of 10</span><span>Aesthetic &amp; Discovery</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Shatakshi<br>Tomar</div>
+    <div class="creator-meta">
+      <div class="handle">@shatakshitomar</div>
+      <div class="role">Digital Creator · @kripyaindia</div>
+      <div class="verified">✓ Verified</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">137.9K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">1,585</div><div class="cs-label">Posts</div></div>
+    <div><div class="cs-num">Mid-tier</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Verified</div><div class="cs-label">Status</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — chocolate-cream layered dessert in stemware · gold spoon · chevron tile background · &quot;DESSERT&quot; overlay ]</div>
+  <div class="creator-block">
+    <h4>Why we chose her</h4>
+    <p>Verified, builder-mindset (she runs her own brand, @kripyaindia), and her feed reliably
+      shoots dessert content cleanly. She speaks to a "I'd open a place like this" demographic
+      — entrepreneurs, hospitality owners, aspiring restaurateurs.</p>
+    <h4>What she posted</h4>
+    <p>Hero dessert close-up — layered chocolate-cream in a stemware glass with gold spoon, on
+      The Weekend's signature chevron-tile setting. Single overlay: <em>"DESSERT"</em>. Tagged
+      @theweekendwineandmore + @98.entertainment.</p>
+    <h4>The value brought</h4>
+    <p>Builders' audience overlap with hospitality &amp; F&amp;B owners — exactly the people
+      who'd want to host their own teams or anniversary dinners at a venue like The Weekend.
+      Highest second-order value of the roster.</p>
+  </div>
+  
+</section>
+
+<!-- 4 · Legallypinteresty -->
+<section class="sec">
+  <div class="creator-marker"><span>0 8&nbsp;&nbsp;·&nbsp;&nbsp;Creator 4 of 10</span><span>Aesthetic &amp; Discovery</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Legally<br>Pinteresty</div>
+    <div class="creator-meta">
+      <div class="handle">@legallypinteresty</div>
+      <div class="role">Skincare · Lifestyle · Mood-board</div>
+      <div class="verified" style="color:#6c6c75">— Open to barter / paid</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">41.0K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">High</div><div class="cs-label">Engagement</div></div>
+    <div><div class="cs-num">Niche</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Saves</div><div class="cs-label">Behaviour</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — 4-up Story collage · whisky cabinet · teal Moroccan chandeliers · Moorish archway · mirror selfie ]</div>
+  <div class="creator-block">
+    <h4>Why we chose her</h4>
+    <p>The lowest-reach creator on the roster, picked deliberately. Her feed is a Pinterest-board
+      in motion — saved-content over follow-content. A 4-up grid from her plays differently than
+      any single Reel: it's a mood-board, not an ad. For a venue selling <em>setting</em>, a
+      mood-board is exactly the asset format that converts.</p>
+    <h4>What she posted</h4>
+    <p>4-up Story collage covering The Weekend's whisky cabinet, the teal Moroccan chandelier
+      cluster, a Moorish archway / wall detail, and a mirror selfie inside the room. Hook:
+      <em>"had one of the greatest collections &gt;&gt; definitely teleported me to arab"</em>.</p>
+    <h4>The value brought</h4>
+    <p>Highest virality-per-follower of the roster. Aesthetic creators drive saves, then DMs —
+      her audience builds mood-boards, then asks each other "where is this?". The cheapest
+      booking driver in the constellation.</p>
+  </div>
+  
+</section>
+
+<!-- 5 · Ayush Jain -->
+<section class="sec">
+  <div class="creator-marker"><span>0 9&nbsp;&nbsp;·&nbsp;&nbsp;Creator 5 of 10</span><span>Design &amp; Production</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Ayush<br>Jain</div>
+    <div class="creator-meta">
+      <div class="handle">@stillsbyayushjain</div>
+      <div class="role">Delhi · Commercial F&amp;B Photographer</div>
+      <div class="verified" style="color:#6c6c75">— Pro creator</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">17.9K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">F&amp;B</div><div class="cs-label">Specialty</div></div>
+    <div><div class="cs-num">Asset</div><div class="cs-label">Lever</div></div>
+    <div><div class="cs-num">Hi-res</div><div class="cs-label">Output</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — overhead Valhorna mousse · chevron plate · venue interior peeking · &quot;Setting new standards&quot; overlay ]</div>
+  <div class="creator-block">
+    <h4>Why we chose him</h4>
+    <p>Ayush isn't a lifestyle creator — he's a commercial F&amp;B photographer. Stylist, product
+      shooter, lifestyle frame composer. His content publishes at editorial grade because it IS
+      editorial grade. We picked him not for reach, but for asset quality: the brand could
+      <em>lift</em> his still and use it on a menu, in a Meta ad, on a cover page. He tags us
+      back, so the audience reads it as creator content while the brand keeps the file.</p>
+    <h4>What he posted</h4>
+    <p>The launch frame for the venue: <em>"New spot in Noida / @theweekendwineandmore setting
+      new standards / 📍 Gardens Galleria Mall"</em> — clean overhead Valhorna Mousse on a
+      chevron plate, dim mood lighting, venue interior peeking in.</p>
+    <h4>The value brought</h4>
+    <p>Maximum asset quality, lowest CPM. The brand walks away with launch creative it owns
+      outright — usable across menus, signage, paid amplification, anniversary covers.</p>
+  </div>
+  
+</section>
+
+<!-- 6 · Mandeep Singh -->
+<section class="sec">
+  <div class="creator-marker"><span>1 0&nbsp;&nbsp;·&nbsp;&nbsp;Creator 6 of 10</span><span>Lifestyle &amp; Reach</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Mandeep<br>Singh</div>
+    <div class="creator-meta">
+      <div class="handle">@mandeepgujjar_</div>
+      <div class="role">Tier-1 lifestyle creator</div>
+      <div class="verified">✓ Verified</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">253.8K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">Broadcast</div><div class="cs-label">Function</div></div>
+    <div><div class="cs-num">Tier-1</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Verified</div><div class="cs-label">Status</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — wide-angle interior · central bar · whisky shelving · mustard couches · architectural lighting ]</div>
+  <div class="creator-block">
+    <h4>Why we chose him</h4>
+    <p>The broadcast lever. 253K verified eyes is the kind of reach a brand cannot buy at this
+      CPM in this category through paid media. His audience needs no "why" — verified +
+      lifestyle creator at a new venue equals "must-visit". We placed him strategically in the
+      launch sequence to break the venue out of the niche / aesthetic loop and into the city
+      conversation.</p>
+    <h4>What he posted</h4>
+    <p>Wide-angle interior shot — the venue's central bar with whisky shelving, mustard
+      couches in foreground, layered architectural lighting. Story-format.</p>
+    <h4>The value brought</h4>
+    <p>Pure reach. The single highest-CPM equivalent post in the constellation.
+      Mandeep's frame moves The Weekend from a Noida venue to a Delhi-NCR venue overnight.</p>
+  </div>
+  
+</section>
+
+<!-- 7 · Veronica -->
+<section class="sec">
+  <div class="creator-marker"><span>1 1&nbsp;&nbsp;·&nbsp;&nbsp;Creator 7 of 10</span><span>Lifestyle &amp; Reach</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Vero<br><span class="small">veronniiccca</span></div>
+    <div class="creator-meta">
+      <div class="handle">@veronniiccca</div>
+      <div class="role">Gen-Z lifestyle / dessert</div>
+      <div class="verified" style="color:#6c6c75">— Lifestyle creator</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">163.8K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">Gen-Z</div><div class="cs-label">Demographic</div></div>
+    <div><div class="cs-num">Mid-tier</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Dessert</div><div class="cs-label">Vertical depth</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — tiramisu close-up in stemware · &quot;THE WEEKEND&quot; neon signage glowing in background · &quot;The tiramisu 👌👌👌&quot; overlay ]</div>
+  <div class="creator-block">
+    <h4>Why we chose her</h4>
+    <p>The dessert / Gen-Z anchor. 163K with a strong sweet-tooth feed — closes the dessert
+      audience the food picks didn't fully cover, and brings a younger demographic that the
+      Tier-1 verifieds wouldn't have reached cleanly. Important for a wine bar that wants
+      Friday-night booking energy, not just wine-club dinners.</p>
+    <h4>What she posted</h4>
+    <p><em>"The tiramisu 👌👌👌"</em> — a close-up of tiramisu in stemware glass, with The
+      Weekend's neon signage glowing in the background frame. Tagged @theweekendwineandmore +
+      @98.entertainment + @harsh.aryaa.</p>
+    <h4>The value brought</h4>
+    <p>The Friday-night bookings demographic. Vero's audience books on a Friday afternoon for
+      that night. Same-week conversion to footfall.</p>
+  </div>
+  
+</section>
+
+<!-- 8 · Anchit & Surabhi -->
+<section class="sec">
+  <div class="creator-marker"><span>1 2&nbsp;&nbsp;·&nbsp;&nbsp;Creator 8 of 10</span><span>Lifestyle &amp; Reach</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Anchit<br>&amp; Surabhi</div>
+    <div class="creator-meta">
+      <div class="handle">@food_travel_etc</div>
+      <div class="role">Delhi · Couple · Luxury Travel &amp; Food</div>
+      <div class="verified" style="color:#6c6c75">— Couple creators</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">257.4K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">Couples</div><div class="cs-label">Audience</div></div>
+    <div><div class="cs-num">Tier-1</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Reel</div><div class="cs-label">Format</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — branded Reel · &quot;THE WEEKEND Wine &amp;amp; More&quot; glowing signage · chandelier ceiling · &quot;AmeeN Beats - Carina&quot; soundtrack ]</div>
+  <div class="creator-block">
+    <h4>Why we chose them</h4>
+    <p>Two Chartered Accountants who built a couple's account around luxury travel and food.
+      Their audience trusts their picks because the picks come with status pre-filtering — CAs
+      who shoot luxury experiences signal "this is worth saving up for". For a venue trying to
+      land as a couples-occasion destination (anniversaries, dates, milestone dinners), there's
+      no cleaner angle.</p>
+    <h4>What they posted</h4>
+    <p>A produced Reel framing The Weekend's golden signage and Moroccan chandelier ceiling
+      against the Gardens Galleria mezzanine. Soundtrack: <em>AmeeN Beats — Carina</em>. Geo-tag:
+      Gardens Galleria Mall. Cleanly composed, near-broadcast quality.</p>
+    <h4>The value brought</h4>
+    <p>Highest-LTV restaurant guest segment in the constellation. Couples are the demographic
+      that comes back for anniversaries, dates, milestones — the foundation of a venue's
+      repeat-revenue base. The Weekend got positioned as a couples-occasion destination on the
+      strength of this single frame.</p>
+  </div>
+  
+</section>
+
+<!-- 9 · Sara Malhotra -->
+<section class="sec">
+  <div class="creator-marker"><span>1 3&nbsp;&nbsp;·&nbsp;&nbsp;Creator 9 of 10</span><span>Fashion &amp; Portrait</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Sara<br>Malhotra</div>
+    <div class="creator-meta">
+      <div class="handle">@malhotra_sara</div>
+      <div class="role">Fashion / Portrait · IIM '25 · LSR '23</div>
+      <div class="verified" style="color:#6c6c75">— Fashion-portrait creator</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">124.4K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">Fashion</div><div class="cs-label">Vertical</div></div>
+    <div><div class="cs-num">Mid-tier</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Backdrop</div><div class="cs-label">Asset use</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — full-length portrait at THE WEEKEND floral &amp;amp; wine-bottle installation · brand-curated framing · &quot;Today at @weekendatgallerianoida 🤍&quot; ]</div>
+  <div class="creator-block">
+    <h4>Why we chose her</h4>
+    <p>The fashion vertical the food creators couldn't reach. Sara is IIM '25 / LSR '23 — high-
+      status academic and career trajectory bleeds into her audience aspirations. When she shoots
+      a venue as her backdrop, the venue inherits "places that successful young women go to".
+      Different feed, different audience, same room.</p>
+    <h4>What she posted</h4>
+    <p>Two formats: a creator-shot story portrait and a brand-curated portrait shoot at the same
+      floral &amp; wine-bottle installation, the latter staged so it could live across her grid
+      <em>and</em> The Weekend's launch posts. Caption: <em>"Today at @weekendatgallerianoida
+      🤍"</em>.</p>
+    <h4>The value brought</h4>
+    <p>The selfie pin. Sara's frame turned the floral installation into a self-perpetuating
+      backdrop — once she anchored it, every guest who showed up would shoot the same wall.
+      The campaign created a piece of architecture that keeps doing the work after the launch
+      window closes.</p>
+  </div>
+  
+</section>
+
+<!-- 10 · Anchal Thakur -->
+<section class="sec">
+  <div class="creator-marker"><span>1 4&nbsp;&nbsp;·&nbsp;&nbsp;Creator 10 of 10</span><span>Fashion &amp; Portrait</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Anchal<br>Thakur</div>
+    <div class="creator-meta">
+      <div class="handle">@aaanchalll__</div>
+      <div class="role">Lifestyle · Open to paid / barter</div>
+      <div class="verified" style="color:#6c6c75">— Commercial-friendly</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">95.6K</div><div class="cs-label">Followers</div></div>
+    <div><div class="cs-num">Mid-tier</div><div class="cs-label">Reach tier</div></div>
+    <div><div class="cs-num">Paid OK</div><div class="cs-label">Posture</div></div>
+    <div><div class="cs-num">Lifestyle</div><div class="cs-label">Vertical</div></div>
+  </div>
+  <div class="creator-still empty">[ Still — 4-up collage · whisky shelving with creator at the rack · Moroccan chandelier glow · mirror selfie · ornate archway ]</div>
+  <div class="creator-block">
+    <h4>Why we chose her</h4>
+    <p>The roster needed at least one creator whose audience already understands paid-collab
+      content as content. Anchal's bio is explicit about paid &amp; barter availability — that
+      transparency means her followers receive brand work as a recommendation, not a betrayal.
+      For a venue launch where every visit is technically arranged, that trust is leverage.</p>
+    <h4>What she posted</h4>
+    <p>4-up Story collage: posed at the whisky shelving rack, the teal Moroccan chandelier
+      cluster, mirror selfie inside the dining floor, ornate archway detail. Tagged
+      @theweekendwineandmore + @98.entertainment + @harsh.aryaa.</p>
+    <h4>The value brought</h4>
+    <p>Brand-direct CTAs delivered cleanly. Her audience reads brand content from her without
+      the friction other creators' audiences sometimes show. Lifts the whole roster's
+      conversion-from-impression rate.</p>
+  </div>
+  
+</section>
+
+<!-- ====== 15 · HOW IT WAS RUN ====== -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">15</div><div class="title">How It Was Run</div></div>
+
+  <p class="body-p">
+    A constellation launch is logistics first, creative second. Ten creators across three weeks,
+    one venue floor, one F&amp;B team. 98 held the venue, the kitchen schedule, and the creator
+    roster on one continuous timeline.
+  </p>
+
+  <table class="ops-table">
+    <thead><tr><th>Stage</th><th>What 98 Owned</th><th>Why It Mattered</th></tr></thead>
+    <tbody>
+      <tr><td>Roster architecture</td><td>Mapping ten creators across four verticals; tier
+        balance (verified broadcast, mid-tier intent, niche credibility); demographic spread.</td>
+        <td>One launch served four feeds without diluting the venue voice on any of them.</td></tr>
+      <tr><td>Creator sourcing &amp; vetting</td><td>Profile vetting for feed-fit (does this
+        creator's grid reward setting?), commercial benchmarking, regional weighting toward
+        Delhi NCR.</td><td>Filtered out review-bloggers; locked in creators whose content makes
+        a venue feel <em>destination</em>, not transaction.</td></tr>
+      <tr><td>Visit choreography</td><td>Booking the right table, time of day for chandelier
+        light, dish &amp; cocktail selection that read well on camera, max two creators per
+        evening to protect the room's calmness.</td><td>Each visit produced photographable
+        content without turning the floor into a press junket.</td></tr>
+      <tr><td>Tag-stack discipline</td><td>Standardised handle pair (@theweekendwineandmore +
+        @98.entertainment), founder-add @harsh.aryaa, geo-pin verification before posting.</td>
+        <td>Every story added to the venue's geo-pin discoverability — ten creators behaved as
+        one source for the location's algorithm.</td></tr>
+      <tr><td>Brand-curated content</td><td>One short brand-side portrait shoot at the floral
+        installation with @malhotra_sara, intentionally styled to read as creator content.</td>
+        <td>Gave the brand evergreen launch assets without breaking the organic feel of the
+        campaign.</td></tr>
+      <tr><td>Asset capture</td><td>Cleared usage rights with @stillsbyayushjain on his hero
+        still; soft-rights on creator content for cross-platform repost.</td><td>Brand walks
+        away with the photographer's frame as evergreen creative — usable on menus, signage
+        and Meta ads after the campaign window.</td></tr>
+      <tr><td>Cadence management</td><td>Posting schedule across the three-week window so a
+        new story appeared at the venue's geo-pin every 2–3 days.</td><td>The opening drumbeat
+        never went silent; the algorithm learned this venue was a place people kept arriving at.</td></tr>
+    </tbody>
+  </table>
+
+  
+</section>
+
+<!-- ====== 16 · WHAT DELIVERED ====== -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">16</div><div class="title">What the Work Delivered</div></div>
+
+  <div class="deliv-grid">
+    <div class="deliv-cell">
+      <h4>Reach &amp; Discovery</h4>
+      <ul class="dash">
+        <li><strong>1.45M combined follower reach</strong> across ten creators — layered across
+          food, lifestyle, fashion, design and luxury-couples verticals.</li>
+        <li><strong>4 verified broadcast handles</strong> (@sonaliarora__, @mandeepgujjar_,
+          @shatakshitomar, @_sukku_) carrying the algorithmic-trust layer.</li>
+        <li>Standardised geo-tag drove search-ability of "Gardens Galleria · The Weekend"
+          on Instagram's location pin during the critical first three weeks.</li>
+      </ul>
+    </div>
+    <div class="deliv-cell">
+      <h4>Creative Quality</h4>
+      <ul class="dash">
+        <li>Ten creator stories that read as a curated <em>collection</em> — Moorish archways,
+          chandeliers, the floral wine-bottle wall, the whisky shelving — not a series of
+          reshoots.</li>
+        <li>Format range across single Reels, 4-up Story collages, dessert close-ups, full-length
+          portraits and a brand-curated portrait shoot — every grid behaviour catered to.</li>
+        <li>One photographer-grade still (@stillsbyayushjain) usable as evergreen launch
+          creative.</li>
+      </ul>
+    </div>
+    <div class="deliv-cell">
+      <h4>Booking &amp; Behaviour</h4>
+      <ul class="dash">
+        <li>Save-content behaviour was the goal — creators in this roster over-index on saves,
+          so the launch fed weekend reservation intent rather than one-night impressions.</li>
+        <li>The floral installation became a self-perpetuating selfie pin — every subsequent
+          guest now photographs the same wall.</li>
+        <li>Couples-occasion positioning seeded via @food_travel_etc — anniversary, milestone
+          and date-dinner intent baked into the venue's brand by Week 3.</li>
+      </ul>
+    </div>
+    <div class="deliv-cell">
+      <h4>Asset Longevity</h4>
+      <ul class="dash">
+        <li>Brand-curated portrait shoot still in rotation as evergreen launch creative — same
+          tagging convention, indistinguishable from organic.</li>
+        <li>Creator roster scoped during launch is reusable for subsequent activations
+          (Diwali, anniversary, new menu drops, Christmas service).</li>
+        <li>Tag-stack template &amp; geo-pin discipline now operationalised — the venue knows
+          how to brief any future content visit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="body-p" style="margin-top:8mm">
+    <strong>Read it together and the constellation works because each creator brought a
+    different value class.</strong> The verifieds carried the broadcast; the architect carried
+    the credibility; the photographer carried the asset; the aesthetic creator carried the saves;
+    the couples carried the LTV; the fashion creator carried the selfie pin. Same room. Ten
+    angles. One launch.
+  </p>
+
+  
+</section>
+
+<!-- ====== 17 · CAPABILITY PITCH ====== -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">17</div><div class="title">What We'd Bring to a Brand Like Yours</div></div>
+
+  <p class="body-p">
+    The Weekend engagement proves a launch playbook that transfers cleanly to any restaurant,
+    lounge, café or experiential venue opening in NCR with a strong physical identity. The
+    capability stack is the asset.
+  </p>
+
+  <div class="three-col" style="border-top:1pt solid #c8c8c8">
+    <div>
+      <div class="num">·</div>
+      <h5>Constellation roster, not single hero</h5>
+      <p>Ten creators across four verticals beats one hero on a single feed every time. Reach,
+        credibility, assets and selfie-pin behaviour all sit in different creators' grids —
+        we map the room to the verticals before we book the table.</p>
+    </div>
+    <div>
+      <div class="num">·</div>
+      <h5>Tag-stack discipline at scale</h5>
+      <p>Ten creators behaving like one source for an Instagram geo-pin is the technical
+        leverage. We bring the tag policy, the founder-add convention, the timing cadence,
+        and the post-launch repost loop.</p>
+    </div>
+    <div>
+      <div class="num">·</div>
+      <h5>Asset compounding past the window</h5>
+      <p>Every visit ships content the brand can keep using — photographer-grade stills,
+        brand-curated portraits with creator-content tagging conventions, and a roster you
+        can re-deploy for every season after launch.</p>
+    </div>
+  </div>
+
+  <div class="note-block">
+    <div class="label">A Direct Note · 9 8 × Brands Like Yours</div>
+    <h3>Hand us the keys to the room<br>and a date.</h3>
+    <p>Ten lenses on one Moroccan deck — actor to architect to photographer — so every audience met the room through its own register.</p>
+  </div>
+
+  <p class="eyebrow">9 8&nbsp;&nbsp;E N T E R T A I N M E N T &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Materials referenced from the campaign archive · Follower counts captured at time of writing.</p>
+
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../folders.html">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>

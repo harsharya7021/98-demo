@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Ambrosia × 98 — The Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+:root{
+  --ink:#E9EAE4; --bg:#000; --dim:rgba(233,234,228,.44); --dimmer:rgba(233,234,228,.18);
+  --red:#E4322B; --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+
+#cloud{position:fixed;inset:0;z-index:2}
+#field{position:absolute;inset:0;will-change:transform}
+.tile{position:absolute;left:50%;top:50%;display:block;padding:0;border:0;background:none;
+  cursor:pointer;will-change:transform,opacity;opacity:0;
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1),filter .5s ease}
+.tile.in{opacity:1}
+.tile img{display:block;width:100%;height:100%;object-fit:cover;background:#0d0d0d;
+  box-shadow:0 24px 60px rgba(0,0,0,.55)}
+/* Production runs a slideshow of on-location frames — stacked, cross-faded */
+.tile.slides{overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55);background:#0d0d0d}
+/* The incoming frame fades in ON TOP of the outgoing one, which stays fully
+   opaque underneath until the dissolve finishes. Fading both at once left them
+   half-transparent mid-cycle, so one logo showed through the other. */
+.tile.slides img{position:absolute;inset:0;box-shadow:none;opacity:0;z-index:1;
+  transition:opacity 1.2s cubic-bezier(.4,0,.2,1)}
+.tile.slides img.under{opacity:1;z-index:1;transition:none}
+.tile.slides img.on{opacity:1;z-index:2}
+#cloud.hot .tile{opacity:.14;filter:saturate(.15)}
+#cloud.hot .tile.lit{opacity:1;filter:none}
+
+#vig{position:fixed;inset:0;z-index:14;pointer-events:none;
+  background:radial-gradient(ellipse 72% 68% at 50% 50%, transparent 48%, rgba(0,0,0,.45) 80%, #000 100%)}
+
+#core{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;
+  text-align:center;pointer-events:none;width:min(760px,72vw)}
+#mark{transition:opacity .5s ease}
+#mark img{height:46px;display:block;margin:0 auto}
+
+#core.hot #mark{opacity:0}
+#label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;
+  font-size:clamp(24px,4vw,56px);font-weight:600;letter-spacing:-.035em;line-height:1.02;
+  opacity:0;transition:opacity .4s ease;text-shadow:0 2px 40px rgba(0,0,0,.9)}
+#label.on{opacity:1}
+#label small{display:block;margin-top:12px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700}
+
+.hud{position:fixed;z-index:24;font-family:var(--mono);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--dim);line-height:1.7}
+#tl{top:24px;left:26px}
+#tr{top:24px;right:26px;text-align:right}
+#tr i{font-style:normal;color:var(--ink)}
+#bl{bottom:24px;left:26px}
+#br{bottom:24px;right:26px;text-align:right}
+#hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:24;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dimmer);transition:opacity .6s ease}
+#hint.off{opacity:0}
+
+/* speed read-out — a thin arc that fills as you spin */
+#rev{position:fixed;left:50%;bottom:52px;transform:translateX(-50%);z-index:24;
+  width:120px;height:1px;background:rgba(233,234,228,.12)}
+#rev i{display:block;height:100%;width:0%;background:var(--red);transition:width .18s linear}
+
+#dir{position:fixed;left:50%;bottom:72px;transform:translateX(-50%);z-index:24;
+  display:flex;gap:clamp(12px,2.4vw,34px);flex-wrap:wrap;justify-content:center}
+#dir a{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;transition:color .3s;white-space:nowrap}
+#dir a:hover{color:var(--ink)}
+#dir a i{font-style:normal;color:var(--dimmer);margin-left:6px}
+
+#load{position:fixed;inset:0;z-index:60;background:#000;display:grid;place-items:center;
+  transition:opacity .9s ease .15s,visibility .9s ease .15s}
+#load.off{opacity:0;visibility:hidden}
+#pct{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim)}
+
+@media (max-width:820px){
+  html,body{overflow:auto}
+  #cloud,#core,#hint,#rev,#dir{display:none}
+  #m{display:block!important}
+}
+#m{display:none;padding:96px 20px 60px}
+#m a{display:block;border-top:1px solid var(--dimmer);padding:22px 0;text-decoration:none;color:inherit}
+#m a:last-child{border-bottom:1px solid var(--dimmer)}
+#m .n{font-size:30px;font-weight:600;letter-spacing:-.03em}
+#m .d{font-size:13px;color:var(--dim);margin-top:6px}
+#m .s{display:flex;gap:6px;margin-top:12px}
+#m .s img{width:64px;height:40px;object-fit:cover;border-radius:2px}
+</style>
+</head>
+<body>
+
+<div id="cloud"><div id="field"></div></div>
+<div id="vig"></div>
+
+<div id="core">
+  <div id="mark"><img src="logo98.png" alt="Ninety-Eight"></div>
+  <div id="label"></div>
+</div>
+
+<div id="tl" class="hud">Ninety-Eight<br>Entertainment</div>
+<div id="tr" class="hud">Prepared for <i>Ambrosia</i><br>August 2026</div>
+<div id="bl" class="hud">New Delhi · IN<br><a href="curate.html" style="color:var(--dimmer);text-decoration:none">Curate ↗</a></div>
+<div id="br" class="hud"><i id="tot">—</i> shoots &amp; campaigns<br>harsh@ninety-eight.in</div>
+<div id="dir"></div>
+<div id="rev"><i></i></div>
+<div id="hint">Scroll to spin · hover to hold · click to enter</div>
+
+<main id="m"></main>
+
+<div id="load"><div id="pct">0%</div></div>
+
+<script src="data.js"></script>
+<script src="curation.js"></script>
+<script>
+(function(){
+  const W=window.WORK, field=document.getElementById('field'),
+        cloud=document.getElementById('cloud'), core=document.getElementById('core'),
+        label=document.getElementById('label'), dir=document.getElementById('dir'),
+        revBar=document.querySelector('#rev i');
+  document.getElementById('tot').textContent=W.cases.length;
+
+  /* one card per section — every card is now our own work, no stock */
+  /* ---- home-page card art -------------------------------------------------
+     Production  — on-location frames: the beach build, the crane rig, dusk on
+                   set, the doorway, the drone overhead.
+     Chosen case — the client roster itself, one brand at a time. Same logo
+                   plates the constellation uses, set full-bleed on each
+                   brand's own ground. Dessert, coffee and patisserie rooms
+                   lead, because that is the shelf Ambrosia sells from.
+     Gifting and For Ambrosia stay on our own frames.                       -- */
+  const USE_STOCK = false;                 // nothing on this page is stock any more
+  const Q='?w=1500&q=75&auto=format&fit=crop';
+  const STOCK={};
+  const SLIDES={
+    production:['bts/01.jpg','bts/02.jpg','bts/03.jpg','bts/04.jpg','bts/05.jpg'],
+    cases:['poetry','cs-monet','cs-slay','cs-dejabrew','cs-skylantern','cs-ophelia',
+           'cs-khubani','one8','cs-bayroute','cs-daryaganj','cs-farzicafe','cs-fastup',
+           'cs-flaunt','cs-hardrock','cs-iskate','cs-local','cs-nao','cs-punjabgrill',
+           'cs-rizq','cs-slique','cs-tgisf','cs-yyc_group','cs-tablespoon','cs-the_weekend']
+          /* ?v bumps whenever the card art is regenerated — the filenames never
+             change, so without it browsers keep serving the old cards */
+          .map(id=>'plates/cs-card/'+id+'.jpg?v=2')
+  };
+  const SLIDE_MS = 4200;
+  /* The two campaign tiles — The Usual and Well Given. Each rolls its own
+     reference board. Built from data.js at RUNTIME rather than a hardcoded
+     list, which matters: while a board is empty (before tools/fetch-boards.py
+     has run) the list comes back short and we leave SLIDES.<sec> unset, so the
+     tile quietly keeps its static hero instead of flashing broken images. It
+     lights up on its own once the frames land — no second edit here.
+     Capped so a visitor sees a full cycle: 19 frames at 4.2s is an 80-second
+     loop, which nobody waits out. */
+  const AMB_MAX_SLIDES = 12;                 // ~50s cycle, same rhythm as Production
+  [['usual','amb-board-usual'],['wellgiven','amb-board-gifting']].forEach(([sid,bid])=>{
+    const c = W.cases.find(x=>x.id===bid);
+    if(!c) return;
+    const shots = window.CURATION.framesFor(c).map(f=>f.src).slice(0,AMB_MAX_SLIDES);
+    if(shots.length>1) SLIDES[sid]=shots;
+  });
+  /* Gifting & seeding is all operational, text-only cases (seeding, PR boxes,
+     festive, plus the creator activations) — no imagery of its own. Point its
+     card at our Mittal gift-tin frame: still our work, still gifting, it just
+     lives under Production now. */
+  /* Four destinations, four registers — the constellation is no longer the
+     answer to every section. Chosen case studies opens the folder index;
+     Production keeps the star map (21 cases, all with frames); Gifting is a
+     written ledger because it has no photography of its own; and the two
+     campaigns get a page each, because three plates floating in black is what
+     "thin" looks like. The routing table itself lives in nav.js. */
+  const secHref = id => window.NAV.href(id);
+  const CARD_OVERRIDE={ gifting:'frames/mittal/03.jpg' };
+  const pickFor=s=>CARD_OVERRIDE[s.id] || window.CURATION.heroFor(s,W) || '';
+  /* Five orbits now, not four. These were indexed i%4, so at five sections two
+     cards drew identical angle/radius/speed and sat welded together. One entry
+     per section, all four values deliberately out of step so nothing syncs. */
+  const ANG =[0, 1.15, 2.35, 3.75, 5.05];     // uneven starts
+  const RMUL=[1.00, 0.62, 1.06, 0.72, 0.88];  // different orbit sizes
+  const SPD =[1.00, 1.38, 0.74, 1.16, 0.91];  // different speeds — they cross over each other
+  const SZ  =[1.00, 0.84, 1.06, 0.90, 0.95];
+  const cards=W.sections.map((s,i)=>{
+    const own=pickFor(s);
+    return {sec:s, own:own, slides:SLIDES[s.id]||null,
+            src:(USE_STOCK && STOCK[s.id]) ? STOCK[s.id] : own,
+            ang:ANG[i%ANG.length], rm:RMUL[i%RMUL.length],
+            sp:SPD[i%SPD.length], sz:SZ[i%SZ.length]};
+  });
+
+  /* geometry — trimmed from 0.205/380 now that a fifth card shares the field */
+  const CARD_W=()=>Math.max(196, Math.min(336, innerWidth*0.184));
+  const RX=()=>innerWidth*0.170, RY=()=>innerHeight*0.208;   // wider field for five
+
+  const els=cards.map((c,i)=>{
+    const b=document.createElement('button');
+    b.className='tile'; b.dataset.sec=c.sec.id;
+    b.style.zIndex=String(5+i);
+    if(c.slides && c.slides.length){
+      b.classList.add('slides');
+      b.innerHTML=c.slides.map((s,k)=>
+        '<img src="'+s+'" alt="" class="'+(k===0?'on':'')+'" loading="'+(k?'lazy':'eager')+'">').join('');
+      const ims=[...b.querySelectorAll('img')];
+      let k=0;
+      // stagger each card's cycle so they never change in lockstep
+      setTimeout(()=>setInterval(()=>{
+        const out=ims[k];
+        k=(k+1)%ims.length;
+        out.classList.add('under');            // hold it solid, underneath
+        out.classList.remove('on');
+        ims[k].classList.add('on');            // and dissolve the next one over it
+        setTimeout(()=>out.classList.remove('under'), 1400);
+      }, SLIDE_MS), 900*i);
+    }else{
+      b.innerHTML='<img src="'+c.src+'" alt="" loading="eager">';
+      const im0=b.querySelector('img');
+      im0.addEventListener('error',()=>{ if(c.own && im0.src!==c.own) im0.src=c.own; },{once:true});
+    }
+    b.setAttribute('aria-label',c.sec.n);
+    b.addEventListener('mouseenter',()=>{ hoverIdx=i; lightUp(c.sec.id); });
+    b.addEventListener('mouseleave',()=>{ hoverIdx=-1; cool(); });
+    b.addEventListener('click',()=>{ location.href=secHref(c.sec.id); });
+    field.appendChild(b);
+    setTimeout(()=>b.classList.add('in'), 200+160*i);
+    return b;
+  });
+
+  /* orbit state */
+  const BASE=0.045;                 // slow idle drift (rad/sec)
+  let spin=BASE, target=BASE, t=0, clock=0, hoverIdx=-1, last=performance.now();
+  let px=0, py=0, mx=0, my=0;
+
+  addEventListener('wheel',e=>{
+    e.preventDefault();
+    target += (e.deltaY>0?1:-1) * Math.min(1.6, Math.abs(e.deltaY)/220) * 0.9;
+    target = Math.max(-6, Math.min(6, target));
+    document.getElementById('hint').classList.add('off');
+  },{passive:false});
+
+  addEventListener('mousemove',e=>{ mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5); });
+
+  function frame(now){
+    const dt=Math.min(0.05,(now-last)/1000); last=now;
+
+    // scroll boost bleeds back to the idle drift
+    target += (BASE-target) * (1-Math.pow(0.06,dt));
+    // holding a card slows the orbit so it can be clicked
+    const want = hoverIdx>=0 ? BASE*0.06 : target;
+    spin += (want-spin) * (1-Math.pow(0.005,dt));
+    t += spin*dt;
+    clock += dt;                       // independent of spin — keeps the bob calm
+
+    // parallax easing
+    px += (mx*22-px)*0.06; py += (my*16-py)*0.06;
+    field.style.transform='translate('+(-px)+'px,'+(-py)+'px)';
+
+    const rx=RX(), ry=RY(), w=CARD_W();
+    els.forEach((el,i)=>{
+      const c=cards[i];
+      const a=c.ang + t*c.sp;
+      const x=Math.cos(a)*rx*c.rm;
+      const y=Math.sin(a)*ry*c.rm + Math.sin(clock*0.7+i*1.7)*8;  // gentle bob
+      const zv=Math.sin(a)*c.rm;                          // true depth: angle AND orbit size
+      const depth=(zv/1.1+1)/2;                          // 0 far → 1 near
+      const s=(hoverIdx===i?1.1:1)*(0.9+depth*0.18)*c.sz;
+      el.style.width=w+'px';
+      el.style.height=(w*0.66)+'px';
+      el.style.transform='translate(calc(-50% + '+x.toFixed(1)+'px), calc(-50% + '+y.toFixed(1)+'px)) scale('+s.toFixed(3)+')';
+      // fine-grained so two cards never tie and flicker while crossing
+      el.style.zIndex=String(1000+Math.round(zv*400)+(hoverIdx===i?5000:0));
+    });
+
+    const pctSpin=Math.min(1,Math.abs(spin)/6);
+    revBar.style.width=(pctSpin*100)+'%';
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  function lightUp(sec){
+    const s=W.sections.find(x=>x.id===sec);
+    const n=W.cases.filter(c=>c.sec===sec).length;
+    cloud.classList.add('hot'); core.classList.add('hot');
+    els.forEach(el=>el.classList.toggle('lit', el.dataset.sec===sec));
+    label.innerHTML=s.n+'<small>'+n+' — enter ↗</small>';
+    label.classList.add('on');
+    document.getElementById('hint').classList.add('off');
+  }
+  function cool(){
+    cloud.classList.remove('hot'); core.classList.remove('hot');
+    els.forEach(el=>el.classList.remove('lit'));
+    label.classList.remove('on');
+  }
+
+  /* directory + mobile list */
+  W.sections.forEach((s,i)=>{
+    const n=W.cases.filter(c=>c.sec===s.id).length;
+    const a=document.createElement('a');
+    a.href=secHref(s.id); a.innerHTML=s.n+'<i>'+n+'</i>';
+    a.addEventListener('mouseenter',()=>{ hoverIdx=i; lightUp(s.id); });
+    a.addEventListener('mouseleave',()=>{ hoverIdx=-1; cool(); });
+    dir.appendChild(a);
+
+    const heroes=(W.heroes&&W.heroes[s.id])||[];
+    const m=document.getElementById('m'), ma=document.createElement('a');
+    ma.href=secHref(s.id);
+    ma.innerHTML='<div class="n">'+s.n+'</div><div class="d">'+s.d+'</div><div class="s">'+
+      heroes.slice(0,4).map(src=>'<img src="'+src+'" alt="">').join('')+'</div>';
+    m.appendChild(ma);
+  });
+
+  /* preload then reveal */
+  const srcs=cards.map(c=>c.src).filter(Boolean); let done=0;
+  const pctEl=document.getElementById('pct');
+  const finish=()=>document.getElementById('load').classList.add('off');
+  if(!srcs.length) setTimeout(finish,400);
+  srcs.forEach(src=>{
+    const im=new Image();
+    im.onload=im.onerror=()=>{ done++;
+      pctEl.textContent=Math.round(done/srcs.length*100)+'%';
+      if(done>=srcs.length) setTimeout(finish,260);
+    };
+    im.src=src;
+  });
+  setTimeout(finish,3500);
+})();
+</script>
+</body>
+</html>

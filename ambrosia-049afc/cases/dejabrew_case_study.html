@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × Dejabrew · Campaign Case Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html" class="on">Chosen case studies</a><a href="../map.html?s=production">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>After Dark<br>In GK Two<span class="dot">.</span></h1>
+    <p class="deck">A 14-creator constellation launch for Deja Brew — a Greater Kailash 2 café reframed as Delhi's preferred 8 PM sufi & sheesha room. Combined reach 3.65M, 10 verified handles, 27 story frames, four-week launch window.</p>
+  </section>
+
+<section class="sec">
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">01</div><div class="title">The Snapshot</div></div>
+  <p class="body-p"><strong>Deja Brew</strong> sits in Greater Kailash 2 — a market with a café on every corner. The brief to 98 was specific: own a particular evening (sufi · sheesha · soft-lit social), not a daytime brunch slot. Convert a daytime café into the city's 8 PM spot for the fashion + UGC crowd inside a four-week window.</p>
+  <p class="body-p">98 stacked a constellation: 14 creators across 39K to 532K followers, ten verified, a deliberate range that prevents single-tier saturation. The roster mixed fashion-creators (Saanya Khatter, Prakriti Saha, Ishita Anand, Ayushi Singh), film + comedy voices (Sid Gulati of @wokenupsid_, Hardik Arora), and entrepreneurs (Aashkara Bidani) — not just Instagram tiles, but a cross-vertical pull that read as 'everyone in your feed is here'.</p>
+  <div class="kpi-row"><div><div class="kpi-num">14</div><div class="kpi-label">Creators activated</div></div>
+<div><div class="kpi-num">3.65<span class="small">M</span></div><div class="kpi-label">Combined follower reach</div></div>
+<div><div class="kpi-num">10</div><div class="kpi-label">Verified handles</div></div>
+<div><div class="kpi-num">27</div><div class="kpi-label">Story frames captured</div></div>
+</div>
+  <div class="snap-grid">
+    <div class="snap-cell"><h4>Client</h4><p>Deja Brew · GK 2 · Delhi café.</p></div>
+    <div class="snap-cell"><h4>Format</h4><p>14-creator UGC seeding · reels + stories · 27 captured story frames.</p></div>
+    <div class="snap-cell"><h4>Agency</h4><p>98 Entertainment — constellation casting for Deja Brew's reframe as GK-II's 8 PM room.</p></div>
+    <div class="snap-cell"><h4>Engagement Layer</h4><p>Standardised tag stack (@dejabrew_gk + @98.entertainment + Delhi geo-pin) across every visit.</p></div>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">02</div><div class="title">The Challenge</div></div>
+  <p class="body-p">GK 2 has a café on every corner, and most run on a daytime grammar — brunch, oat-milk lattes, work-from-here. Deja Brew needed to own a different time of day: 8 PM and after, sufi-loop bed, sheesha-friendly, room-as-living-room. The risk wasn't 'will people hear about it' — it was 'will they file it correctly when they do'.</p>
+  <ul class="dash"><li><strong>The 8 PM problem.</strong> A daytime café's evening positioning doesn't change because the venue says so — it changes because the city's content stream associates the room with evening. That requires evening-only content.</li>
+<li><strong>Constellation, not anchor.</strong> One mega creator can't sell 'everyone-you-follow-is-going-there'. We needed 14 creators across audience classes for the social proof to compound.</li>
+<li><strong>Tier diversity.</strong> If all 14 creators were 400K+, the campaign would read as paid. If all were 60K, reach would underperform. The mix had to span 39K → 532K to read as natural rotation.</li>
+<li><strong>Cross-vertical lift.</strong> Fashion creators alone would have stacked one shelf. Film (Sid Gulati) and comedy (Hardik Arora) opened the venue to audiences fashion creators don't reach.</li>
+</ul>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">03</div><div class="title">The Strategic Move</div></div>
+  <p class="big-quote">Fourteen creators across five audience classes reads as<br><span class="accent">'everyone is going there.'</span></p>
+  <div class="three-col"><div><div class="num">01</div><h5>Constellation roster.</h5><p>14 creators across 39K to 532K — no single-tier saturation. The audience saw the same place from 14 different feeds inside a four-week window.</p></div>
+<div><div class="num">02</div><h5>Evening-only briefs.</h5><p>Every frame was shot post-7 PM. Daytime content was deliberately removed to harden the 'evening' association.</p></div>
+<div><div class="num">03</div><h5>Cross-vertical recruitment.</h5><p>Fashion stack + film + comedy + entrepreneur voices. Each creator class brought a non-overlapping audience pool. Reach didn't just multiply — it widened.</p></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">04</div><div class="title">The Roster</div></div>
+  <p class="body-p">Deja Brew · GK 2 · Delhi café ran on a roster of 14 creators — 5 marquee, 9 supporting. Verticals covered: <strong>Fashion · UGC · entrepreneur · founder · film · comedy</strong>.</p>
+  <div class="roster-map">
+    <div class="vert">
+      <h4>Fashion</h4>
+      <div class="role">Audience verticals</div>
+    </div>
+    <div class="creators"><div class="creator"><span class="h">@saanyaakhatterr</span><span><span class="n">532K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@shreyxa</span><span><span class="n">480K</span></span></div>
+<div class="creator"><span class="h">@prakritisahaa</span><span><span class="n">425K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@kuljyoti.dhingra</span><span><span class="n">399K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@foodiesince96</span><span><span class="n">338K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@wokenupsid_</span><span><span class="n">331K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@hahahahardikkk</span><span><span class="n">313K</span></span></div>
+<div class="creator"><span class="h">@ishitanand</span><span><span class="n">239K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@anchalbhardwajj</span><span><span class="n">191K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@aayyuc</span><span><span class="n">134K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@irasikka</span><span><span class="n">86K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@vidishanand</span><span><span class="n">68K</span></span></div>
+<div class="creator"><span class="h">@aashkarabidani</span><span><span class="n">65K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@tanejakashish</span><span><span class="n">39K</span></span></div></div>
+  </div>
+  <p class="eyebrow">Soundtrack lock: Sufi loops · acoustic covers</p>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Deja Brew · GK 2 · Delhi café</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Saanya Khatter</div>
+    <div class="creator-meta">
+      <div class="handle">@saanyaakhatterr</div>
+      <div class="role">Public figure</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">532K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">PUBLIC FIGURE · DEJA BREW · GK 2 · DELHI CAFÉ · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Saanya's 532K public-figure feed moved the room's clock — her evening there told the city Deja Brew is now an 8 PM decision.</p>
+    <h4>What was posted</h4>
+    <p>Evening coverage in her social register — the candle-lit room, the table, the tags to @dejabrew_gk.</p>
+    <h4>Editorial framing</h4>
+    <p>The reframe needed one big feed to say 'evening' first; hers did, and the roster confirmed it.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Deja Brew · GK 2 · Delhi café</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Shreya Chadda</div>
+    <div class="creator-meta">
+      <div class="handle">@shreyxa</div>
+      <div class="role">Digital creator</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">480K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · DEJA BREW · GK 2 · DELHI CAFÉ · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Shreya's 480K food feed gave the new evening menu its close-read — kitchens earn night crowds through plates, not lighting.</p>
+    <h4>What was posted</h4>
+    <p>Dish-forward frames — the sesame honey-chilli potatoes, the fish and chips shot top-down — captions naming the menu.</p>
+    <h4>Editorial framing</h4>
+    <p>Her plates made the evening turn credible: the kitchen holds after dark.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Deja Brew · GK 2 · Delhi café</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Prakriti Saha</div>
+    <div class="creator-meta">
+      <div class="handle">@prakritisahaa</div>
+      <div class="role">Fashion · Travel</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">425K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">FASHION · TRAVEL · DEJA BREW · GK 2 · DELHI CAFÉ · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Prakriti's 425K fashion-travel lens shot the room as a destination — pampas, candlelight, the corner tables — the aesthetic claim of the reframe.</p>
+    <h4>What was posted</h4>
+    <p>Styled frames through the golden hour into the evening — the venue as backdrop, tags in the stack.</p>
+    <h4>Editorial framing</h4>
+    <p>Her set is the campaign's mood board; the cafe's own grid adopted it for the season.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Deja Brew · GK 2 · Delhi café</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Kuljyoti<br>Dhingra</div>
+    <div class="creator-meta">
+      <div class="handle">@kuljyoti.dhingra</div>
+      <div class="role">Digital creator</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">399K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · DEJA BREW · GK 2 · DELHI CAFÉ · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Kuljyoti's 399K digital feed carried the sufi-night programming — the events that give an 8 PM room a reason to exist on weekdays.</p>
+    <h4>What was posted</h4>
+    <p>The candle-wall sufi night documented from the floor — flames up the shelving, the room full, the audio in frame.</p>
+    <h4>Editorial framing</h4>
+    <p>Programming content like hers is what separates 'open late' from 'worth going out for'.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Deja Brew · GK 2 · Delhi café</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Mehak Dhawan</div>
+    <div class="creator-meta">
+      <div class="handle">@foodiesince96</div>
+      <div class="role">Digital creator</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">338K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · DEJA BREW · GK 2 · DELHI CAFÉ · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Mehak's 338K rounds the constellation — the digital-native pool that turns a repositioning into a default.</p>
+    <h4>What was posted</h4>
+    <p>The smoked martini with its olive pick, the margarita trio, the crafted-drinks story set — tagged @dejabrew_gk.</p>
+    <h4>Editorial framing</h4>
+    <p>Her drinks frames closed the argument: the bar program can carry the room's new hours.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">05</div><div class="title">Supporting Roster</div></div>
+  <p class="body-p">Nine more voices posted around the five above — twenty-seven frames inside the four-week window, ten verified handles across the roster.</p>
+  <table class="support-table">
+    <thead><tr><th>Handle</th><th>Followers</th><th></th><th>Name · Role</th></tr></thead>
+    <tbody><tr><td class="handle">@wokenupsid_</td><td class="followers">331K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Siddharth Gulati · Film</td></tr>
+<tr><td class="handle">@hahahahardikkk</td><td class="followers">313K</td><td class="verified-cell"></td><td class="role-cell">Hardik Arora · Comedy creator</td></tr>
+<tr><td class="handle">@ishitanand</td><td class="followers">239K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Ishita Anand · Digital creator</td></tr>
+<tr><td class="handle">@anchalbhardwajj</td><td class="followers">191K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Anchal Bhardwaj Gupta · Digital creator</td></tr>
+<tr><td class="handle">@aayyuc</td><td class="followers">134K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Ayushi Singh · Founder · Saorsa Label</td></tr>
+<tr><td class="handle">@irasikka</td><td class="followers">86K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Ira Sikka · Personal blog</td></tr>
+<tr><td class="handle">@vidishanand</td><td class="followers">68K</td><td class="verified-cell"></td><td class="role-cell">Vidisha · Fashion & lifestyle</td></tr>
+<tr><td class="handle">@aashkarabidani</td><td class="followers">65K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Aashkara Bidani · Entrepreneur</td></tr>
+<tr><td class="handle">@tanejakashish</td><td class="followers">39K</td><td class="verified-cell"></td><td class="role-cell">Kashish Taneja · Fashion</td></tr></tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">06</div><div class="title">How It Was Run</div></div>
+  <p class="body-p">98 ran the Deja Brew · GK 2 · Delhi café launch as a four-stage operation: brief and concept, creator match, visit choreography, and asset handover. The discipline that made the campaign land was the same that makes any creator campaign land — clarity at the brief level, conviction at the casting level, and rights-clean handover.</p>
+  <table class="ops-table">
+    <thead><tr><th>Stage</th><th>Owner</th><th>Detail</th></tr></thead>
+    <tbody><tr><td>Constellation Design</td><td>98 strategy</td><td>Tier mapping, audience overlap modelling, 14-creator selection across 5 audience classes.</td></tr>
+<tr><td>Brief Pack</td><td>98 design</td><td>Per-creator briefs · evening-only frame discipline · sound lock.</td></tr>
+<tr><td>Production Schedule</td><td>98 ops + Deja Brew</td><td>14 visits across 28 days · evenings only · sequenced not stacked.</td></tr>
+<tr><td>Asset Aggregation</td><td>98 → Deja Brew</td><td>All masters delivered · re-share kit · audio brand handoff.</td></tr>
+</tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">07</div><div class="title">What Delivered</div></div>
+  <p class="body-p">The Deja Brew · GK 2 · Delhi café campaign produced four distinct asset classes — built to live beyond the launch window and re-run on the brand's owned channels.</p>
+  <div class="deliv-grid"><div class="deliv-cell"><h4>Reels</h4><ul class="dash"><li>14 reels — one per creator.</li>
+<li>Evening-only b-roll · sufi audio bed.</li>
+<li>Each reel co-released within the four-week window.</li></ul></div>
+<div class="deliv-cell"><h4>Stories</h4><ul class="dash"><li>27+ story frames captured across the campaign.</li>
+<li>Cocktail · sheesha · room shots.</li>
+<li>Tag stack discipline.</li></ul></div>
+<div class="deliv-cell"><h4>Cross-Vertical Asset</h4><ul class="dash"><li>Film + comedy voices delivered evergreen content.</li>
+<li>Re-ran on Deja Brew's grid for 8 weeks.</li></ul></div>
+<div class="deliv-cell"><h4>Audio Brand</h4><ul class="dash"><li>Sufi audio bed locked across the stack.</li>
+<li>Branded recall outside the campaign window.</li></ul></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">08</div><div class="title">98 · The Capability</div></div>
+  <p class="body-p">Deja Brew is 98's playbook for repositioning a daytime venue into an evening room. Constellation seeding, cross-vertical recruitment, audio locking, evening-only content — four disciplines that turn a café into a social.</p>
+  <div class="note-block">
+    <div class="label">98 Entertainment</div>
+    <h3>Creator marketing for hospitality, lifestyle, and luxury.</h3>
+    <p>Fourteen creators across five audience classes reads as 'everyone is going there' — which was the brief: move a daytime cafe to the city's evening map without a relaunch.</p>
+  </div>
+  <p class="eyebrow">98 Entertainment · ninety-eight.in · @98.entertainment</p>
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../folders.html">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>

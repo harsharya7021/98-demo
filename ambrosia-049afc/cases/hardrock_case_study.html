@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × Hardrock · Campaign Case Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+
+/* ---- events & invites --------------------------------------------------- */
+.invite-grid{display:grid;grid-template-columns:minmax(210px,330px) 1fr;
+  gap:clamp(22px,3.4vw,50px);align-items:start;margin-top:6px}
+@media(max-width:760px){.invite-grid{grid-template-columns:1fr}}
+.invite-img{border:1px solid var(--line);background:#fafafa;overflow:hidden;border-radius:2px}
+.invite-img img{display:block;width:100%;height:auto}
+/* .tall marks a portrait poster — it runs its full height, never cropped */
+.invite-img.tall img{max-height:none}
+.invite-caption h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:10px}
+.invite-caption .event-name{font-size:clamp(18px,2.1vw,25px);font-weight:800;letter-spacing:-.025em;
+  line-height:1.1;margin-bottom:16px}
+.meta-row{display:grid;grid-template-columns:auto 1fr;gap:6px clamp(14px,2vw,24px);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px 0;margin-bottom:17px}
+.meta-row dt{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);padding-top:3px;white-space:nowrap}
+.meta-row dd{font-size:13px;line-height:1.5;color:#26262b}
+.role-text{font-size:13.5px;line-height:1.68;color:#3a3a42;max-width:64ch;margin-bottom:12px}
+.role-text strong{font-weight:700;color:var(--ink)}
+.subtle{color:var(--mute)}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html" class="on">Chosen case studies</a><a href="../map.html?s=production">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>Heritage<br>Brand,<br>New Feed<span class="dot">.</span></h1>
+    <p class="deck">4 creators delivering 463K reach for Hard Rock Cafe — Janpath. 3 verified handles, 8 story frames. Anchored on founder-class Harteerath Singh (297K verified, founder · Hemkunt Foundation), Suhani Dhawan (70K verified), Urnisha Swargari (57K verified). A heritage music brand reasserts itself in the city's content stream.</p>
+  </section>
+
+<section class="sec">
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">01</div><div class="title">The Snapshot</div></div>
+  <p class="body-p"><strong>Hard Rock Cafe</strong> doesn't need an introduction in Delhi. The brand is iconic — Janpath outlet, music-led grammar, decades of cultural recognition. The brief to 98 was the inverse of a launch: don't introduce, reassert. A heritage music brand needed feed-presence calibrated to its existing weight, not promotional volume.</p>
+  <p class="body-p">98 ran a tight, intentional stack of 4 creators across 8 story frames — the smallest activation in our portfolio by volume, and deliberately so. Harteerath Singh Ahluwalia (297K verified, founder of Hemkunt Foundation) anchored the founder-class lift; Suhani Dhawan (70K verified) and Urnisha Swargari (57K verified) brought cross-format coverage; Kashish Taneja (39K) extended the bench. The campaign signal was 'Hard Rock is on the Delhi creator agenda', not 'Hard Rock is launching'.</p>
+  <div class="kpi-row"><div><div class="kpi-num">4</div><div class="kpi-label">Creators activated</div></div>
+<div><div class="kpi-num">463K</div><div class="kpi-label">Combined follower reach</div></div>
+<div><div class="kpi-num">3</div><div class="kpi-label">Verified handles</div></div>
+<div><div class="kpi-num">8</div><div class="kpi-label">Story frames captured</div></div>
+</div>
+  <div class="snap-grid">
+    <div class="snap-cell"><h4>Client</h4><p>Hard Rock Cafe · Janpath, Delhi.</p></div>
+    <div class="snap-cell"><h4>Format</h4><p>4-creator UGC seeding · reels + stories · 8 captured story frames.</p></div>
+    <div class="snap-cell"><h4>Agency</h4><p>98 Entertainment — four-voice casting for Hard Rock Cafe Janpath's live-night reassertion.</p></div>
+    <div class="snap-cell"><h4>Engagement Layer</h4><p>Standardised tag stack (@hardrockcafedelhi + @98.entertainment) across every visit.</p></div>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">02</div><div class="title">The Challenge</div></div>
+  <p class="body-p">Heritage brands have a specific creator-marketing problem: a high-volume creator stack risks reading as a re-launch, which can flatten the brand's existing equity. The campaign had to be small, controlled, and credibility-led. One founder-class anchor + three verified voices is the pattern that says 'we belong here', not 'please notice us'.</p>
+  <ul class="dash"><li><strong>Heritage equity preservation.</strong> Hard Rock's brand grammar is iconic. A 20+ creator volume push would have read as 'trying'. Four creators reads as 'natural'.</li>
+<li><strong>Founder-class anchor.</strong> Harteerath Singh Ahluwalia's philanthropist + author profile lifts the venue out of the 'restaurant being marketed' shelf and into the 'place where serious people go' shelf.</li>
+<li><strong>Music-night format.</strong> The 8 January 'Rock The Night Away' invite anchored the campaign on the music-led identity that's central to Hard Rock's brand.</li>
+<li><strong>Verified density at small volume.</strong> 3 of 4 creators verified — a 75% verification rate that signals institutional credibility even at small headcount.</li>
+</ul>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">03</div><div class="title">The Strategic Move</div></div>
+  <p class="big-quote">Heritage brands don't need volume.<br><span class="accent">They need the right four voices.</span></p>
+  <div class="three-col"><div><div class="num">01</div><h5>Small + intentional.</h5><p>Four creators · eight story frames · one music night. The campaign volume matches the brand's heritage weight — not larger, not smaller.</p></div>
+<div><div class="num">02</div><h5>Founder-class lift.</h5><p>Harteerath Singh Ahluwalia in the marquee — the same founder-cameo pattern 98 deployed at Poetry, Farzi, and TableSpoon.</p></div>
+<div><div class="num">03</div><h5>Music-night anchor.</h5><p>'Rock The Night Away' on 8 January gave the 4 creators a shared editorial reference point and tagged Hard Rock to live music in the city's content stream.</p></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">04</div><div class="title">The Roster</div></div>
+  <p class="body-p">Hard Rock Cafe · Janpath, Delhi ran on a roster of 4 creators — 4 marquee. Verticals covered: <strong>Founder · digital creator · lifestyle · fashion</strong>.</p>
+  <div class="roster-map">
+    <div class="vert">
+      <h4>Founder</h4>
+      <div class="role">Audience verticals</div>
+    </div>
+    <div class="creators"><div class="creator"><span class="h">@harteerathsingh</span><span><span class="n">297K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@suhani.dhawan_</span><span><span class="n">69K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@urnishaswargari</span><span><span class="n">57K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@tanejakashish</span><span><span class="n">39K</span></span></div></div>
+  </div>
+  <p class="eyebrow">Soundtrack lock: Live rock · classics-set</p>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Hard Rock Cafe · Janpath, Delhi</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Harteerath<br>Singh Ahluwalia</div>
+    <div class="creator-meta">
+      <div class="handle">@harteerathsingh</div>
+      <div class="role">Founder · Author</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">297K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">FOUNDER · AUTHOR · HARD ROCK CAFE · JANPATH, DELHI · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Harteerath's founder-class 297K gave the night weight — a heritage venue reasserting itself wants at least one voice whose presence reads as an endorsement, not an evening out.</p>
+    <h4>What was posted</h4>
+    <p>Frames from the floor in his spare register, tagged to the venue — presence content, deliberately unstyled.</p>
+    <h4>Editorial framing</h4>
+    <p>His attendance is the credibility line under the campaign; the livelier frames stand on it.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Hard Rock Cafe · Janpath, Delhi</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Suhani Dhawan</div>
+    <div class="creator-meta">
+      <div class="handle">@suhani.dhawan_</div>
+      <div class="role">Lifestyle</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">69K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">LIFESTYLE · HARD ROCK CAFE · JANPATH, DELHI · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Suhani's 69K lifestyle audience is exactly the demographic a legacy music brand needs to see it again — young, Delhi, out on weeknights.</p>
+    <h4>What was posted</h4>
+    <p>Stories through the evening — stage, table, crowd — tagged into the venue's stack.</p>
+    <h4>Editorial framing</h4>
+    <p>Her set carried the night into the feeds Hard Rock had stopped appearing in — the whole brief in one sentence.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Hard Rock Cafe · Janpath, Delhi</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Urnisha<br>Swargari</div>
+    <div class="creator-meta">
+      <div class="handle">@urnishaswargari</div>
+      <div class="role">Lifestyle</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">57K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">LIFESTYLE · HARD ROCK CAFE · JANPATH, DELHI · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Urnisha's 57K follow her nights out — a small, hot audience worth more to a music venue than a large cold one.</p>
+    <h4>What was posted</h4>
+    <p>Shot from the balcony rail: the band mid-set under THE PLANET lettering, the crowd pressed to the stage — captioned 'you can find me here anytime'.</p>
+    <h4>Editorial framing</h4>
+    <p>That balcony frame is the campaign's poster — the venue at full tilt, from the best seat, unstaged.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Hard Rock Cafe · Janpath, Delhi</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Kashish Taneja</div>
+    <div class="creator-meta">
+      <div class="handle">@tanejakashish</div>
+      <div class="role">Fashion</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">39K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">FASHION · HARD ROCK CAFE · JANPATH, DELHI · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Kashish's fashion register (39K) put the venue on style feeds — a room read through what people wore to it, which is how a night out actually spreads.</p>
+    <h4>What was posted</h4>
+    <p>The stage wide with the Hard Rock screen burning behind the band, then the red-blazer-and-wine frame at the table — the night as an outfit occasion.</p>
+    <h4>Editorial framing</h4>
+    <p>Her pairing of stage and table gave the venue both halves of its pitch in one story set: the show, and the evening around it.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">05</div><div class="title">Events &amp; Invites</div></div>
+  <p class="body-p">Beyond the creator activation, 98 designed and produced the event collateral around the Hard Rock Cafe · Janpath, Delhi campaign. The invite below was deployed across creator dropbox and direct-DM seeding to the marquee roster.</p>
+  <div class="invite-grid">
+    <div class="invite-img tall">
+      <img src="../invites/hardrock_night.jpg" alt="It's Time To Rock The Night Away">
+    </div>
+    <div class="invite-caption">
+      <h4>Campaign collateral</h4>
+      <div class="event-name">It's Time To Rock The Night Away</div>
+      <dl class="meta-row">
+        <dt>Date</dt><dd>8 January · 8:00 PM onwards</dd><dt>Venue</dt><dd>Hard Rock Cafe, Atul Grove Road, Janpath · New Delhi 110001</dd><dt>Format</dt><dd>Music-led evening · live music · drinks · food</dd>
+      </dl>
+      <p class="role-text"><strong>What 98 produced.</strong> Invite design + hosted-experience coordination for a tight 4-creator Janpath activation. Hard Rock's brand grammar is iconic; 98's job was to translate it into a creator-feed grammar without diluting it.</p>
+      <p class="role-text">A heritage music brand needed feed-presence, not a re-introduction. Four creators, one night, one tag stack — the room reasserted itself in the city's content stream.</p>
+    </div>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">06</div><div class="title">How It Was Run</div></div>
+  <p class="body-p">98 ran the Hard Rock Cafe · Janpath, Delhi launch as a four-stage operation: brief and concept, creator match, visit choreography, and asset handover.</p>
+  <table class="ops-table">
+    <thead><tr><th>Stage</th><th>Owner</th><th>Detail</th></tr></thead>
+    <tbody><tr><td>Strategy</td><td>98 strategy</td><td>Small-stack + heritage-equity preservation design.</td></tr>
+<tr><td>Talent</td><td>98 talent management</td><td>4 creators · 75% verification rate · founder-cameo placement.</td></tr>
+<tr><td>Production</td><td>98 production + Hard Rock Cafe</td><td>Single-night choreography for the 'Rock The Night Away' anchor.</td></tr>
+<tr><td>Asset Handover</td><td>98 → Hard Rock Cafe</td><td>Reels + story frames + founder cameo + invite collateral.</td></tr>
+</tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">07</div><div class="title">What Delivered</div></div>
+  <p class="body-p">The Hard Rock Cafe · Janpath, Delhi campaign produced four distinct asset classes — built to live beyond the launch window.</p>
+  <div class="deliv-grid"><div class="deliv-cell"><h4>Reels</h4><ul class="dash"><li>4 creator reels — music-led edit grade.</li></ul></div>
+<div class="deliv-cell"><h4>Stories</h4><ul class="dash"><li>8 captured story frames · music night anchor.</li></ul></div>
+<div class="deliv-cell"><h4>Founder Cameo</h4><ul class="dash"><li>Harteerath Singh Ahluwalia appearance — founder-class trust signal.</li></ul></div>
+<div class="deliv-cell"><h4>Asset Library</h4><ul class="dash"><li>Music-night content handed to Hard Rock's social team for owned-channel re-share.</li></ul></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">08</div><div class="title">98 · The Capability</div></div>
+  <p class="body-p">Hard Rock Cafe is 98's smallest-by-volume case study and one of the most important — the discipline of restraint. A heritage brand's creator stack should match its weight; saturation flattens equity. Four credible voices, one music night, one founder anchor.</p>
+  <div class="note-block">
+    <div class="label">98 Entertainment</div>
+    <h3>Creator marketing for hospitality, lifestyle, and luxury.</h3>
+    <p>Heritage brands don't need volume; they need the right four rooms told. Two of these voices stood on the balcony rail during a live set — the venue's actual product, captured at its actual moment.</p>
+  </div>
+  <p class="eyebrow">98 Entertainment · ninety-eight.in · @98.entertainment</p>
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../folders.html">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>

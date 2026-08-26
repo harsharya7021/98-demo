@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × Nao · Campaign Case Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html" class="on">Chosen case studies</a><a href="../map.html?s=production">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>Live<br>In The<br>Nao<span class="dot">.</span></h1>
+    <p class="deck">An 11-creator launch for Nao Asian Table — Berco's modern pan-Asian spinoff. Anchored on Ammy Arora (@amy_chhabra, 1.09M public figure), with Shreya Chadda (480K), Soundarya Thakur (322K), and the verified street-style duo @thestreetstalkers (153K). Combined reach 2.55M, 48 story frames. Tagline lock: 'Live in the Nao'.</p>
+  </section>
+
+<section class="sec">
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">01</div><div class="title">The Snapshot</div></div>
+  <p class="body-p"><strong>Nao Asian Table</strong> is a Berco's spinoff entering the modern pan-Asian space. The parent brand has 30+ years of Indo-Chinese equity in Delhi NCR — but Nao needed to launch as its own concept, not as a Berco's extension.</p>
+  <p class="body-p">98 anchored the launch on Ammy Arora (@amy_chhabra, 1.09M verified public figure) and Shreya Chadda (480K fashion · lifestyle), supported by Soundarya Thakur (322K verified) and the verified couple-creator duo @thestreetstalkers (Rahul & Ishita, 153K). Six additional voices echoed across the same window. The 'Live in the Nao' tagline locked across all captions — branded recall in IG search.</p>
+  <div class="kpi-row"><div><div class="kpi-num">11</div><div class="kpi-label">Creators activated</div></div>
+<div><div class="kpi-num">2.55<span class="small">M</span></div><div class="kpi-label">Combined follower reach</div></div>
+<div><div class="kpi-num">3</div><div class="kpi-label">Verified handles</div></div>
+<div><div class="kpi-num">48</div><div class="kpi-label">Story frames captured</div></div>
+</div>
+  <div class="snap-grid">
+    <div class="snap-cell"><h4>Client</h4><p>Nao Asian Table · by Berco's.</p></div>
+    <div class="snap-cell"><h4>Format</h4><p>11-creator UGC seeding · reels + stories · 48 captured story frames.</p></div>
+    <div class="snap-cell"><h4>Agency</h4><p>98 Entertainment — 11-creator launch for Nao Asian Table, run under the 'Live in the Nao' lock.</p></div>
+    <div class="snap-cell"><h4>Engagement Layer</h4><p>Standardised tag stack (@naoasiantable + @98.entertainment + Delhi NCR geo-pin) across every visit.</p></div>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">02</div><div class="title">The Challenge</div></div>
+  <p class="body-p">Berco's is a 30-year-old Indo-Chinese institution. Nao is a contemporary pan-Asian concept — different cuisine, different room, different audience. The launch had to leverage Berco's distribution and operational infrastructure without inheriting its menu equity. Diners had to read Nao as a new brand — recognisable, but not extension.</p>
+  <ul class="dash"><li><strong>Spinoff trap.</strong> Most parent-brand spinoffs read as 'lite version of the original'. Nao had to land as a peer concept, not a child concept.</li>
+<li><strong>Mega-anchor signal.</strong> Ammy Arora (1.09M) and Shreya Chadda (480K) signal 'destination' on day one. Without them, Nao would have read as 'new outlet of Berco's'.</li>
+<li><strong>Tagline lock.</strong> 'Live in the Nao' had to enter IG search as a recognisable phrase — every creator caption ended the same way.</li>
+<li><strong>Cross-format coverage.</strong> Couple-duo (street-style), single mega creators, food creators — three formats covering the room from three angles.</li>
+</ul>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">03</div><div class="title">The Strategic Move</div></div>
+  <p class="big-quote">Mega anchor + format diversity.<br><span class="accent">A spinoff lands when the audience reads it as a peer, not a child.</span></p>
+  <div class="three-col"><div><div class="num">01</div><h5>Mega anchor + cross-format roster.</h5><p>Ammy Arora as headline · Shreya Chadda as cultural anchor · Soundarya Thakur as fashion lift · @thestreetstalkers as street-style cover. Each creator does a different job.</p></div>
+<div><div class="num">02</div><h5>Tagline lock.</h5><p>Every creator caption ended with the same four words — 'Live in the Nao'. Branded recall in IG search.</p></div>
+<div><div class="num">03</div><h5>Asset double-duty.</h5><p>11 creators × multiple frames each = 48 story frames. Engineered to re-run on Nao's owned feed for 4 weeks post-campaign.</p></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">04</div><div class="title">The Roster</div></div>
+  <p class="body-p">Nao Asian Table · by Berco's ran on a roster of 11 creators — 5 marquee, 6 supporting. Verticals covered: <strong>Public figure · fashion · lifestyle · food · street style</strong>.</p>
+  <div class="roster-map">
+    <div class="vert">
+      <h4>Public Figure</h4>
+      <div class="role">Audience verticals</div>
+    </div>
+    <div class="creators"><div class="creator"><span class="h">@amy_chhabra</span><span><span class="n">1.09M</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@shreyxa</span><span><span class="n">480K</span></span></div>
+<div class="creator"><span class="h">@soundaryathakur</span><span><span class="n">321K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@thestreetstalkers</span><span><span class="n">153K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@drish_98</span><span><span class="n">118K</span></span></div>
+<div class="creator"><span class="h">@_adatewithlife_</span><span><span class="n">95K</span></span></div>
+<div class="creator"><span class="h">@rashmi_chawla_</span><span><span class="n">88K</span></span></div>
+<div class="creator"><span class="h">@prakshigoyall</span><span><span class="n">79K</span></span></div>
+<div class="creator"><span class="h">@ria.swamy</span><span><span class="n">51K</span></span></div>
+<div class="creator"><span class="h">@gaurieerohatgi</span><span><span class="n">36K</span></span></div>
+<div class="creator"><span class="h">@shrutimalikk</span><span><span class="n">28K</span></span></div></div>
+  </div>
+  <p class="eyebrow">Soundtrack lock: Lo-fi East-Asian</p>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Nao Asian Table · by Berco's</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Ammy Arora</div>
+    <div class="creator-meta">
+      <div class="handle">@amy_chhabra</div>
+      <div class="role">Public figure</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">1.09M</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">PUBLIC FIGURE · NAO ASIAN TABLE · BY BERCO&#x27;S · DELHI NCR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Ammy's 1.09M made the spinoff's scale argument in one post — Berco's new table introduced by one of Delhi's biggest lifestyle feeds.</p>
+    <h4>What was posted</h4>
+    <p>Launch-night coverage in her register, tagged 'Live in the Nao' — the anchoring unit of the window.</p>
+    <h4>Editorial framing</h4>
+    <p>Anchor first, then formats: her post is why the smaller voices read as confirmation instead of promotion.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Nao Asian Table · by Berco's</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Shreya Chadda</div>
+    <div class="creator-meta">
+      <div class="handle">@shreyxa</div>
+      <div class="role">Digital creator</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">480K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · NAO ASIAN TABLE · BY BERCO&#x27;S · DELHI NCR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Shreya's 480K follow a food-native feed with a table-side eye — the right lens for a kitchen that plates with tweezers.</p>
+    <h4>What was posted</h4>
+    <p>Her run is the campaign's tasting menu: the claypot chicken with its flower-cut carrot, the bamboo steamer lid lifted mid-frame, the prawn-tempura sushi board beside the Thai avocado salad, and the chef spooning noodles table-side — all tagged @naoasiantable and @98.entertainment.</p>
+    <h4>Editorial framing</h4>
+    <p>Her table-side chef frame gave Nao its service story — the theatre a menu shot can't carry — and the brand's grid re-ran it through the launch month.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Nao Asian Table · by Berco's</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Soundarya<br>Thakur</div>
+    <div class="creator-meta">
+      <div class="handle">@soundaryathakur</div>
+      <div class="role">Digital creator</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">321K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · NAO ASIAN TABLE · BY BERCO&#x27;S · DELHI NCR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Soundarya's 321K discovery-feed audience is where a new name gets searched — the spinoff's find-me layer.</p>
+    <h4>What was posted</h4>
+    <p>Reel through the menu's hero dishes plus a story set, captions written for search, tagline in every frame.</p>
+    <h4>Editorial framing</h4>
+    <p>Her posts seeded the name recognition the campaign was structured around — Nao as a word people had already seen.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Nao Asian Table · by Berco's</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Rahul & Ishita</div>
+    <div class="creator-meta">
+      <div class="handle">@thestreetstalkers</div>
+      <div class="role">Reel creators</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">153K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">REEL CREATORS · NAO ASIAN TABLE · BY BERCO&#x27;S · DELHI NCR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>The couple duo's 153K put the new table into date-night planning — a decision two people make, documented by two people.</p>
+    <h4>What was posted</h4>
+    <p>An evening for two through the menu — shared plates, interiors, the tag stack throughout.</p>
+    <h4>Editorial framing</h4>
+    <p>Their frames positioned Nao for the booking that matters most to a new room: the return visit.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Nao Asian Table · by Berco's</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Drishty<br>Tanwar Narang</div>
+    <div class="creator-meta">
+      <div class="handle">@drish_98</div>
+      <div class="role">Digital creator</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">118K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · NAO ASIAN TABLE · BY BERCO&#x27;S · DELHI NCR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Drishty's 118K is the roster's close-range tier — the engaged local audience that treats a recommendation as a plan.</p>
+    <h4>What was posted</h4>
+    <p>Stories from her visit — dishes, room, tags — in the direct register small feeds do best.</p>
+    <h4>Editorial framing</h4>
+    <p>Close-range posts like hers convert; the roster was built so the reach tiers above her had somewhere to send people.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">05</div><div class="title">Supporting Roster</div></div>
+  <p class="body-p">Six more voices posted behind the five above — forty-eight story frames inside the launch window, all under the same tagline lock.</p>
+  <table class="support-table">
+    <thead><tr><th>Handle</th><th>Followers</th><th></th><th>Name · Role</th></tr></thead>
+    <tbody><tr><td class="handle">@_adatewithlife_</td><td class="followers">95K</td><td class="verified-cell"></td><td class="role-cell">Bhawna Mehta · Digital creator</td></tr>
+<tr><td class="handle">@rashmi_chawla_</td><td class="followers">88K</td><td class="verified-cell"></td><td class="role-cell">Rashmi Chawla · Digital creator</td></tr>
+<tr><td class="handle">@prakshigoyall</td><td class="followers">79K</td><td class="verified-cell"></td><td class="role-cell">Prakshi Goyal · Lifestyle</td></tr>
+<tr><td class="handle">@ria.swamy</td><td class="followers">51K</td><td class="verified-cell"></td><td class="role-cell">Ria Swamy Gawade · Lifestyle</td></tr>
+<tr><td class="handle">@gaurieerohatgi</td><td class="followers">36K</td><td class="verified-cell"></td><td class="role-cell">Gaurie Rohatgi · Journalist</td></tr>
+<tr><td class="handle">@shrutimalikk</td><td class="followers">28K</td><td class="verified-cell"></td><td class="role-cell">Shruti Malik · Author</td></tr></tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">06</div><div class="title">How It Was Run</div></div>
+  <p class="body-p">98 ran the Nao Asian Table · by Berco's launch as a four-stage operation: brief and concept, creator match, visit choreography, and asset handover. The discipline that made the campaign land was the same that makes any creator campaign land — clarity at the brief level, conviction at the casting level, and rights-clean handover.</p>
+  <table class="ops-table">
+    <thead><tr><th>Stage</th><th>Owner</th><th>Detail</th></tr></thead>
+    <tbody><tr><td>Roster Design</td><td>98 strategy</td><td>Mega anchor + cross-format pairing.</td></tr>
+<tr><td>Brief Pack</td><td>98 design</td><td>Per-creator brief · tagline lock · audio direction.</td></tr>
+<tr><td>Visit Choreography</td><td>98 production + Nao ops</td><td>11 visits, multiple windows, plate sequencing.</td></tr>
+<tr><td>Asset Handover</td><td>98 → Nao</td><td>Reels + stories + tagline system + re-run schedule.</td></tr>
+</tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">07</div><div class="title">What Delivered</div></div>
+  <p class="body-p">The Nao Asian Table · by Berco's campaign produced four distinct asset classes — built to live beyond the launch window and re-run on the brand's owned channels.</p>
+  <div class="deliv-grid"><div class="deliv-cell"><h4>Reels</h4><ul class="dash"><li>Multi-creator reel set.</li>
+<li>Lo-fi East-Asian audio bed.</li>
+<li>Tagline-locked captions.</li></ul></div>
+<div class="deliv-cell"><h4>Stories</h4><ul class="dash"><li>48 story frames captured.</li>
+<li>Plate · interior · cocktail · arrival.</li>
+<li>Tag stack discipline.</li></ul></div>
+<div class="deliv-cell"><h4>Tagline System</h4><ul class="dash"><li>'Live in the Nao' caption tail across the stack.</li>
+<li>Branded recall on IG search.</li></ul></div>
+<div class="deliv-cell"><h4>Owned Channel Re-Run Kit</h4><ul class="dash"><li>Reels and stories handed off to Nao's social team.</li>
+<li>Re-ran for 4 weeks on owned feed.</li></ul></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">08</div><div class="title">98 · The Capability</div></div>
+  <p class="body-p">Nao is 98's case for spinoff repositioning. Mega-anchor stops the audience from filing the new brand as a 'lite' version. Cross-format diversity covers the room from angles a single voice can't.</p>
+  <div class="note-block">
+    <div class="label">98 Entertainment</div>
+    <h3>Creator marketing for hospitality, lifestyle, and luxury.</h3>
+    <p>A spinoff lands when the audience reads it as a peer of the parent, not a child. One mega anchor plus format diversity did that positioning in a fortnight.</p>
+  </div>
+  <p class="eyebrow">98 Entertainment · ninety-eight.in · @98.entertainment</p>
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../folders.html">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>

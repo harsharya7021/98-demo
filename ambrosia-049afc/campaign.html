@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>For Ambrosia — Campaign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+:root{
+  --ink:#E9EAE4; --bg:#0A0A0A; --dim:rgba(233,234,228,.44); --dimmer:rgba(233,234,228,.16);
+  --red:#E4322B; --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
+  --pad:clamp(20px,4vw,56px);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.mono{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+/* ---- top bar ---- */
+header{position:sticky;top:0;z-index:30;background:rgba(10,10,10,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--dimmer)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px var(--pad)}
+.bar a,.bar span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;transition:color .3s}
+.bar a:hover{color:var(--red)}
+.secs{display:flex;align-items:center;gap:clamp(10px,1.8vw,26px);flex-wrap:nowrap;overflow:hidden}
+.secs a{white-space:nowrap}
+.secs a.on{color:var(--ink)}
+@media(max-width:1040px){.secs{display:none}}
+
+.switch{display:flex;gap:6px}
+.switch a{padding:6px 12px;border:1px solid transparent;border-radius:2px}
+.switch a.on{color:var(--ink);border-color:var(--dimmer);background:rgba(233,234,228,.06)}
+
+/* ---- masthead ---- */
+.mast{padding:clamp(56px,11vh,132px) var(--pad) clamp(28px,5vh,52px);max-width:1500px;margin:0 auto}
+.mast .code{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
+.mast h1{font-size:clamp(40px,8.4vw,124px);font-weight:600;letter-spacing:-.042em;line-height:.94;margin:16px 0 0}
+.mast .sub{font-size:clamp(15px,1.6vw,21px);line-height:1.55;color:rgba(233,234,228,.82);
+  max-width:56ch;margin-top:26px}
+.flag{margin-top:30px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);border:1px dashed var(--dimmer);padding:12px 14px;display:inline-block;max-width:70ch;
+  line-height:1.7}
+
+/* ---- hero ---- */
+.hero{position:relative;margin:clamp(20px,4vh,44px) 0 0;overflow:hidden;background:#141414}
+.hero img{display:block;width:100%;height:clamp(320px,64vh,760px);object-fit:cover}
+.hero .cap{position:absolute;left:var(--pad);bottom:22px;right:var(--pad);
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(233,234,228,.9);text-shadow:0 2px 24px rgba(0,0,0,.9)}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(transparent 55%,rgba(10,10,10,.72))}
+
+/* ---- section rule ---- */
+.rule{max-width:1500px;margin:clamp(56px,10vh,116px) auto clamp(22px,4vh,40px);padding:0 var(--pad);
+  display:flex;align-items:baseline;gap:16px}
+.rule h2{font-size:clamp(20px,2.4vw,32px);font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.rule i{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--red)}
+.rule .ln{flex:1;height:1px;background:var(--dimmer)}
+
+/* ---- concept pieces: alternating editorial ---- */
+.piece{max-width:1500px;margin:0 auto clamp(40px,8vh,104px);padding:0 var(--pad);
+  display:grid;grid-template-columns:1.32fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;
+  opacity:0;transform:translateY(26px);
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.piece.in{opacity:1;transform:none}
+.piece:nth-child(even) .shot{order:2}
+.piece .shot{position:relative;background:#141414}
+.piece .shot img{display:block;width:100%;height:auto;cursor:zoom-in}
+.piece .shot .n{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:9px;
+  letter-spacing:.18em;color:var(--red);background:rgba(10,10,10,.72);padding:5px 8px}
+.piece h3{font-size:clamp(24px,3vw,42px);font-weight:600;letter-spacing:-.03em;line-height:1.04}
+.piece .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin-top:12px}
+.piece p{font-size:15px;line-height:1.62;color:rgba(233,234,228,.82);margin-top:18px;max-width:52ch}
+.piece blockquote{margin-top:22px;padding-left:16px;border-left:2px solid var(--red);
+  font-size:clamp(15px,1.5vw,19px);line-height:1.45;color:rgba(233,234,228,.92);max-width:34ch}
+.piece .did{list-style:none;margin-top:22px}
+.piece .did li{position:relative;padding-left:18px;margin-bottom:9px;font-size:13px;line-height:1.55;
+  color:rgba(233,234,228,.74)}
+.piece .did li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:1px;background:var(--red)}
+.piece .tag{margin-top:20px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dim);border:1px dashed var(--dimmer);padding:9px 11px;
+  display:inline-block;line-height:1.6}
+.piece .more{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--red);text-decoration:none}
+.piece .more:hover{color:var(--ink)}
+@media(max-width:880px){
+  .piece{grid-template-columns:1fr;gap:22px}
+  .piece:nth-child(even) .shot{order:0}
+}
+
+/* ---- palette ---- */
+.pal{max-width:1500px;margin:0 auto;padding:0 var(--pad) clamp(24px,4vh,44px);
+  display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,30px)}
+.pal div{display:flex;align-items:center;gap:11px}
+.pal b{width:38px;height:38px;border-radius:2px;display:block;border:1px solid rgba(233,234,228,.14)}
+.pal span{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.pal span i{display:block;font-style:normal;color:var(--ink);margin-top:3px}
+
+/* ---- board mosaic ---- */
+.boardlede{max-width:1500px;margin:0 auto;padding:0 var(--pad);
+  font-size:15px;line-height:1.62;color:rgba(233,234,228,.82);max-width:min(64ch,calc(1500px - 2*var(--pad)))}
+.mosaic{max-width:1500px;margin:clamp(22px,4vh,40px) auto 0;padding:0 var(--pad);
+  columns:4 250px;column-gap:clamp(10px,1.4vw,18px)}
+.mosaic figure{margin:0 0 clamp(10px,1.4vw,18px);break-inside:avoid;position:relative;background:#141414;
+  opacity:0;transform:translateY(18px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.mosaic figure.in{opacity:1;transform:none}
+.mosaic img{display:block;width:100%;height:auto;cursor:zoom-in}
+.mosaic figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 9px;opacity:0;
+  background:linear-gradient(transparent,rgba(10,10,10,.9));transition:opacity .35s ease;
+  font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.mosaic figure:hover figcaption{opacity:1}
+.mosaic figcaption a{color:var(--red);text-decoration:none}
+.mosaic figcaption a:hover{color:var(--ink)}
+
+/* ---- rules of the board ---- */
+.rules{max-width:1500px;margin:clamp(40px,7vh,80px) auto 0;padding:0 var(--pad);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(18px,3vw,44px)}
+.rules div{border-top:1.5px solid var(--ink);padding-top:14px}
+.rules b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red);margin-bottom:9px}
+.rules p{font-size:13.5px;line-height:1.6;color:rgba(233,234,228,.8)}
+
+/* ---- pager ---- */
+.pager{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding:clamp(40px,7vh,80px) var(--pad) 90px;max-width:1500px;margin:clamp(48px,8vh,96px) auto 0;
+  border-top:1px solid var(--dimmer)}
+.pager a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;transition:color .3s}
+.pager a:hover{color:var(--red)}
+
+/* ---- lightbox ---- */
+#lb{position:fixed;inset:0;z-index:60;background:rgba(6,6,6,.96);display:none;place-items:center;
+  cursor:zoom-out;padding:3vh 3vw}
+#lb.on{display:grid}
+#lb img{max-width:100%;max-height:94vh;object-fit:contain}
+#lb .x{position:fixed;top:20px;right:26px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--dim)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a href="index.html">← All sections</a>
+    <nav class="secs" id="snsecs"></nav>
+    <nav class="switch" id="switch"></nav>
+  </div>
+</header>
+
+<section class="mast" id="mast"></section>
+<div class="hero" id="hero"></div>
+
+<div class="rule" id="ruleWork"><i id="workNum"></i><h2 id="workTitle"></h2><span class="ln"></span></div>
+<div id="pieces"></div>
+
+<div class="rule"><i>02</i><h2>The board it gets shot against</h2><span class="ln"></span></div>
+<p class="boardlede" id="boardLede"></p>
+<div class="pal" id="pal"></div>
+<div class="mosaic" id="mosaic"></div>
+<div class="rules" id="rules"></div>
+
+<nav class="pager" id="pager"></nav>
+
+<div id="lb"><span class="x">Close ✕</span><img alt=""></div>
+
+<script src="data.js"></script>
+<script src="curation.js"></script>
+<script src="nav.js"></script>
+<script>
+(function(){
+  const W=window.WORK;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+
+  /* Two campaigns, one page. The board case carries the reference photography;
+     everything else in the section is our own concept work and leads the page.
+     Palette: The Usual's three hexes are quoted verbatim in its own summary
+     (sampled off the finished statics). Well Given's copy names cream and
+     burgundy without hexes — same two values, same campaign system. */
+  const CAMPAIGNS={
+    usual:{
+      num:'Campaign one', board:'amb-board-usual', other:'wellgiven',
+      workTitle:'The statics and the mood',
+      palette:[['#F4EFE8','Paper'],['#564230','Cocoa'],['#4B141E','Burgundy']]
+    },
+    wellgiven:{
+      num:'Campaign two', board:'amb-board-gifting', other:'usual',
+      workTitle:'The concepts',
+      palette:[['#F4EFE8','Cream'],['#4B141E','Burgundy']]
+    }
+  };
+
+  const q=new URLSearchParams(location.search);
+  let key=q.get('c'); if(!CAMPAIGNS[key]) key='usual';
+  const CFG=CAMPAIGNS[key];
+  const sec=W.sections.find(s=>s.id===key);
+  const all=W.cases.filter(c=>c.sec===key);
+  const board=all.find(c=>c.id===CFG.board);
+  const pieces=all.filter(c=>c.id!==CFG.board);
+
+  document.title=sec.n+' — For Ambrosia';
+  window.NAV.render(document.getElementById('snsecs'),key);
+
+  /* ---- switcher ---- */
+  document.getElementById('switch').innerHTML=
+    ['usual','wellgiven'].map(k=>{
+      const s=W.sections.find(x=>x.id===k);
+      return '<a href="campaign.html?c='+k+'"'+(k===key?' class="on"':'')+'>'+esc(s.n)+'</a>';
+    }).join('');
+
+  /* ---- masthead ---- */
+  document.getElementById('mast').innerHTML=
+    '<div class="code">'+esc(CFG.num)+' · Made for Ambrosia</div>'+
+    '<h1>'+esc(sec.n)+'</h1>'+
+    '<p class="sub">'+esc(sec.d)+'</p>'+
+    '<div class="flag">Speculative. Nothing on this page has been shot for you yet — '+
+    'these are the boards, the light and the two finished statics we would build the campaign from.</div>';
+
+  /* ---- hero: the first concept frame in the section ---- */
+  const heroCase=pieces.find(c=>(window.CURATION.framesFor(c)||[]).length);
+  if(heroCase){
+    const f=window.CURATION.framesFor(heroCase)[0];
+    document.getElementById('hero').innerHTML=
+      '<img src="'+f.src+'" alt="'+esc(heroCase.n)+'">'+
+      '<div class="cap">'+esc(heroCase.n)+' — '+esc(heroCase.m||'')+'</div>';
+  }else{
+    document.getElementById('hero').style.display='none';
+  }
+
+  /* ---- concept pieces ---- */
+  document.getElementById('workNum').textContent='01';
+  document.getElementById('workTitle').textContent=CFG.workTitle;
+  document.getElementById('pieces').innerHTML=pieces.map((c,i)=>{
+    const fr=window.CURATION.framesFor(c);
+    const shot=fr.length
+      ? '<div class="shot"><img loading="lazy" src="'+fr[0].src+'" alt="'+esc(c.n)+'"'+
+        (fr[0].w?' width="'+fr[0].w+'" height="'+fr[0].h+'"':'')+'>'+
+        '<span class="n">'+String(i+1).padStart(2,'0')+'</span></div>'
+      : '<div class="shot"></div>';
+    return '<article class="piece">'+shot+'<div>'+
+      '<h3>'+esc(c.n)+'</h3>'+
+      '<div class="k">'+esc(c.k)+'</div>'+
+      '<p>'+esc(c.s)+'</p>'+
+      (c.pull?'<blockquote>'+esc(c.pull)+'</blockquote>':'')+
+      (c.did&&c.did.length?'<ul class="did">'+c.did.map(d=>'<li>'+esc(d)+'</li>').join('')+'</ul>':'')+
+      (fr.length>1?'<a class="more" href="roll.html?c='+c.id+'">All '+fr.length+' frames ↗</a>':'')+
+      (c.note?'<div class="tag">'+esc(c.note)+'</div>':'')+
+    '</div></article>';
+  }).join('');
+
+  /* ---- the board ---- */
+  document.getElementById('boardLede').textContent=board?board.s:'';
+  document.getElementById('pal').innerHTML=CFG.palette.map(p=>
+    '<div><b style="background:'+p[0]+'"></b><span>'+esc(p[1])+'<i>'+p[0]+'</i></span></div>').join('');
+
+  const bf=board?window.CURATION.framesFor(board):[];
+  const mos=document.getElementById('mosaic');
+  mos.innerHTML=bf.map((f,i)=>
+    '<figure><img loading="lazy" src="'+f.src+'" alt="Reference '+(i+1)+'"'+
+    (f.w?' width="'+f.w+'" height="'+f.h+'"':'')+'>'+
+    '<figcaption data-k="'+esc(f.key)+'">'+String(i+1).padStart(2,'0')+'</figcaption></figure>').join('');
+
+  /* Per-frame provenance. sources.json sits next to the frames; over http this
+     resolves, and if it ever fails the captions simply stay as numbers. */
+  if(board){
+    fetch('frames/'+board.id+'/sources.json')
+      .then(r=>r.ok?r.json():null)
+      .then(list=>{
+        if(!list) return;
+        const by={}; list.forEach(x=>by[x.f]=x);
+        [...mos.querySelectorAll('figcaption')].forEach(cap=>{
+          const s=by[cap.dataset.k];
+          if(s&&s.pin) cap.innerHTML=cap.textContent+
+            ' · <a href="'+esc(s.pin)+'" target="_blank" rel="noopener nofollow">source ↗</a>';
+        });
+      }).catch(()=>{});
+  }
+
+  /* ---- what the board decides ---- */
+  const rules=[];
+  if(board){
+    (board.did||[]).forEach((d,i)=>rules.push(['0'+(i+1),d]));
+    if(board.note) rules.push(['Note',board.note]);
+  }
+  document.getElementById('rules').innerHTML=rules.map(r=>
+    '<div><b>'+esc(r[0])+'</b><p>'+esc(r[1])+'</p></div>').join('');
+
+  /* ---- pager ---- */
+  const oth=W.sections.find(s=>s.id===CFG.other);
+  document.getElementById('pager').innerHTML=
+    '<a href="index.html">← All sections</a>'+
+    '<a href="folders.html">Chosen case studies</a>'+
+    '<a href="campaign.html?c='+CFG.other+'">'+esc(oth.n)+' →</a>';
+
+  /* ---- reveal + lightbox ---- */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+  }),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.piece,.mosaic figure').forEach(el=>io.observe(el));
+
+  const lb=document.getElementById('lb'), lbi=lb.querySelector('img');
+  document.body.addEventListener('click',e=>{
+    if(e.target.closest('#lb')) { lb.classList.remove('on'); return; }
+    if(e.target.closest('a')) return;
+    const im=e.target.closest('.piece img, .mosaic img, .hero img');
+    if(!im) return;
+    lbi.src=im.currentSrc||im.src; lb.classList.add('on');
+  });
+  addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body>
+</html>

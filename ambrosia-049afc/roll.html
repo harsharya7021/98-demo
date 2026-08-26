@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Work — Frames</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+:root{
+  --ink:#E9EAE4; --bg:#0A0A0A; --dim:rgba(233,234,228,.44); --dimmer:rgba(233,234,228,.16);
+  --red:#E4322B; --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.zoom{display:none}
+main.strips .zoom{display:grid}
+.mono{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+/* top bar */
+header{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--dimmer)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:14px clamp(20px,4vw,56px)}
+.bar a.back{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;transition:color .3s}
+.bar a.back:hover{color:var(--red)}
+.lay{display:none}
+.lay button{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  background:none;border:1px solid transparent;color:var(--dim);padding:6px 11px;border-radius:2px;
+  cursor:pointer;transition:.25s}
+.lay button:hover{color:var(--ink)}
+.lay button.on{color:var(--ink);border-color:var(--dimmer);background:rgba(233,234,228,.06)}
+
+/* intro */
+.intro{padding:clamp(52px,10vh,120px) clamp(20px,4vw,56px) clamp(30px,5vh,58px);max-width:1180px;margin:0 auto}
+.intro .code{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
+.intro h1{font-size:clamp(32px,5.2vw,68px);font-weight:600;letter-spacing:-.035em;line-height:1;margin:14px 0 10px}
+.intro .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.intro .s{font-size:clamp(14px,1.35vw,17px);line-height:1.62;color:rgba(233,234,228,.82);max-width:60ch;margin-top:22px}
+.cols{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(28px,5vw,80px);margin-top:26px;align-items:start}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+.did{margin-top:26px}
+.did h3{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);font-weight:400;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--dimmer)}
+.did ul{list-style:none}
+.did li{position:relative;padding-left:18px;margin-bottom:10px;font-size:13.5px;line-height:1.55;
+  color:rgba(233,234,228,.80)}
+.did li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:1px;background:var(--red)}
+.role{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--red);margin-top:18px}
+.stats{display:flex;flex-wrap:wrap;gap:26px;margin-top:24px}
+.stats div b{display:block;font-size:15px;font-weight:600;letter-spacing:-.01em}
+.stats div span{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+blockquote{margin-top:30px;padding-left:18px;border-left:2px solid var(--red);
+  font-size:clamp(14px,1.4vw,18px);line-height:1.5;max-width:46ch;color:rgba(233,234,228,.92)}
+.note{margin-top:26px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);border:1px dashed var(--dimmer);padding:12px 14px;display:inline-block}
+
+/* frames */
+main{padding:0 clamp(20px,4vw,56px) 40px;max-width:1500px;margin:0 auto}
+.intro+main{margin-top:6px}
+figure{margin:0 0 clamp(34px,7vh,90px);opacity:0;transform:translateY(26px);
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+figure.in{opacity:1;transform:none}
+figure img{width:100%;height:auto;display:block;background:#141414;cursor:zoom-in}
+figcaption{display:flex;gap:12px;align-items:baseline;margin-top:11px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+figcaption b{color:var(--red);font-weight:700}
+
+/* layouts */
+main.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(12px,1.6vw,22px);max-width:1500px}
+main.grid figure{margin:0}
+main.grid figure img{aspect-ratio:4/5;object-fit:cover}
+main.mosaic{columns:3 300px;column-gap:clamp(12px,1.6vw,22px);max-width:1500px}
+main.mosaic figure{margin:0 0 clamp(12px,1.6vw,22px);break-inside:avoid}
+
+/* strips — expanding vertical slats */
+main.strips{display:flex;gap:6px;max-width:1500px;height:min(76vh,820px);
+  align-items:flex-start;overflow-x:auto;overflow-y:hidden;padding-bottom:8px;
+  scrollbar-width:thin;scrollbar-color:rgba(233,234,228,.2) transparent}
+main.strips::-webkit-scrollbar{height:5px}
+main.strips::-webkit-scrollbar-thumb{background:rgba(233,234,228,.2);border-radius:3px}
+main.strips figure{margin:0;position:relative;flex:1 1 0;min-width:clamp(38px,4.6vw,86px);
+  height:100%;overflow:hidden;border-radius:2px;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .5s ease,filter .5s ease;
+  opacity:1;transform:none}
+main.strips figure:nth-child(3n+2){height:93%;margin-top:3%}
+main.strips figure:nth-child(4n+3){height:88%;margin-top:6%}
+main.strips figure:nth-child(5n+5){height:96%;margin-top:1%}
+main.strips figure img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;
+  transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+main.strips:hover figure{opacity:.34;filter:saturate(.25) brightness(.9)}
+main.strips:hover figure:hover{opacity:1;filter:none;flex:3.4 1 0}
+main.strips figure:hover img{transform:scale(1.03)}
+main.strips figcaption{position:absolute;left:0;right:0;bottom:0;margin:0;padding:10px 12px 11px;
+  background:linear-gradient(transparent,rgba(10,10,10,.86));
+  opacity:0;transition:opacity .4s ease;pointer-events:none}
+main.strips figure:hover figcaption{opacity:1}
+main.strips .zoom{display:grid;position:absolute;top:22px;left:50%;transform:translate(-50%,-6px) scale(.9);
+  width:62px;height:62px;border-radius:50%;background:rgba(10,10,10,.86);
+  display:grid;place-items:center;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+  color:var(--ink);opacity:0;transition:.4s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+main.strips figure:hover .zoom{opacity:1;transform:translate(-50%,0) scale(1)}
+@media(max-width:760px){
+  main.strips{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;overflow:visible}
+  main.strips figure{height:auto;aspect-ratio:3/4;margin-top:0!important}
+  main.strips figure img{height:100%}
+}
+
+.endroll{text-align:center;padding:20px 0 90px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.pager{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding:26px clamp(20px,4vw,56px) 70px;max-width:1500px;margin:0 auto;border-top:1px solid var(--dimmer)}
+.pager a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;transition:color .3s}
+.pager a:hover{color:var(--red)}
+.empty{padding:20px 0 80px;color:var(--dim);font-size:14px;max-width:56ch}
+
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:60;background:rgba(6,6,6,.96);display:none;place-items:center;cursor:zoom-out;padding:3vh 3vw}
+#lb.on{display:grid}
+#lb img{max-width:100%;max-height:94vh;object-fit:contain}
+#lb .x{position:fixed;top:20px;right:26px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--dim)}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="back" id="back" href="index.html">← Back</a>
+  </div>
+</header>
+
+<section class="intro" id="intro"></section>
+<main id="main" class="grid"></main>
+<div class="endroll" id="end"></div>
+<nav class="pager" id="pager"></nav>
+
+<div id="lb"><span class="x">Close ✕</span><img alt=""></div>
+
+<script src="data.js"></script>
+<script src="curation.js"></script>
+<script src="nav.js"></script>
+<script>
+(function(){
+  const W=window.WORK;
+  const q=new URLSearchParams(location.search);
+  const id=q.get('c');
+  const c=W.cases.find(x=>x.id===id)||W.cases[0];
+  const sec=W.sections.find(s=>s.id===c.sec);
+  const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+
+  document.title=c.n+' — The Work';
+  document.getElementById('back').href=window.NAV.href(c.sec);
+  document.getElementById('back').textContent='← '+sec.n;
+
+  document.getElementById('intro').innerHTML=
+    '<div class="code">'+esc(c.code)+' · '+esc(sec.n)+'</div>'+
+    '<h1>'+esc(c.n)+'</h1>'+
+    '<div class="k">'+esc(c.k)+'</div>'+
+    '<div class="cols">'+
+      '<div>'+
+        '<p class="s">'+esc(c.s)+'</p>'+
+        (c.role?'<div class="role">'+esc(c.role)+'</div>':'')+
+        (c.pull?'<blockquote>'+esc(c.pull)+'</blockquote>':'')+
+      '</div>'+
+      '<div>'+
+        (c.did&&c.did.length?'<div class="did"><h3>What we did</h3><ul>'+
+          c.did.map(d=>'<li>'+esc(d)+'</li>').join('')+'</ul></div>':'')+
+        (c.stats&&c.stats.length?'<div class="stats">'+c.stats.map(s=>'<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>').join('')+'</div>':'')+
+      '</div>'+
+    '</div>'+
+    (c.casepage?'<div class="note"><a href="'+c.casepage+'" style="color:var(--red);text-decoration:none">Open the full case study &#8599;</a></div>':'')+
+    (c.note?'<div class="note">'+esc(c.note)+'</div>':'')+
+    (c.credit?'<div class="note" style="border-style:solid;border-color:rgba(233,234,228,.10)">'+esc(c.credit)+'</div>':'');
+
+  const main=document.getElementById('main');
+  const FR=window.CURATION.framesFor(c);
+  if(FR.length){
+    main.innerHTML=FR.map((f,i)=>
+      '<figure><img loading="lazy" src="'+f.src+'" alt="'+esc(c.n)+' — frame '+(i+1)+'" width="'+(f.w||0)+'" height="'+(f.h||0)+'">'+
+      '<span class="zoom">Zoom</span>'+
+      '<figcaption><b>'+String(i+1).padStart(2,'0')+'</b><span>'+esc(c.n)+'</span></figcaption></figure>').join('');
+    document.getElementById('end').innerHTML='— end of roll · '+esc(c.n)+' —'+
+      (c.credit?'<div style="margin-top:14px;letter-spacing:.13em;opacity:.72">'+esc(c.credit)+'</div>':'');
+  }else{
+    main.innerHTML='<p class="empty">No frames published on this page. '+
+      (c.note?esc(c.note):'Material available on request.')+'</p>';
+  }
+
+  // reveal on scroll
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -8% 0px'});
+  [...main.querySelectorAll('figure')].forEach(f=>io.observe(f));
+
+  // one way to look at the work: the grid
+  main.className='grid';
+  [...main.querySelectorAll('figure')].forEach(f=>f.classList.add('in'));
+  try{ localStorage.removeItem('workLayout'); }catch(e){}
+
+  // pager within section
+  const sib=W.cases.filter(x=>x.sec===c.sec);
+  const i=sib.findIndex(x=>x.id===c.id);
+  const prev=sib[(i-1+sib.length)%sib.length], next=sib[(i+1)%sib.length];
+  document.getElementById('pager').innerHTML=
+    '<a href="roll.html?c='+prev.id+'">← '+esc(prev.n)+'</a>'+
+    '<a href="'+window.NAV.href(c.sec)+'">All of '+esc(sec.n)+'</a>'+
+    '<a href="roll.html?c='+next.id+'">'+esc(next.n)+' →</a>';
+
+  // lightbox
+  const lb=document.getElementById('lb'), lbi=lb.querySelector('img');
+  main.addEventListener('click',e=>{
+    const im=e.target.closest('img'); if(!im) return;
+    lbi.src=im.currentSrc||im.src; lb.classList.add('on');
+  });
+  lb.onclick=()=>lb.classList.remove('on');
+  addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body>
+</html>

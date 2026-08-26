@@ -1,0 +1,689 @@
+{
+  "boards": [
+    {
+      "id": "b_usual",
+      "name": "Ambrosia · The Usual",
+      "privacy": "SECRET"
+    },
+    {
+      "id": "b_gift",
+      "name": "Ambrosia · Gifting",
+      "privacy": "SECRET"
+    },
+    {
+      "id": "b_98",
+      "name": "#98",
+      "privacy": "SECRET"
+    }
+  ],
+  "pins": {
+    "b_usual": [
+      {
+        "id": "90000000000000000",
+        "link": "https://photographer-0.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/00.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/00.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/00.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000001",
+        "link": "https://photographer-1.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/01.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/01.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/01.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000002",
+        "link": "https://photographer-2.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/02.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/02.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/02.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000003",
+        "link": "https://photographer-3.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/03.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/03.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/03.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000004",
+        "link": "https://photographer-4.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/04.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/04.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/04.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000005",
+        "link": "https://photographer-5.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/05.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/05.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/05.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000006",
+        "link": "https://photographer-6.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/06.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/06.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/06.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000007",
+        "link": "https://photographer-7.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/07.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/07.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/07.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000008",
+        "link": "https://photographer-8.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/08.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/08.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/08.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000009",
+        "link": "https://photographer-9.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/09.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/09.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/09.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000010",
+        "link": "https://photographer-10.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/10.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/10.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/10.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000011",
+        "link": "https://photographer-11.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/11.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/11.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/11.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000012",
+        "link": "https://photographer-12.example/work",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/12.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/12.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/12.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      }
+    ],
+    "b_gift": [
+      {
+        "id": "90000000000000020",
+        "link": "https://studio-0.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/13.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/13.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/13.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000021",
+        "link": "https://studio-1.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/14.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/14.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/14.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000022",
+        "link": "https://studio-2.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/15.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/15.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/15.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000023",
+        "link": "https://studio-3.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/16.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/16.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/16.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000024",
+        "link": "https://studio-4.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/17.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/17.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/17.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000025",
+        "link": "https://studio-5.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/18.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/18.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/18.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000026",
+        "link": "https://studio-6.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/19.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/19.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/19.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000027",
+        "link": "https://studio-7.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/20.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/20.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/20.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000028",
+        "link": "https://studio-8.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/21.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/21.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/21.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000029",
+        "link": "https://studio-9.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/22.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/22.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/22.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000030",
+        "link": "https://studio-10.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/23.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/23.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/23.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000031",
+        "link": "https://studio-11.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/24.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/24.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/24.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000032",
+        "link": "https://studio-12.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/25.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/25.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/25.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000033",
+        "link": "https://studio-13.example/case",
+        "media": {
+          "media_type": "image",
+          "images": {
+            "150x150": {
+              "url": "file:///tmp/pinfix/26.jpg",
+              "width": 150,
+              "height": 150
+            },
+            "600x": {
+              "url": "file:///tmp/pinfix/26.jpg",
+              "width": 600,
+              "height": 400
+            },
+            "1200x": {
+              "url": "file:///tmp/pinfix/26.jpg",
+              "width": 1200,
+              "height": 800
+            }
+          }
+        }
+      },
+      {
+        "id": "90000000000000099",
+        "link": "https://reel.example/v",
+        "media": {
+          "media_type": "video",
+          "cover_image_url": "file:///tmp/pinfix/00.jpg"
+        }
+      },
+      {
+        "id": "900000000000000999",
+        "link": "https://nomedia.example",
+        "media": {
+          "media_type": "image",
+          "images": {}
+        }
+      }
+    ]
+  }
+}

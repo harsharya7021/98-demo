@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × Andrea&#x27;s Eatery · Campaign Case Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html">Chosen case studies</a><a href="../map.html?s=production" class="on">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>The Work<br>Is In The<br>Curation<span class="dot">.</span></h1>
+    <p class="deck">Andrea's Eatery in Saket reopened with a revamped concept — elevated dining, Asian-leaning menu,
+    a new interior with the kind of warm wood and clock-wall that stays on Instagram. We argued for
+    creator-led discovery over paid social. <strong>Authority over reach. Trust over impressions.</strong>
+    18 creators served · 2.09M tracked reach · 0 paid placements.</p>
+  </section>
+<section class="gallery"><div class="glabel">Story frames as they ran — hover to open, click to enlarge</div><div class="slats"><figure class="slat"><img src="../frames/andreas/01.jpg" alt="Andrea&#x27;s Eatery frame 1" loading="lazy"><figcaption><b>01</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure><figure class="slat"><img src="../frames/andreas/02.jpg" alt="Andrea&#x27;s Eatery frame 2" loading="lazy"><figcaption><b>02</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure><figure class="slat"><img src="../frames/andreas/03.jpg" alt="Andrea&#x27;s Eatery frame 3" loading="lazy"><figcaption><b>03</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure><figure class="slat"><img src="../frames/andreas/04.jpg" alt="Andrea&#x27;s Eatery frame 4" loading="lazy"><figcaption><b>04</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure><figure class="slat"><img src="../frames/andreas/05.jpg" alt="Andrea&#x27;s Eatery frame 5" loading="lazy"><figcaption><b>05</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure><figure class="slat"><img src="../frames/andreas/06.jpg" alt="Andrea&#x27;s Eatery frame 6" loading="lazy"><figcaption><b>06</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure><figure class="slat"><img src="../frames/andreas/07.jpg" alt="Andrea&#x27;s Eatery frame 7" loading="lazy"><figcaption><b>07</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure><figure class="slat"><img src="../frames/andreas/08.jpg" alt="Andrea&#x27;s Eatery frame 8" loading="lazy"><figcaption><b>08</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure><figure class="slat"><img src="../frames/andreas/09.jpg" alt="Andrea&#x27;s Eatery frame 9" loading="lazy"><figcaption><b>09</b> &nbsp;Andrea&#x27;s Eatery</figcaption></figure></div></section>
+
+<!-- COVER -->
+<section class="sec">
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+<!-- 01 THE LAUNCH -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">01</div><div class="title">The Launch</div></div>
+  <p class="body-p"><strong>Andrea's Eatery</strong> in Saket was reopening with a revamped concept — elevated
+    dining, Asian-leaning menu, a new interior with the kind of warm wood and clock-wall that stays on Instagram.
+    The standard launch playbook is press release plus paid social. We argued for something different: <em>let
+    Delhi's food creators discover the restaurant on their own time, in their own voice, and build the launch
+    arc out of their stories.</em></p>
+  <p class="body-p">Authority over reach. Trust over impressions. <strong>Korean Bao</strong> as the hero dish,
+    dim-sum spread as the proof of range. Standardised tag stack (@andreasdining + @98.entertainment +
+    Saket geo-pin) across every visit.</p>
+  <div class="kpi-row"><div><div class="kpi-num">18</div><div class="kpi-label">Creators served</div></div>
+<div><div class="kpi-num">2.09<span class="small">M</span></div><div class="kpi-label">Combined tracked reach</div></div>
+<div><div class="kpi-num">0</div><div class="kpi-label">Paid placements</div></div>
+<div><div class="kpi-num">43+</div><div class="kpi-label">Story frames captured</div></div>
+</div>
+  <p class="big-quote">A new restaurant doesn't need followers. It needs<br>
+    <span class="accent">a few of the right people seen there in the first month.</span></p>
+  
+</section>
+
+<!-- 02 THE CURATION -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">02</div><div class="title">The Curation</div></div>
+  <p class="body-p">98 built a hit-list of creators across food, lifestyle and luxury categories — not just the
+    biggest accounts, but the ones whose audience overlapped with Andrea's actual target diner: 25–40,
+    eating-out-as-experience, Delhi NCR.</p>
+  <p class="body-p">Coordinated visits across two-week windows. Spaced them out — never two big creators on the
+    same weekend. Hosted on arrival; comped the meal; suggested the dishes worth shooting (Korean Bao as the
+    hero, dim-sum spread as the proof of range). <strong>No scripted captions. No paid disclosures.</strong></p>
+  <ul class="dash">
+    <li><strong>Audience-fit over follower-count.</strong> Creators selected for whose feed grammar valued frame composition, light, and quiet — Andrea's room is a magazine spread before it's a restaurant.</li>
+    <li><strong>Spaced calendar.</strong> Two-week visit windows, never two big creators on the same weekend. Each story-drop got its own oxygen.</li>
+    <li><strong>No paid, no scripted.</strong> Comped meals, hosted on arrival, dish suggestions on the table — but the captions belonged to the creator.</li>
+    <li><strong>Cross-vertical filter.</strong> Food creators alone read as a deal-shelf. Lifestyle + luxury voices put Andrea's on the destination shelf.</li>
+  </ul>
+  
+</section>
+
+<!-- 03 THE CONTENT -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">03</div><div class="title">The Content</div></div>
+  <p class="body-p">Six creators visited within the launch window. Each posted to their own stories tagged
+    @andreasdining. We captured every story, curated, and reposted to 98's grid as a single highlight reel —
+    turning UGC into an owned brand asset. <strong>The Andrea's launch highlight reel still sits on 98's
+    Instagram three years later — a compounding asset rather than a one-time campaign.</strong></p>
+  <p class="body-p">Beyond the named six, the @andreasdining IG highlight surfaced three additional
+    verified-class voices captured by 98 during the launch arc. Plus a disk-pass extension of off-highlight
+    deliverables sourced from 98's internal client folders and post-archive — visible across the Andrea's
+    Inspo Posts grid and direct creator-feed reposts.</p>
+  <div class="three-col">
+    <div><div class="num">01</div><h5>Highlighted six</h5><p>The named launch-window roster: Nandita Miglani, Muskaan Makol, Ishita Anand, Harnoor Kapoor, Unnati Malik, Vanshika Chhabra (@thedemodakudi).</p></div>
+    <div><div class="num">02</div><h5>Additional IG highlight</h5><p>Three more captured on the @andreasdining highlight: Saanya Khatter (533K V), Aishwarya Sharma (@figuramoda 466K V), Vageesha Bahel (152K V).</p></div>
+    <div><div class="num">03</div><h5>Disk-pass off-highlight</h5><p>Akshita, Rashmi Chawla, Shruti Malik (handles confirmed) plus Tanya Sharma Bajaj, Bhumi, Nupur Satija, Ruvika Bajaj, Geetika Dhama, Kirandeep Kaur (handles pending verification).</p></div>
+  </div>
+  
+</section>
+
+<!-- 04 THE ROSTER MAP -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">04</div><div class="title">The Roster (IG Highlight)</div></div>
+  <p class="body-p">The IG-highlighted roster, in practice. 9 creators across 43+ story frames, 1.97M combined reach, 5 verified handles. The named six anchor the narrative; the additional three extend the campaign arc.</p>
+  <div class="roster-map">
+    <div class="vert">
+      <h4>Food · Lifestyle · Luxury</h4>
+      <div class="role">Audience verticals</div>
+    </div>
+    <div class="creators"><div class="creator"><span class="h">@nanditamiglani</span><span><span class="n">52K</span></span></div>
+<div class="creator"><span class="h">@muskaanmakol</span><span><span class="n">55K</span></span></div>
+<div class="creator"><span class="h">@ishitanand</span><span><span class="n">239K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@harnoor.kapoor</span><span><span class="n">51K</span></span></div>
+<div class="creator"><span class="h">@unnatimalik</span><span><span class="n">310K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@thedemodakudi</span><span><span class="n">114K</span></span></div>
+<div class="creator"><span class="h">@saanyaakhatterr</span><span><span class="n">532K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@figuramoda</span><span><span class="n">466K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@vageeshabahel</span><span><span class="n">152K</span><span class="v">✓</span></span></div></div>
+  </div>
+  <p class="eyebrow">Hero dish: Korean Bao · Proof of range: dim-sum spread</p>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Andrea's Eatery · Saket</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Nandita<br>Miglani</div>
+    <div class="creator-meta">
+      <div class="handle">@nanditamiglani</div>
+      <div class="role">UGC creator</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">52K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <figure class="creator-still"><img src="../frames/andreas/01.jpg" alt="Andrea&#x27;s Eatery" loading="lazy"><figcaption>UGC CREATOR · ANDREA&#x27;S EATERY · SAKET · SAKET, DELHI</figcaption></figure>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Nandita's UGC-native register was cast for the food itself — frames that look found, not produced, which is the entire grammar of a discovery launch.</p>
+    <h4>What was posted</h4>
+    <p>The Andrea's script wall behind a sauce pour over the steak — 'Monday just got better' — plus a grid of the revamped room: the banquettes, the fish and chips, the sushi boards. Geo-pinned Select Citywalk, Saket.</p>
+    <h4>Editorial framing</h4>
+    <p>Her pour frame became the relaunch's signature motion — re-run on Andrea's own grid as the new room's introduction.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Andrea's Eatery · Saket</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Muskaan Makol</div>
+    <div class="creator-meta">
+      <div class="handle">@muskaanmakol</div>
+      <div class="role">Lifestyle</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">55K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <figure class="creator-still"><img src="../frames/andreas/02.jpg" alt="Andrea&#x27;s Eatery" loading="lazy"><figcaption>LIFESTYLE · ANDREA&#x27;S EATERY · SAKET · SAKET, DELHI</figcaption></figure>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Muskaan's lifestyle feed carried the room-and-menu tour — the four-up format that shows a revamp fastest.</p>
+    <h4>What was posted</h4>
+    <p>'Delicious food & modern interior' — the gallery banquette wall, the basil-chicken rice bowl, sushi close-ups, the neon Andrea's facade with its wreath — one collage, tagged @andreasdining.</p>
+    <h4>Editorial framing</h4>
+    <p>Her collage is the relaunch in a single post: old name, new room, camera-ready.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Andrea's Eatery · Saket</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Ishita Anand</div>
+    <div class="creator-meta">
+      <div class="handle">@ishitanand</div>
+      <div class="role">Digital creator</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">239K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <figure class="creator-still"><img src="../frames/andreas/03.jpg" alt="Andrea&#x27;s Eatery" loading="lazy"><figcaption>DIGITAL CREATOR · ANDREA&#x27;S EATERY · SAKET · SAKET, DELHI</figcaption></figure>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Ishita's digital-native audience supplied the discovery pool — the feeds where 'have you seen the new Andrea's' actually spreads.</p>
+    <h4>What was posted</h4>
+    <p>Reel and stories from her visit — dessert tiers, interiors — captioned for search, tagged into the stack.</p>
+    <h4>Editorial framing</h4>
+    <p>Her material fed the two-week drumbeat the launch was paced around.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Andrea's Eatery · Saket</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Harnoor<br>Kaur Kapoor</div>
+    <div class="creator-meta">
+      <div class="handle">@harnoor.kapoor</div>
+      <div class="role">Digital creator · Toronto</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">51K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <figure class="creator-still"><img src="../frames/andreas/04.jpg" alt="Andrea&#x27;s Eatery" loading="lazy"><figcaption>DIGITAL CREATOR · TORONTO · ANDREA&#x27;S EATERY · SAKET · SAKET, DELHI</figcaption></figure>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Harnoor posts from Toronto — an NRI lens that reads Saket's revamp as a homecoming stop, widening the launch past the neighbourhood.</p>
+    <h4>What was posted</h4>
+    <p>A visit in her traveller register — the revamped room as a Delhi essential — tagged through the campaign.</p>
+    <h4>Editorial framing</h4>
+    <p>The diaspora angle future-proofed the relaunch: Andrea's back on the list people land with.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Andrea's Eatery · Saket</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Unnati Malik</div>
+    <div class="creator-meta">
+      <div class="handle">@unnatimalik</div>
+      <div class="role">Digital creator</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">310K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <figure class="creator-still"><img src="../frames/andreas/05.jpg" alt="Andrea&#x27;s Eatery" loading="lazy"><figcaption>DIGITAL CREATOR · ANDREA&#x27;S EATERY · SAKET · SAKET, DELHI</figcaption></figure>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Unnati's discovery-feed audience turned visits into saves — the metric a relaunch actually banks.</p>
+    <h4>What was posted</h4>
+    <p>Plate-led frames and stories — the dessert table work in close-up — captions written to be searched.</p>
+    <h4>Editorial framing</h4>
+    <p>Her saves-first material kept working after the window: the relaunch's long tail.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Andrea's Eatery · Saket</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Vanshika<br>Chhabra</div>
+    <div class="creator-meta">
+      <div class="handle">@thedemodakudi</div>
+      <div class="role">Digital creator</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">114K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <figure class="creator-still"><img src="../frames/andreas/06.jpg" alt="Andrea&#x27;s Eatery" loading="lazy"><figcaption>DIGITAL CREATOR · ANDREA&#x27;S EATERY · SAKET · SAKET, DELHI</figcaption></figure>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>@thedemodakudi's comic register gave the relaunch its shareable unit — rooms spread faster as jokes than as reviews.</p>
+    <h4>What was posted</h4>
+    <p>A visit cut in her own voice — the room, the plates, the punchline — tags riding the format.</p>
+    <h4>Editorial framing</h4>
+    <p>Her post travelled outside food feeds entirely, which is exactly what a revamp announcement can't do for itself.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">11</div><div class="title">Additional IG-Highlight Creators</div></div>
+  <p class="body-p">Beyond the six creators named in the launch narrative, the @andreasdining IG highlight surfaced three additional verified-class voices who visited Andrea's during the launch arc and were deemed strong enough to live on the brand's permanent highlight reel.</p>
+  <p class="body-p">Combining the named six with these three brings the IG-highlighted roster to nine creators — 1.97M reach, 5 verified.</p>
+  <table class="support-table">
+    <thead><tr><th>Handle / Name</th><th>Followers</th><th></th><th>Name · Role</th></tr></thead>
+    <tbody><tr><td class="handle">@saanyaakhatterr</td><td class="followers">532K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Saanya Khatter · Public figure</td></tr>
+<tr><td class="handle">@figuramoda</td><td class="followers">466K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Aishwarya Sharma · Public figure</td></tr>
+<tr><td class="handle">@vageeshabahel</td><td class="followers">152K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Vageesha Bahel · Digital creator</td></tr></tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">12</div><div class="title">Off-Highlight: Disk-Pass Roster</div></div>
+  <p class="body-p">Beyond the IG highlight, 98 served additional creators across Andrea's launch and re-engagement calendar via direct deliverables, brand-grid reshares, and magazine-style inspo placements. The website case study calls this the 'disk-pass' extension — sourced from 98's internal client folders and post-archive.</p>
+  <p class="body-p"><strong>Why this matters.</strong> A creator-marketing case told only through one channel (the host brand's IG highlight) under-represents the actual scope. Andrea's activation lived across creator-feed posts, brand-grid reshares, magazine-style inspo placements, and direct creator deliverables — not all of which surface on a single highlight reel.</p>
+  <table class="support-table">
+    <thead><tr><th>Handle / Name</th><th>Followers</th><th></th><th>Name · Role</th></tr></thead>
+    <tbody><tr><td class="handle">@akshitaajindal</td><td class="followers">1.2K</td><td class="verified-cell"></td><td class="role-cell">Akshita Jindal · Reel creator</td></tr>
+<tr><td class="handle">@rashmi_chawla_</td><td class="followers">88K</td><td class="verified-cell"></td><td class="role-cell">Rashmi Chawla · Digital creator</td></tr>
+<tr><td class="handle">@shrutimalikk</td><td class="followers">28K</td><td class="verified-cell"></td><td class="role-cell">Shruti Malik · Author</td></tr>
+<tr class="subtle"><td class="handle">Tanya Sharma Bajaj</td><td class="followers">—</td><td class="verified-cell"></td><td class="role-cell">Handle pending verification · contemporaneous frames in archive</td></tr>
+<tr class="subtle"><td class="handle">Bhumi</td><td class="followers">—</td><td class="verified-cell"></td><td class="role-cell">Handle pending verification · contemporaneous frames in archive</td></tr>
+<tr class="subtle"><td class="handle">Nupur Satija</td><td class="followers">—</td><td class="verified-cell"></td><td class="role-cell">Handle pending verification · contemporaneous frames in archive</td></tr>
+<tr class="subtle"><td class="handle">Ruvika Bajaj</td><td class="followers">—</td><td class="verified-cell"></td><td class="role-cell">Handle pending verification · contemporaneous frames in archive</td></tr>
+<tr class="subtle"><td class="handle">Geetika Dhama</td><td class="followers">—</td><td class="verified-cell"></td><td class="role-cell">Handle pending verification · contemporaneous frames in archive</td></tr>
+<tr class="subtle"><td class="handle">Kirandeep Kaur</td><td class="followers">—</td><td class="verified-cell"></td><td class="role-cell">Handle pending verification · contemporaneous frames in archive</td></tr></tbody>
+  </table>
+  
+</section>
+
+<!-- HOW IT WAS RUN — The Playbook -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">10</div><div class="title">The Playbook</div></div>
+  <p class="body-p">If you're launching a restaurant, here's the system underneath the Andrea's case — replicable for any hospitality brand.</p>
+  <table class="ops-table">
+    <thead><tr><th>Phase</th><th>Window</th><th>What 98 ran</th></tr></thead>
+    <tbody>
+      <tr><td>Hit-list</td><td>Week −2</td><td>Identify 8–12 creators whose audience overlaps your target diner. Aim for 6 confirmed visits. Optimise for fit, not follower count.</td></tr>
+      <tr><td>Brief</td><td>Week −1</td><td>One page. Restaurant story (the why), location, top 5 dishes to try, suggested visit window. No scripted captions. No paid disclosures.</td></tr>
+      <tr><td>Logistics</td><td>Launch week</td><td>Spread visits across 14 days; never two creators on the same weekend. Host on arrival; comp the meal; offer a guided tour of the new space.</td></tr>
+      <tr><td>Capture</td><td>Live</td><td>98 attends 2–3 of the visits to capture B-roll for the agency repost. Creators handle their own posts in their own voice.</td></tr>
+      <tr><td>Repost</td><td>Week +1</td><td>Stories repost same-week to the brand's grid; curated 1–2 weeks later into a permanent story highlight reel. UGC becomes an owned asset.</td></tr>
+      <tr><td>Track</td><td>Week +4</td><td>Tag mentions, story reach, location-tag traffic, reservation lift. Most of the value isn't measurable in a single dashboard — it's in the room being seen.</td></tr>
+    </tbody>
+  </table>
+  
+</section>
+
+<!-- WHAT DELIVERED -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">11</div><div class="title">The Receipts</div></div>
+  <p class="body-p">The Andrea's launch highlight reel still sits on 98's Instagram three years later — a compounding asset rather than a one-time campaign. The dishes that ranked across creator posts (Korean Bao, dim-sum spread, the Asian-food range) are the ones that became signature on the menu.</p>
+  <div class="deliv-grid">
+    <div class="deliv-cell"><h4>Highlight Reel</h4><ul class="dash"><li>43+ story frames captured across 9 IG-highlighted creators.</li><li>Lives on @98.entertainment's IG three years post-launch.</li><li>UGC turned into an owned brand asset.</li></ul></div>
+    <div class="deliv-cell"><h4>Menu Validation</h4><ul class="dash"><li>Korean Bao + dim-sum spread emerged as the consensus hero dishes.</li><li>The dishes that ranked in creator posts became signature menu items.</li></ul></div>
+    <div class="deliv-cell"><h4>Disk-Pass Layer</h4><ul class="dash"><li>3 confirmed off-highlight creators (Akshita, Rashmi Chawla, Shruti Malik).</li><li>6 named creators served via Inspo Posts + direct deliverables.</li></ul></div>
+    <div class="deliv-cell"><h4>0 Paid Placements</h4><ul class="dash"><li>No paid social spend on the launch arc.</li><li>Hosted meals only · no fee transfer to creators.</li><li>Authority compounded; reach was a byproduct.</li></ul></div>
+  </div>
+  
+</section>
+
+<!-- 98 CAPABILITY -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">12</div><div class="title">98 · The Capability</div></div>
+  <p class="body-p">Andrea's is 98's flagship case for creator-led launches. Authority over reach. The work is in the curation — picking the right creators whose audience overlaps the actual target diner, then giving them the room and stepping back. Creator-led launches stop being a one-off campaign and start being a system.</p>
+  <p class="body-p">We've run versions of this playbook for restaurants across Delhi NCR, Bombay and Bangalore — different palettes, same spine. The system: hit-list, brief, logistics, capture, repost, track. Six phases, four weeks, zero paid placements.</p>
+  <div class="note-block">
+    <div class="label">98 Entertainment · Terminus</div>
+    <h3>The work is in the curation. Not the content.</h3>
+    <p>A relaunch discovered reads better than a relaunch announced. Eighteen creators found the revamped room in their own voice across two spaced weeks, and the launch was built from their stories rather than ours.</p>
+  </div>
+  <p class="eyebrow">98 Entertainment · ninety-eight.in · @98.entertainment</p>
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../map.html?s=production">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>

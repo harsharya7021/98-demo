@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × Monet · Campaign Case Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html" class="on">Chosen case studies</a><a href="../map.html?s=production">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>Plate<br>As Portrait<span class="dot">.</span></h1>
+    <p class="deck">A 20-creator dessert launch for Monet — Italian-Indian dessert kitchen in Delhi. Anchored on Yashvi Bagga (1.25M verified actor), Unnati Tomar (512K), Prerna Massey (419K). Combined reach 3.65M, 72 story frames. Bollywood audio bed cracked open a Hindi-pop algorithm pool.</p>
+  </section>
+
+<section class="sec">
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">01</div><div class="title">The Snapshot</div></div>
+  <p class="body-p"><strong>Monet</strong> is a dessert-led Italian kitchen with an Indian flavour pivot — meaning the plating is the marketing. Most diners decide before they read the menu. The brief tightened around food + venue, less around lifestyle.</p>
+  <p class="body-p">98 ran 20 creators across 72 story frames — the second-largest activation in our portfolio. Anchored on Yashvi Bagga (1.25M verified actor), Unnati Tomar (512K), and Prerna Massey (419K verified fashion model). Vanshika Gaba Arora (344K), Mehak Sembhy (228K), and 15 supporting voices echoed across the window. Audio bed: Rahat Fateh Ali Khan — Bollywood weight, Hindi-pop mood.</p>
+  <div class="kpi-row"><div><div class="kpi-num">20</div><div class="kpi-label">Creators activated</div></div>
+<div><div class="kpi-num">3.65<span class="small">M</span></div><div class="kpi-label">Combined follower reach</div></div>
+<div><div class="kpi-num">8</div><div class="kpi-label">Verified handles</div></div>
+<div><div class="kpi-num">72</div><div class="kpi-label">Story frames captured</div></div>
+</div>
+  <div class="snap-grid">
+    <div class="snap-cell"><h4>Client</h4><p>Monet · Italian-Indian dessert kitchen.</p></div>
+    <div class="snap-cell"><h4>Format</h4><p>20-creator UGC seeding · reels + stories · 72 captured story frames.</p></div>
+    <div class="snap-cell"><h4>Agency</h4><p>98 Entertainment — concept, casting and the plate-first brief for the Monet launch window.</p></div>
+    <div class="snap-cell"><h4>Engagement Layer</h4><p>Standardised tag stack (@monet.delhi + @98.entertainment + Delhi geo-pin) across every visit.</p></div>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">02</div><div class="title">The Challenge</div></div>
+  <p class="body-p">A dessert-led kitchen has roughly two seconds of attention from a scrolling viewer. The frame either earns the save or doesn't. Monet's plating could earn it — but only if the cinematography led with the plate, not the face. The challenge was getting 20 creators to follow that brief.</p>
+  <ul class="dash"><li><strong>Plate first, face second.</strong> The cinematic grammar had to be food-as-portrait, not creator-with-food. We rewrote the standard creator brief to enforce it across 20 creators.</li>
+<li><strong>Actor anchor logic.</strong> Yashvi Bagga's recommendation reads as a friend's — but only if the post doesn't read as a paid integration. The brief avoided campaign markers.</li>
+<li><strong>Bollywood audio bed.</strong> Rahat Fateh Ali Khan's track gave Monet a Hindi-pop mood — opening up an audience pool that English-only creators don't reach.</li>
+<li><strong>Volume that converts.</strong> 20 creators is a saturation roster. To avoid 'campaign fatigue', we sequenced visits across multiple weeks and varied formats.</li>
+</ul>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">03</div><div class="title">The Strategic Move</div></div>
+  <p class="big-quote">An actor's recommendation reads as a friend's.<br><span class="accent">If the brief lets it.</span></p>
+  <div class="three-col"><div><div class="num">01</div><h5>Three-tier anchor.</h5><p>Yashvi (1.25M actor) → Unnati (512K) → Prerna (419K). Three audience pools stacked — actor, digital creator, fashion model.</p></div>
+<div><div class="num">02</div><h5>Bollywood audio bed.</h5><p>Rahat Fateh Ali Khan's track gave Monet a Hindi-pop mood that travelled outside the English-creator algorithm.</p></div>
+<div><div class="num">03</div><h5>Plate-first cinematography.</h5><p>Briefed every creator to lead with the plate, not the face. Monet's asset library now trades in food as portrait.</p></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">04</div><div class="title">The Roster</div></div>
+  <p class="body-p">Monet · Italian-Indian dessert kitchen ran on a roster of 20 creators — 5 marquee, 15 supporting. Verticals covered: <strong>Actor · digital creator · fashion model · lifestyle · food</strong>.</p>
+  <div class="roster-map">
+    <div class="vert">
+      <h4>Actor</h4>
+      <div class="role">Audience verticals</div>
+    </div>
+    <div class="creators"><div class="creator"><span class="h">@yashvayayay</span><span><span class="n">1.25M</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@unnatitomarrr</span><span><span class="n">511K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@prernamasseyy</span><span><span class="n">418K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@vanshikagaba23</span><span><span class="n">343K</span></span></div>
+<div class="creator"><span class="h">@mehak_sembhy</span><span><span class="n">228K</span></span></div>
+<div class="creator"><span class="h">@venus.kaur</span><span><span class="n">150K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@teeyachawla</span><span><span class="n">129K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@_itanvi_</span><span><span class="n">116K</span></span></div>
+<div class="creator"><span class="h">@mitaliisethi</span><span><span class="n">111K</span></span></div>
+<div class="creator"><span class="h">@callmesrish</span><span><span class="n">107K</span></span></div>
+<div class="creator"><span class="h">@devikaapathakk</span><span><span class="n">72K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@chetalinarula</span><span><span class="n">65K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@itsaboutdeevee_</span><span><span class="n">34K</span></span></div>
+<div class="creator"><span class="h">@bhavna24choudhary</span><span><span class="n">31K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@zoyeahh</span><span><span class="n">30K</span></span></div>
+<div class="creator"><span class="h">@shortsohwhat</span><span><span class="n">8.7K</span></span></div>
+<div class="creator"><span class="h">@raina.goswami</span><span><span class="n">10K</span></span></div>
+<div class="creator"><span class="h">@priiyaanshiii</span><span><span class="n">9.9K</span></span></div>
+<div class="creator"><span class="h">@_aditisood_</span><span><span class="n">13K</span></span></div>
+<div class="creator"><span class="h">@vanshhwadhwa</span><span><span class="n">2.3K</span></span></div></div>
+  </div>
+  <p class="eyebrow">Soundtrack lock: Rahat Fateh Ali Khan · Bollywood</p>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Monet · Italian-Indian dessert kitchen</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Yashvi Bagga</div>
+    <div class="creator-meta">
+      <div class="handle">@yashvayayay</div>
+      <div class="role">Actor</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">1.25M</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">ACTOR · MONET · ITALIAN-INDIAN DESSERT KITCHEN · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>An actor's dinner reads as a night out, not a placement. At 1.25M followers, Yashvi was the campaign's proof that Monet is where an evening ends up when nobody is being paid to say so.</p>
+    <h4>What was posted</h4>
+    <p>Her stories walked in through the MONET arch and then stayed low over the table — the salmon roll on the house blue ceramic, a polaroid-frame story at the gate, a retro cam filter across the set. Plate first, face second, exactly as briefed.</p>
+    <h4>Editorial framing</h4>
+    <p>The walk-in sequence became the campaign's front door: @monet.delhi re-ran it to open the launch highlight, and her plate frames seeded the kitchen's own menu-drop grid for the quarter.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Monet · Italian-Indian dessert kitchen</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Unnati Tomar</div>
+    <div class="creator-meta">
+      <div class="handle">@unnatitomarrr</div>
+      <div class="role">Digital creator</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">511K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · MONET · ITALIAN-INDIAN DESSERT KITCHEN · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Unnati's 511K follow her for the edit, not the venue — which is what a launch needs once the announcement is out: someone who makes the room a format.</p>
+    <h4>What was posted</h4>
+    <p>A reel cut to the Rahat Fateh Ali Khan bed, then the story run from the same evening — dessert counter, interiors, the tag stack to @monet.delhi. The Bollywood audio put the post in front of a Hindi-pop pool English-first creators never touch.</p>
+    <h4>Editorial framing</h4>
+    <p>Her reel's audio choice is the reason this case study talks about algorithm pools at all — it travelled outside the campaign's own follower graph, and Monet's grid picked up the spillover.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Monet · Italian-Indian dessert kitchen</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Prerna Massey</div>
+    <div class="creator-meta">
+      <div class="handle">@prernamasseyy</div>
+      <div class="role">Fashion model</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">418K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">FASHION MODEL · MONET · ITALIAN-INDIAN DESSERT KITCHEN · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>A fashion model's endorsement is aesthetic authority. Prerna's 418K didn't need to be told the room photographs well — her being there was the evidence.</p>
+    <h4>What was posted</h4>
+    <p>Editorial-register frames: interiors as backdrop, the black-and-gold entrance as a set, dessert plates styled into the composition rather than presented to camera. Story set tagged and geo-pinned.</p>
+    <h4>Editorial framing</h4>
+    <p>Exactly the frames a design-led venue needs for its own channels — Monet's grid re-ran the interior set as its look-book for the season.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Monet · Italian-Indian dessert kitchen</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Vanshika<br>Gaba Arora</div>
+    <div class="creator-meta">
+      <div class="handle">@vanshikagaba23</div>
+      <div class="role">Digital creator</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">343K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · MONET · ITALIAN-INDIAN DESSERT KITCHEN · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Vanshika's 343K sit squarely in Delhi food-discovery — the audience that turns a launch post into a booking, not just a like.</p>
+    <h4>What was posted</h4>
+    <p>A dessert-forward carousel and stories from the tasting — the plating close-ups doing the persuasion, captions written to be searched later, the standard tag stack throughout.</p>
+    <h4>Editorial framing</h4>
+    <p>Her close-ups fed the asset library Monet now draws on for menu drops — the working layer of the campaign, underneath the marquee moments.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Monet · Italian-Indian dessert kitchen</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Mehak Sembhy</div>
+    <div class="creator-meta">
+      <div class="handle">@mehak_sembhy</div>
+      <div class="role">Lifestyle · Fitness · Travel</div>
+      
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">228K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">D</div><div class="cs-label">Digital creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">LIFESTYLE · FITNESS · TRAVEL · MONET · ITALIAN-INDIAN DESSERT KITCHEN · DELHI</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Lifestyle-fitness-travel is the audience that treats dessert as an occasion. Mehak's 228K made Monet a reward, which is a different sell from a recommendation.</p>
+    <h4>What was posted</h4>
+    <p>Stories from the visit in her own register — the treat-earned framing, drinks and dessert in frame together, tagged to the venue and the campaign.</p>
+    <h4>Editorial framing</h4>
+    <p>Her angle rounded out the five-way read of the room: after the actor, the model and the food natives, hers is the post that says ordinary people plan an evening here.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">05</div><div class="title">Supporting Roster</div></div>
+  <p class="body-p">The five voices above did the anchoring. Fifteen more posted inside the same window — different audience pools, same plates, so the launch read as a city discovering a room rather than a campaign visiting it.</p>
+  <table class="support-table">
+    <thead><tr><th>Handle</th><th>Followers</th><th></th><th>Name · Role</th></tr></thead>
+    <tbody><tr><td class="handle">@venus.kaur</td><td class="followers">150K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Venus Kaur · Digital creator</td></tr>
+<tr><td class="handle">@teeyachawla</td><td class="followers">129K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Teeya Chawla · Lifestyle</td></tr>
+<tr><td class="handle">@_itanvi_</td><td class="followers">116K</td><td class="verified-cell"></td><td class="role-cell">Tanvi · Personal blog</td></tr>
+<tr><td class="handle">@mitaliisethi</td><td class="followers">111K</td><td class="verified-cell"></td><td class="role-cell">Mitali Sethi · Lifestyle</td></tr>
+<tr><td class="handle">@callmesrish</td><td class="followers">107K</td><td class="verified-cell"></td><td class="role-cell">Srishti Kaur · Lifestyle</td></tr>
+<tr><td class="handle">@devikaapathakk</td><td class="followers">72K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Devika Pathak · Design & fashion</td></tr>
+<tr><td class="handle">@chetalinarula</td><td class="followers">65K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Chetali Narula · Digital creator</td></tr>
+<tr><td class="handle">@itsaboutdeevee_</td><td class="followers">34K</td><td class="verified-cell"></td><td class="role-cell">Divyanshi · Lifestyle</td></tr>
+<tr><td class="handle">@bhavna24choudhary</td><td class="followers">31K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Bhavna Choudhary · Lifestyle · Travel</td></tr>
+<tr><td class="handle">@zoyeahh</td><td class="followers">30K</td><td class="verified-cell"></td><td class="role-cell">Zoya · Digital creator</td></tr>
+<tr><td class="handle">@shortsohwhat</td><td class="followers">8.7K</td><td class="verified-cell"></td><td class="role-cell">Aksa · Digital creator</td></tr>
+<tr><td class="handle">@raina.goswami</td><td class="followers">10K</td><td class="verified-cell"></td><td class="role-cell">Raina Goswami · Blogger</td></tr>
+<tr><td class="handle">@priiyaanshiii</td><td class="followers">9.9K</td><td class="verified-cell"></td><td class="role-cell">Priyanshi Udar · Lifestyle</td></tr>
+<tr><td class="handle">@_aditisood_</td><td class="followers">13K</td><td class="verified-cell"></td><td class="role-cell">Aditi · Lifestyle</td></tr>
+<tr><td class="handle">@vanshhwadhwa</td><td class="followers">2.3K</td><td class="verified-cell"></td><td class="role-cell">Vansh Wadhwa · Lifestyle</td></tr></tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">06</div><div class="title">How It Was Run</div></div>
+  <p class="body-p">98 ran the Monet · Italian-Indian dessert kitchen launch as a four-stage operation: brief and concept, creator match, visit choreography, and asset handover. The discipline that made the campaign land was the same that makes any creator campaign land — clarity at the brief level, conviction at the casting level, and rights-clean handover.</p>
+  <table class="ops-table">
+    <thead><tr><th>Stage</th><th>Owner</th><th>Detail</th></tr></thead>
+    <tbody><tr><td>Anchor Selection</td><td>98 talent</td><td>Three-tier mega anchor · 1.25M + 512K + 419K.</td></tr>
+<tr><td>Brief Discipline</td><td>98 design</td><td>Plate-first frame mandate · audio direction · save-and-CTA.</td></tr>
+<tr><td>Visit Choreography</td><td>98 production</td><td>20 creator visits, plating sequence, light direction.</td></tr>
+<tr><td>Asset Handover</td><td>98 → Monet</td><td>Reels + 72 story masters + photo set + audio brand + caption pack.</td></tr>
+</tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">07</div><div class="title">What Delivered</div></div>
+  <p class="body-p">The Monet · Italian-Indian dessert kitchen campaign produced four distinct asset classes — built to live beyond the launch window and re-run on the brand's owned channels.</p>
+  <div class="deliv-grid"><div class="deliv-cell"><h4>Reels</h4><ul class="dash"><li>Multi-creator reel set.</li>
+<li>Hindi-pop audio bed.</li>
+<li>Plate-first cinematography.</li></ul></div>
+<div class="deliv-cell"><h4>Stories</h4><ul class="dash"><li>72 story frames captured.</li>
+<li>Plate · close-up · ambient · second course.</li></ul></div>
+<div class="deliv-cell"><h4>Audio Brand</h4><ul class="dash"><li>Bollywood track lock across the stack.</li>
+<li>Hindi-pop algorithm pool opened.</li></ul></div>
+<div class="deliv-cell"><h4>Asset Library</h4><ul class="dash"><li>Food-as-portrait shoot used on Monet's grid for 8+ weeks.</li></ul></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">08</div><div class="title">98 · The Capability</div></div>
+  <p class="body-p">Monet is 98's case for actor anchors done right, at scale. The casting is the easy part — the brief is the hard part. Strip the ad-grammar across all 20 creators, lead with plate, and a 1.25M actor's recommendation converts as a friend's would.</p>
+  <div class="note-block">
+    <div class="label">98 Entertainment</div>
+    <h3>Creator marketing for hospitality, lifestyle, and luxury.</h3>
+    <p>We cast the room before we cast the creators. Monet got an actor, a fashion model and three digital natives because a dessert kitchen needs to be seen five different ways in the same fortnight — and every asset came home to the client's own grid.</p>
+  </div>
+  <p class="eyebrow">98 Entertainment · ninety-eight.in · @98.entertainment</p>
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../folders.html">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>

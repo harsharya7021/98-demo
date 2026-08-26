@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × The Weekend · Campaign Case Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html" class="on">Chosen case studies</a><a href="../map.html?s=production">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>The Setting<br>Is The<br>Story<span class="dot">.</span></h1>
+    <p class="deck">A creator-led launch campaign for The Weekend Wine &amp; More — a Moroccan-inspired
+    fine-dining and wine concept opening at Gardens Galleria Mall, Noida — executed by
+    98 Entertainment.</p>
+  </section>
+
+<!-- ====== COVER ====== -->
+<section class="sec">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+<!-- ====== 01 SNAPSHOT ====== -->
+<section class="sec">
+  
+
+  <div class="section-head">
+    <div class="num">01</div>
+    <div class="title">The Snapshot</div>
+  </div>
+
+  <p class="body-p">
+    <strong>The Weekend Wine &amp; More</strong> — a maximalist Moroccan-inspired fine-dining and
+    wine destination opening on the upper level of Gardens Galleria Mall, Noida — partnered with
+    98 Entertainment for its launch communications. The brief: don't run an ad campaign for a new
+    restaurant. Run a <em>cultural arrival</em> — a steady drumbeat of creator-led arrivals that
+    each one of the city's content audiences would recognise.
+  </p>
+  <p class="body-p">
+    98 ran the launch end-to-end across food, lifestyle, design and fashion creator pools — venue
+    bookings and table assignments, creator visit choreography, content briefs that protected the
+    venue's photo-first aesthetic, brand-safe tag stacks, and a brand-curated portrait shoot
+    that ran alongside the organic UGC.
+  </p>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-num">10+</div>
+      <div class="kpi-label">Creator stories amplified</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">4</div>
+      <div class="kpi-label">Audience verticals covered</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">3wk</div>
+      <div class="kpi-label">Concentrated launch window</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">1</div>
+      <div class="kpi-label">Venue · Gardens Galleria, Noida</div>
+    </div>
+  </div>
+
+  <div class="snap-grid">
+    <div class="snap-cell">
+      <h4>Client</h4>
+      <p>The Weekend Wine &amp; More — fine-dining wine bar at Gardens Galleria Mall, Noida (operated as @theweekendwineandmore / @weekendatgallerianoida).</p>
+    </div>
+    <div class="snap-cell">
+      <h4>Format</h4>
+      <p>Multi-creator UGC seeding · Reels, Story-grid collages, brand-curated portraits.
+        Each creator visit produced 2–4 frames in the brand's content stream.</p>
+    </div>
+    <div class="snap-cell">
+      <h4>Agency</h4>
+      <p>98 Entertainment — creator marketing, talent management and integrated brand
+        communications.</p>
+    </div>
+    <div class="snap-cell">
+      <h4>Engagement Layer</h4>
+      <p>Hashtag &amp; geo-tag standardised across every visit (@theweekendwineandmore + Gardens
+        Galleria Mall) to compound discoverability around the venue's pin.</p>
+    </div>
+  </div>
+
+  
+</section>
+
+<!-- ====== 02 CHALLENGE ====== -->
+<section class="sec">
+  
+
+  <div class="section-head">
+    <div class="num">02</div>
+    <div class="title">The Challenge</div>
+  </div>
+
+  <p class="body-p">
+    Noida — and Gardens Galleria specifically — already had a saturated F&amp;B floor in mid-2022.
+    A fine-dining wine bar opening in that footprint had to do more than announce hours and a menu.
+    The Weekend wasn't selling pasta or wine; it was selling a <em>world</em> — an Arab-Mediterranean
+    drawing room of brass tassels, teal Moroccan chandeliers, ornate floral installations and a
+    deep imported-spirits cellar. That world is hard to convey in a hoarding or a Zomato listing.
+  </p>
+
+  <ul class="dash">
+    <li><strong>The setting is the proposition.</strong> A creator dinner at The Weekend was
+      already a story before the food arrived. We had to build a launch programme that let
+      <em>the venue</em> photograph itself, through eyes the audience trusted.</li>
+    <li><strong>Three audiences, one window.</strong> The opening had to land with food creators
+      (saves, recipes), lifestyle / aesthetic creators (saved as inspo), <em>and</em> fashion /
+      portrait creators (saved as a backdrop for their own work). Three different feeds, one
+      restaurant.</li>
+    <li><strong>No first-week silence.</strong> A new venue's first 21 days set the algorithm
+      and the table-booking pattern. The launch had to be a continuous, layered drumbeat —
+      not a single hero post.</li>
+  </ul>
+
+  
+</section>
+
+<!-- ====== 03 STRATEGIC MOVE ====== -->
+<section class="sec">
+  
+
+  <div class="section-head">
+    <div class="num">03</div>
+    <div class="title">The Strategic Move</div>
+  </div>
+
+  <p class="big-quote">
+    Don't sell the menu.<br>
+    Send the audience<br>
+    to a <span class="accent">place.</span>
+  </p>
+
+  <p class="body-p">
+    We reframed the launch around <strong>arrival</strong> — every creator's content had to feel
+    like a postcard from somewhere new, not a paid restaurant review. The brief to creators was
+    short: visit the venue, eat what you'd actually order, shoot what you'd actually shoot, tag
+    us. Production value emerged from the room itself; we just made sure enough creators were in
+    the room.
+  </p>
+
+  <div class="three-col">
+    <div>
+      <div class="num">01</div>
+      <h5>The room as the hero</h5>
+      <p>Every visit was choreographed to put the venue's signature furniture in frame — the
+        teal Moorish chandeliers, the brass-tassel column lamps, the floral &amp; wine-bottle
+        installation behind the bar. We filtered creators whose feeds reward setting over
+        product, then let them shoot freely.</p>
+    </div>
+    <div>
+      <div class="num">02</div>
+      <h5>Three creator verticals, one tag stack</h5>
+      <p>Food (Sonali Arora, Shatakshi Tomar, Veronica), aesthetic / lifestyle (Legallypinteresty,
+        Aanchal), and fashion / portrait (Sara Malhotra) — the same restaurant, three audiences.
+        Standardised tag stack (@theweekendwineandmore + @98.entertainment + Gardens Galleria
+        geo-tag) compounded the venue's location pin.</p>
+    </div>
+    <div>
+      <div class="num">03</div>
+      <h5>Brand-curated, organic-shaped</h5>
+      <p>Alongside organic UGC, 98 ran a small brand-side portrait shoot at the floral
+        installation that was visually indistinguishable from the creator content — same floral
+        wall, same cocktail, same tagging convention — extending the launch with assets the
+        brand owns outright.</p>
+    </div>
+  </div>
+
+  
+</section>
+
+<!-- ====== 04 HERO CREATOR 1 — STILLSBYAYUSHJAIN ====== -->
+<section class="sec">
+  <div class="creator-marker">
+    <span>0 4&nbsp;&nbsp;·&nbsp;&nbsp;Hero Creator · One of Three</span>
+    <span>The Launch Frame</span>
+  </div>
+
+  <div class="creator-row">
+    <div class="creator-name">Ayush<br>Jain</div>
+    <div class="creator-meta">
+      <div class="handle">@stillsbyayushjain</div>
+      <div class="role">Delhi NCR · Aesthetic / Food</div>
+    </div>
+  </div>
+
+  <div class="creator-still empty">[ Still — overhead Valhorna mousse on chevron plate · venue interior peeking ]</div>
+
+  <div class="spec-row">
+    <div>
+      <h4>Format</h4>
+      <p>Story · Post graphic · Geo-tag</p>
+    </div>
+    <div>
+      <h4>Signature Dish</h4>
+      <p>Valhorna Mousse</p>
+    </div>
+    <div>
+      <h4>Hook</h4>
+      <p>"Setting new standards"</p>
+    </div>
+  </div>
+
+  <p class="creator-quote">
+    "New spot in Noida. @theweekendwineandmore setting new standards. 📍 Gardens Galleria Mall."
+  </p>
+  <p class="creator-quote-attrib">— On-screen copy, story frame</p>
+
+  <p class="creator-frame">
+    Ayush's frame was the explicit launch frame — the one that told the audience this was a
+    new venue worth queuing for. The "setting new standards" line, paired with a Gardens Galleria
+    geo-tag and a single composed dish (Valhorna Mousse), did the heavy lifting on
+    discoverability without pretending to be an ad.
+  </p>
+
+  
+</section>
+
+<!-- ====== 05 HERO CREATOR 2 — LEGALLYPINTERESTY ====== -->
+<section class="sec">
+  <div class="creator-marker">
+    <span>0 5&nbsp;&nbsp;·&nbsp;&nbsp;Hero Creator · Two of Three</span>
+    <span>The Aesthetic Frame</span>
+  </div>
+
+  <div class="creator-row">
+    <div class="creator-name">Legally<br>Pinteresty</div>
+    <div class="creator-meta">
+      <div class="handle">@legallypinteresty</div>
+      <div class="role">Lifestyle · Aesthetic</div>
+    </div>
+  </div>
+
+  <div class="creator-still empty">[ Still — 4-up grid · whisky cabinet · teal Moroccan chandelier · Moorish archway ]</div>
+
+  <div class="spec-row">
+    <div>
+      <h4>Format</h4>
+      <p>4-up Story collage</p>
+    </div>
+    <div>
+      <h4>Subject</h4>
+      <p>Whisky &amp; design</p>
+    </div>
+    <div>
+      <h4>Hook</h4>
+      <p>"Teleported me to Arab"</p>
+    </div>
+  </div>
+
+  <p class="creator-quote">
+    "Had one of the greatest collections &gt;&gt; definitely teleported me to arab."
+  </p>
+  <p class="creator-quote-attrib">— Story caption, collage frame</p>
+
+  <p class="creator-frame">
+    Legallypinteresty's job was to anchor the venue in <em>memory</em> — to give viewers a
+    location they could feel transported to before they tasted it. Her four-up
+    collage moves the audience through the Moroccan-archway threshold, the teal chandelier
+    cluster, and the floor-to-ceiling whisky shelving in a single saved post — the kind of
+    bookmark that drives weekend bookings two cities away.
+  </p>
+
+  
+</section>
+
+<!-- ====== 06 HERO CREATOR 3 — MALHOTRA SARA ====== -->
+<section class="sec">
+  <div class="creator-marker">
+    <span>0 6&nbsp;&nbsp;·&nbsp;&nbsp;Hero Creator · Three of Three</span>
+    <span>The Lifestyle Frame</span>
+  </div>
+
+  <div class="creator-row">
+    <div class="creator-name">Sara<br>Malhotra</div>
+    <div class="creator-meta">
+      <div class="handle">@malhotra_sara</div>
+      <div class="role">Lifestyle · Fashion / Portrait</div>
+    </div>
+  </div>
+
+  <div class="creator-still empty">[ Still — full-length portrait at THE WEEKEND floral &amp;amp; wine-bottle installation ]</div>
+
+  <div class="spec-row">
+    <div>
+      <h4>Format</h4>
+      <p>Branded portrait shoot · Story repost</p>
+    </div>
+    <div>
+      <h4>Subject</h4>
+      <p>The floral installation</p>
+    </div>
+    <div>
+      <h4>Hook</h4>
+      <p>"Today at @weekendatgallerianoida"</p>
+    </div>
+  </div>
+
+  <p class="creator-quote">
+    "Today at @weekendatgallerianoida 🤍."
+  </p>
+  <p class="creator-quote-attrib">— Story caption · brand-amplified portrait</p>
+
+  <p class="creator-frame">
+    Sara's frame closed the audience triangle — fashion-led portraits at the venue's signature
+    floral &amp; wine-bottle installation, captured in two formats (creator-shot story, brand-shot
+    flat-lay portrait) so the asset could live across her grid <em>and</em> the venue's launch
+    posts. Her vertical was the one that turned The Weekend into a backdrop people would build
+    their own content around — long after the launch window closed.
+  </p>
+
+  
+</section>
+
+<!-- ====== 07 HOW IT WAS RUN ====== -->
+<section class="sec">
+  
+
+  <div class="section-head">
+    <div class="num">07</div>
+    <div class="title">How It Was Run</div>
+  </div>
+
+  <p class="body-p">
+    A venue launch is logistics first, creative second. The Weekend's first three weeks could
+    not afford an empty Friday. 98 held the venue, the F&amp;B team and the creator roster on
+    one continuous schedule.
+  </p>
+
+  <table class="ops-table">
+    <thead>
+      <tr>
+        <th>Stage</th>
+        <th>What 98 Owned</th>
+        <th>Why It Mattered</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Creative strategy</td>
+        <td>Three-vertical creator architecture (food / aesthetic / fashion); standardised tag stack;
+          Gardens Galleria geo-tag policy.</td>
+        <td>One launch served three feeds without diluting the venue voice on any of them.</td>
+      </tr>
+      <tr>
+        <td>Creator sourcing</td>
+        <td>Vetting for feed-fit (does this creator's grid reward setting?), commercial
+          benchmarking, regional weighting toward Delhi NCR audiences.</td>
+        <td>Filtered out review-bloggers; locked in creators whose content makes a venue
+          feel <em>destination</em>, not transaction.</td>
+      </tr>
+      <tr>
+        <td>Visit choreography</td>
+        <td>Booking the right table, time of day for chandelier light, dish selection that read
+          well on camera, two creators max per evening to protect the room.</td>
+        <td>Each visit produced photographable content without turning the floor into a press
+          junket.</td>
+      </tr>
+      <tr>
+        <td>Brand-safe tagging</td>
+        <td>Tag stack templates, hashtag templates, geo-pin checks before posting. Brand-side
+          @harsh.aryaa add for founder-network re-share.</td>
+        <td>Every story added to the venue's geo-pin's discoverability — a single launch behaved
+          like dozens of small ones.</td>
+      </tr>
+      <tr>
+        <td>Brand-curated content</td>
+        <td>One short brand-side portrait shoot at the floral installation, intentionally styled
+          to read as creator content.</td>
+        <td>Gave the brand its own evergreen launch assets without breaking the organic feel
+          of the campaign.</td>
+      </tr>
+      <tr>
+        <td>Cadence management</td>
+        <td>Posting schedule across the three-week launch window so a new story appeared at
+          the venue's geo-pin every 2–3 days.</td>
+        <td>The opening drumbeat never went silent; the algorithm learned this venue was
+          a place people kept arriving at.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+</section>
+
+<!-- ====== 08 + 09 WHAT DELIVERED + CAPABILITY ====== -->
+<section class="sec">
+  
+
+  <div class="section-head">
+    <div class="num">08</div>
+    <div class="title">What the Work Delivered</div>
+  </div>
+
+  <div class="deliv-grid">
+    <div class="deliv-cell">
+      <h4>Creative Quality</h4>
+      <ul class="dash">
+        <li>Ten+ creator stories that read as a curated <em>collection</em> — Moorish archways,
+          chandeliers, the floral wall, the whisky shelving — not a series of reshoots.</li>
+        <li>Visual consistency without forcing a template: every creator brought their own
+          voice; the room kept the brand voice consistent for them.</li>
+      </ul>
+    </div>
+    <div class="deliv-cell">
+      <h4>Reach &amp; Discovery</h4>
+      <ul class="dash">
+        <li>Combined creator audience layered across food, lifestyle and fashion verticals —
+          three Delhi-NCR pools that don't normally see the same restaurant content.</li>
+        <li>Standardised geo-tag drove search-ability of "Gardens Galleria · The Weekend"
+          on Instagram's location pin during the critical first three weeks.</li>
+      </ul>
+    </div>
+    <div class="deliv-cell">
+      <h4>Booking &amp; Behaviour</h4>
+      <ul class="dash">
+        <li>Saved-content behaviour was the goal — creators in this roster over-index on saves
+          (recipe / inspo / outfit-location), so the launch fed weekend reservation intent rather
+          than one-night impressions.</li>
+        <li>The floral installation became a self-perpetuating selfie pin — the kind of room
+          guests photograph for their own grid.</li>
+      </ul>
+    </div>
+    <div class="deliv-cell">
+      <h4>Asset Longevity</h4>
+      <ul class="dash">
+        <li>Brand-curated portrait shoot still in rotation as evergreen launch creative — same
+          tagging convention, indistinguishable from organic.</li>
+        <li>Creator roster scoped during launch is reusable for subsequent activations
+          (rakhi specials, Christmas service, anniversary, new menu drops).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note-block">
+    <div class="label">A Direct Note · 9 8 × Brands Like Yours</div>
+    <h3>What we'd bring to a new venue<br>opening in Delhi NCR.</h3>
+    <p>One Moroccan upper deck told through deliberately different lenses — photographer, aesthete, portraitist — so the launch read as a cultural arrival rather than a menu drop.</p>
+  </div>
+
+  <p class="eyebrow">9 8&nbsp;&nbsp;E N T E R T A I N M E N T &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Materials referenced from the campaign archive.</p>
+
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../folders.html">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × Yum Yum Cha Group · Campaign Case Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+
+/* ---- the group's brand and award grids --------------------------------- */
+.awards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));
+  gap:clamp(18px,2.6vw,38px);margin-top:6px}
+.award-cell{border-top:1.5px solid var(--ink);padding:14px 0 6px}
+.award-cell .who{font-size:clamp(19px,2.2vw,27px);font-weight:800;letter-spacing:-.028em;line-height:1.02}
+.award-cell .what{font-size:13.5px;line-height:1.6;color:#3a3a42;margin-top:9px}
+.award-cell .where{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);margin-top:11px}
+.yyc-brand-stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));
+  gap:clamp(18px,2.6vw,38px);margin-top:6px}
+.yyc-brand-cell{border-top:1.5px solid var(--ink);padding-top:14px}
+.yyc-brand-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.yyc-brand-cell .cuisine{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);margin:5px 0 13px}
+.yyc-brand-cell .creator{display:flex;justify-content:space-between;gap:10px;font-size:13px;
+  padding:5px 0;border-bottom:1px solid var(--hair)}
+.yyc-brand-cell .creator .h{font-weight:700}
+.yyc-brand-cell .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.yyc-brand-cell .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+.yyc-quote-block{display:grid;gap:15px;border-top:1px solid var(--line);
+  margin-top:clamp(26px,4vh,44px);padding-top:24px}
+.yyc-quote-block blockquote{font-size:14.5px;line-height:1.62;color:#26262b;max-width:72ch;
+  padding-left:18px;border-left:2px solid var(--red)}
+.yyc-quote-block blockquote em{display:block;margin-top:7px;font-style:normal;font-family:var(--mono);
+  font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html" class="on">Chosen case studies</a><a href="../map.html?s=production">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>Three Brands.<br>One Playbook.<br>Three Awards<span class="dot">.</span></h1>
+    <p class="deck">Yum Yum Cha isn't a restaurant. It's a <em>restaurant group</em> — three distinct brands under one operator,
+    each a different cuisine, each with its own room and audience. <strong>TBSP / Tablespoon</strong> (Italian),
+    <strong>Pot Pot</strong> (Pan-Asian), <strong>Wheaty</strong> (Pizza · Bakery). 2023 was the year the
+    positioning paid off in industry validation: three national awards in a single year.</p>
+    <div class="kpi-row"><div><div class="kpi-num">3</div><div class="kpi-label">Brands &#183; TBSP, Pot Pot, Wheaty</div></div>
+<div><div class="kpi-num">3</div><div class="kpi-label">National awards in 2023</div></div>
+<div><div class="kpi-num">23</div><div class="kpi-label">Creators in the shared pool</div></div>
+<div><div class="kpi-num">4.53<span class="small">M</span></div><div class="kpi-label">Combined follower reach</div></div>
+</div>
+  </section>
+
+<!-- 01 THE GROUP -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">01</div><div class="title">The Group</div></div>
+  <p class="body-p"><strong>Yum Yum Cha isn't a restaurant. It's a restaurant group</strong> — three distinct
+    brands under one operator, each a different cuisine, each with its own room and audience.</p>
+  <div class="awards-grid">
+    <div class="award-cell">
+      <div class="who">TBSP</div>
+      <div class="what">Italian — casual fine dining</div>
+      <div class="where">Tablespoon · @tbsp.tablespoon</div>
+    </div>
+    <div class="award-cell">
+      <div class="who">Pot Pot</div>
+      <div class="what">Pan-Asian — contemporary</div>
+      <div class="where">@potpot.in</div>
+    </div>
+    <div class="award-cell">
+      <div class="who">Wheaty</div>
+      <div class="what">Pizza · Bakery — all-day, bread-led</div>
+      <div class="where">@wheaty.in</div>
+    </div>
+    <div class="award-cell">
+      <div class="who">23</div>
+      <div class="what">Unique creators · 4.53M reach</div>
+      <div class="where">11 verified · shared pool across three brands</div>
+    </div>
+  </div>
+  <p class="body-p" style="margin-top:8mm">The marketing problem when you run three brands: you can't speak in one
+    voice. Each has its own audience, its own dish hero, its own night-out occasion. We treated them as three
+    independent brand assignments under a single retainer — share the calendar, share the creator pool, but
+    <em>never share the voice</em>.</p>
+  
+</section>
+
+<!-- 02 THE AWARDS YEAR -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">02</div><div class="title">The Awards Year</div></div>
+  <p class="body-p"><strong>2023 was the year the group's positioning paid off in industry validation.</strong>
+    Two prestigious panels — Times Food Awards and UNLIMIT (zeezest) — recognised the group across two cuisines.
+    Casual Italian and Casual Asian, both Delhi. Plus a national-best for Pan-Asian.</p>
+  <div class="awards-grid">
+    <div class="award-cell">
+      <div class="who">TBSP</div>
+      <div class="what">Best Italian Casual Dining (Delhi)</div>
+      <div class="where">Times Food Awards 2023 · March '23</div>
+    </div>
+    <div class="award-cell">
+      <div class="who">YYC Group</div>
+      <div class="what">Best Asian Casual Dining (Delhi)</div>
+      <div class="where">Times Food Awards 2023</div>
+    </div>
+    <div class="award-cell">
+      <div class="who">YYC Group</div>
+      <div class="what">Best Pan-Asian Restaurant in India</div>
+      <div class="where">UNLIMIT Awards 2023 · @zeezest · April '23</div>
+    </div>
+    <div class="award-cell">
+      <div class="who">3</div>
+      <div class="what">National awards in a single year</div>
+      <div class="where">Across two cuisines · two panels</div>
+    </div>
+  </div>
+  <p class="big-quote" style="margin-top:8mm">Awards aren't earned overnight. They're earned in the year of small consistent moves<br>
+    <span class="accent">before the panel meets.</span></p>
+  
+</section>
+
+<!-- 03 THE TALENT ACTIVATION -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">03</div><div class="title">The Talent Activation</div></div>
+  <p class="body-p">Awards do half the work. Talent activation does the other half. We engineered a moment where
+    <strong>Ishant Sharma gave the YYC brands a shoutout on a Delhi Capitals podcast</strong> — earned media
+    inside cricket-fan attention, the highest-trust channel for the audience the group's premium positioning
+    was after.</p>
+  <p class="body-p">This is the cross-pollination thesis behind 98: an exclusive talent contract isn't a
+    single-property campaign asset. <strong>It's a relationship that opens doors for every other client on
+    the book.</strong> Ishant didn't get a brief; he got a recommendation he was happy to make.</p>
+  <p class="big-quote">A restaurant doesn't need to advertise. It needs to be the place<br>
+    <span class="accent">people who already have an audience naturally talk about.</span></p>
+  
+</section>
+
+<!-- 04 THE PLAYBOOK -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">04</div><div class="title">The Playbook</div></div>
+  <p class="body-p">If you operate a multi-brand restaurant group, here's how we ran YYC — replicable for any operator with three or more sister brands.</p>
+  <div class="three-col">
+    <div><div class="num">01</div><h5>One retainer, three voices</h5><p>Don't merge the social pages. Each brand keeps its own handle, its own grid aesthetic, its own dish vocabulary. The retainer is shared; the voice is not.</p></div>
+    <div><div class="num">02</div><h5>Share the creator pool</h5><p>A food blogger who liked TBSP's burrata is a warm lead for Pot Pot's bao and Wheaty's sourdough. We logged every creator visit centrally so the next round was 30% cheaper to coordinate.</p></div>
+    <div><div class="num">03</div><h5>Stack the calendar</h5><p>Run launches and seasonal pushes across brands so press conversations stay current — but never compete with each other in the same week.</p></div>
+  </div>
+  <div class="three-col" style="margin-top:6mm">
+    <div><div class="num">04</div><h5>Position for awards from day one</h5><p>Industry recognition is a cumulative argument. Document everything; the panel will read its way back through 12 months of work when nominations open.</p></div>
+    <div><div class="num">05</div><h5>Cross-pollinate talent</h5><p>A talent contract held by the agency is leverage for every brand client on the book — don't wall it off to the brand that's paying the talent fee.</p></div>
+    <div><div class="num">06</div><h5>Trust travels with the creator</h5><p>@shabostoc and @ningladheer each posted for two of the three brands inside a single quarter — the trust travelled with them, not with the logo.</p></div>
+  </div>
+  
+</section>
+
+<!-- 05 THE ROSTER -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">05</div><div class="title">The Roster</div></div>
+  <p class="body-p">The shared creator pool across the retainer window, in practice. Each name below posted to their own audience, in their own voice, tagged to the brand's own handle — <strong>no scripted captions, no paid disclosures.</strong> TBSP's count here is the full retainer window; the Tablespoon case study documents the 17-creator launch campaign inside it.</p>
+  <div class="yyc-brand-stack">
+    <div class="yyc-brand-cell">
+      <h4>TBSP</h4>
+      <div class="cuisine">Italian · 19 creators · 4.10M</div>
+      <div class="creators"><div class="creator"><span class="h">@varunverma</span><span><span class="n">590K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@saanyaakhatterr</span><span><span class="n">532K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@shreyxa</span><span><span class="n">480K</span></span></div>
+<div class="creator"><span class="h">@toshalipaliwal</span><span><span class="n">360K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@harteerathsingh</span><span><span class="n">297K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@saaniyakhanna</span><span><span class="n">264K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@sanagrover</span><span><span class="n">263K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@shabostoc</span><span><span class="n">230K</span></span></div>
+<div class="creator" style="border-bottom:none;opacity:.62"><span class="h">+ 11 more</span><span><span class="n">9 of them in the Tablespoon case</span></span></div></div>
+    </div>
+    <div class="yyc-brand-cell">
+      <h4>Pot Pot</h4>
+      <div class="cuisine">Pan-Asian · 3 creators · 583K</div>
+      <div class="creators"><div class="creator"><span class="h">@ningladheer</span><span><span class="n">221K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@ishitaaroraaa</span><span><span class="n">132K</span></span></div>
+<div class="creator"><span class="h">@shabostoc</span><span><span class="n">230K</span></span></div></div>
+    </div>
+    <div class="yyc-brand-cell">
+      <h4>Wheaty</h4>
+      <div class="cuisine">Pizza · Bakery · 3 creators · 299K</div>
+      <div class="creators"><div class="creator"><span class="h">@anushkamehra7</span><span><span class="n">209K</span></span></div>
+<div class="creator"><span class="h">@reneechopra</span><span><span class="n">53K</span></span></div>
+<div class="creator"><span class="h">@soumyapuri</span><span><span class="n">37K</span><span class="v">✓</span></span></div></div>
+    </div>
+  </div>
+  <div class="yyc-quote-block">
+    <blockquote>"The jumbo prawns are a great option for sea food lovers. Juicy, full of flavours and baked to perfection." <em>— @jhalli_bypriasethi · TBSP</em></blockquote>
+    <blockquote>"Pot pot makes me happy happy." <em>— @ishitaaroraaa · Pot Pot</em></blockquote>
+    <blockquote>"What's better than a Lotus Biscoff Croissant from @wheaty.in on Croissant Day." <em>— @raneechopra · Wheaty</em></blockquote>
+  </div>
+  
+</section>
+
+<!-- 06 THE RECEIPTS -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">06</div><div class="title">The Receipts</div></div>
+  <p class="body-p">The 2023 awards are still in the group's marketing copy. The recommendation engine — creators
+    who first visited TBSP and now bring their friends to Pot Pot, talent shoutouts that opened doors with
+    reviewers — is still compounding. <strong><em>The retainer ended; the awareness didn't.</em></strong></p>
+  <div class="deliv-grid">
+    <div class="deliv-cell"><h4>Awards Library</h4><ul class="dash"><li>3 national awards in 2023 documented in group marketing copy.</li><li>Two cuisines, two prestigious panels — across one operator.</li></ul></div>
+    <div class="deliv-cell"><h4>Cross-Brand Pool</h4><ul class="dash"><li>23 unique creators across the three brands inside the retainer window.</li><li>@shabostoc + @ningladheer logged under two brands each — trust travelled.</li></ul></div>
+    <div class="deliv-cell"><h4>Talent Activation</h4><ul class="dash"><li>Ishant Sharma podcast shoutout — earned media inside Delhi Capitals attention.</li><li>Cross-pollination thesis: talent contracts open doors for every client on the book.</li></ul></div>
+    <div class="deliv-cell"><h4>Compounding Awareness</h4><ul class="dash"><li>Recommendation engine still active post-retainer.</li><li>Creator visits log used to lower cost on subsequent rounds by ~30%.</li></ul></div>
+  </div>
+  
+</section>
+
+<!-- 98 CAPABILITY -->
+<section class="sec">
+  
+  <div class="section-head"><div class="num">07</div><div class="title">98 · The Capability</div></div>
+  <p class="body-p">YYC Group is 98's reference case for multi-brand restaurant operators. <strong>Multi-brand restaurant groups don't need three agencies. They need one operator who knows where the brands are different and where they share economics.</strong></p>
+  <p class="body-p">The retainer ended. The awareness didn't. The 2023 award trophies still sit on the marketing shelf; the cross-pollinated creator pool still recommends across brands; the Ishant shoutout still surfaces in conversations. Most agency relationships end in a campaign archive. This one ended in a compounding asset.</p>
+  <div class="note-block">
+    <div class="label">98 Entertainment · Terminus</div>
+    <h3>Three brands. One playbook. Two awards. The system, not the campaign.</h3>
+    <p>Three brands, one operator, one playbook: TBSP's counter culture, Pot Pot's branded coconuts and handi theatre, Wheaty's bakery case — each fed its own feed, and the group banked the year of consistency that ended in three national awards.</p>
+  </div>
+  <p class="eyebrow">98 Entertainment · ninety-eight.in · @98.entertainment</p>
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../folders.html">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>

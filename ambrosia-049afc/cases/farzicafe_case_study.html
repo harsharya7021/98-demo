@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>98 × Farzicafe · Campaign Case Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:root{--ink:#0E0E10;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;--red:#DD3D38;--paper:#fff;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,72px)}
+
+/* header */
+.sitenav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid #e2e2e2;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(14px,3vw,44px);
+  padding:11px calc(max(0px,(100% - 1240px))/2 + clamp(22px,5vw,72px));
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.sitenav a{text-decoration:none;color:var(--mute);transition:color .25s}
+.sn-mark{flex:0 0 auto;display:block}
+.sn-mark img{display:block;height:21px;width:auto}
+.sn-secs{display:flex;align-items:center;gap:clamp(12px,2.4vw,34px);flex-wrap:nowrap;overflow:hidden}
+.sn-secs a{white-space:nowrap}
+.sn-secs a:hover,.sn-all:hover{color:var(--red)}
+.sn-secs a.on{color:var(--ink);font-weight:700}
+.sn-all{flex:0 0 auto;white-space:nowrap;color:var(--ink)}
+@media(max-width:1000px){.sn-secs{display:none}}
+
+/* cover */
+.cover{padding:clamp(64px,15vh,170px) 0 clamp(30px,6vh,64px)}
+h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;line-height:.94;
+  margin:0;max-width:16ch}
+h1 .dot{color:var(--red)}
+.deck{font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#26262b;max-width:60ch;margin-top:28px}
+
+/* the numbers */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(18px,3vw,44px);
+  border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:clamp(22px,3.4vh,34px) 0;margin:clamp(30px,5vh,56px) 0 0}
+.kpi-num{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.kpi-num .small{font-size:.55em;letter-spacing:-.01em}
+.kpi-label{margin-top:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* continuous sections */
+.sec{padding:clamp(38px,6.5vh,86px) 0 0}
+.section-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,42px);
+  border-top:1.5px solid var(--ink);padding-top:16px;margin-bottom:clamp(22px,4vh,40px)}
+.section-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;flex:0 0 auto}
+.section-head .title{font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em}
+.body-p{font-size:15px;line-height:1.72;color:#26262b;max-width:64ch;margin-bottom:16px}
+.body-p strong{font-weight:700;color:var(--ink)}
+ul.dash{list-style:none;max-width:70ch}
+ul.dash li{position:relative;padding-left:22px;margin-bottom:13px;font-size:14.5px;line-height:1.65;color:#26262b}
+ul.dash li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+ul.dash li strong{font-weight:700;color:var(--ink)}
+.big-quote{font-size:clamp(24px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  max-width:22ch;margin:clamp(10px,2vh,20px) 0 clamp(26px,5vh,52px)}
+.big-quote .accent{color:var(--red)}
+
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(22px,3.4vw,48px);
+  border-top:1px solid var(--line);padding-top:26px}
+.three-col .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--red);
+  font-weight:700;margin-bottom:12px}
+.three-col h5{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.three-col p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.snap-grid,.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(20px,3vw,44px);margin-top:6px}
+.snap-cell h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:8px}
+.snap-cell p{font-size:13.5px;line-height:1.62;color:#3a3a42}
+.deliv-cell h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.deliv-cell ul.dash li{font-size:13.5px;margin-bottom:9px}
+
+/* roster */
+.roster-map{display:grid;grid-template-columns:180px 1fr;gap:0 clamp(18px,3vw,40px);margin-top:6px}
+@media(max-width:760px){.roster-map{grid-template-columns:1fr}}
+.roster-map .vert{border-top:1.5px solid var(--ink);padding:14px 14px 26px 0}
+.roster-map .vert h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.roster-map .vert .role{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute)}
+.roster-map .creators{border-top:1.5px solid var(--ink);padding:14px 0 26px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px clamp(18px,3vw,40px)}
+.roster-map .creator{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:10px;
+  border-bottom:1px solid var(--hair)}
+.roster-map .creator .h{font-weight:700}
+.roster-map .creator .n{color:var(--mute);font-variant-numeric:tabular-nums}
+.roster-map .creator .v{color:var(--red);font-weight:700;margin-left:7px}
+
+/* the marquee creators */
+.creator-marker{display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);
+  border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin:clamp(30px,5vh,54px) 0 26px;gap:16px}
+.creator-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px clamp(20px,4vw,54px);
+  margin-bottom:20px}
+@media(max-width:640px){.creator-row{grid-template-columns:1fr}}
+.creator-name{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:.94;letter-spacing:-.03em}
+.creator-name .small{font-size:.58em}
+.creator-meta{font-size:13.5px;text-align:right;color:#26262b}
+@media(max-width:640px){.creator-meta{text-align:left}}
+.creator-meta .handle{font-weight:700;font-size:15px}
+.creator-meta .role{color:var(--mute)}
+.creator-meta .verified{color:var(--red);font-weight:700;letter-spacing:.14em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.creator-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;margin-bottom:22px}
+.cs-num{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.cs-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);margin-top:7px}
+.creator-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin:18px 0 7px}
+.creator-block p{font-size:14px;line-height:1.68;color:#26262b;max-width:64ch;margin-bottom:8px}
+
+/* a real story still where the print deck had an empty box */
+.creator-still{margin:0 0 22px;background:#f4f4f4;overflow:hidden;position:relative;
+  aspect-ratio:9/16;max-width:270px}
+.creator-still img{width:100%;height:100%;object-fit:cover;display:block}
+.creator-still figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.creator-still.empty{background:none;aspect-ratio:auto;max-width:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);border-left:2px solid var(--red);padding:2px 0 2px 14px;line-height:1.7}
+
+/* tables */
+.support-table,.ops-table{border-collapse:collapse;width:100%;margin-top:6px}
+.support-table th,.support-table td,.ops-table th,.ops-table td{text-align:left;vertical-align:top;
+  padding:11px 16px 11px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.55}
+.support-table th,.ops-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);font-weight:400;border-bottom:1.5px solid var(--ink);
+  padding-bottom:12px}
+.support-table td.handle{font-weight:700;width:200px}
+.support-table td.followers{width:90px;font-variant-numeric:tabular-nums;font-weight:700}
+.support-table td.verified-cell{width:60px}
+.support-table td.verified-cell.v{color:var(--red);font-weight:700;letter-spacing:.12em;font-size:9px;
+  text-transform:uppercase;font-family:var(--mono)}
+.support-table td.role-cell{color:#3a3a42}
+.ops-table td:first-child{font-weight:700;width:190px}
+.ops-table td:nth-child(2){width:320px}
+@media(max-width:700px){.support-table,.ops-table{font-size:12px}
+  .support-table td.handle,.ops-table td:first-child{width:auto}}
+
+.note-block{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:26px 0;margin-top:clamp(30px,5vh,52px)}
+.note-block .label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:14px}
+.note-block h3{font-size:clamp(20px,2.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  margin-bottom:14px;max-width:24ch}
+.note-block p{font-size:14px;line-height:1.68;max-width:66ch;color:#26262b}
+.eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-top:18px}
+
+/* the slats */
+.gallery{padding:clamp(34px,6vh,80px) 0 0}
+.glabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.slats{display:flex;gap:7px;height:min(74vh,780px);align-items:flex-start;
+  overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.slats::-webkit-scrollbar{height:5px}
+.slats::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.slat{position:relative;flex:1 1 0;min-width:clamp(40px,5vw,92px);height:100%;overflow:hidden;
+  cursor:zoom-in;background:#f2f2f2;
+  transition:flex .62s cubic-bezier(.2,.7,.2,1),opacity .45s ease,filter .45s ease}
+.slat:nth-child(3n+2){height:94%;margin-top:3%}
+.slat:nth-child(4n+3){height:89%;margin-top:6%}
+.slat:nth-child(5n+5){height:97%;margin-top:1%}
+.slat img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.slats:hover .slat{opacity:.42;filter:saturate(.3)}
+.slats:hover .slat:hover{opacity:1;filter:none;flex:3.3 1 0}
+.slat:hover img{transform:scale(1.035)}
+.slat:only-child{flex:0 0 min(46%,430px)}
+.slat figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .35s ease}
+.slats .slat:hover figcaption{opacity:1}
+.slat figcaption b{color:var(--red);font-weight:700}
+@media(max-width:760px){
+  .slats{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:8px}
+  .slat{min-width:0;height:auto!important;margin-top:0!important;aspect-ratio:9/16}
+  .slats:hover .slat{opacity:1;filter:none}
+  .slat figcaption{opacity:1}
+}
+
+.foot{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-top:1.5px solid var(--ink);margin-top:clamp(46px,8vh,110px);padding:20px 0 70px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red)}
+
+#lb{position:fixed;inset:0;z-index:400;background:rgba(255,255,255,.97);display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:min(94vw,1100px);max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.18)}
+#lb span{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+@media print{.sitenav,.gallery,#lb,.foot{display:none}}
+</style></head><body>
+
+<header class="sitenav"><a class="sn-mark" href="../index.html"><img src="../logo98.png" alt="98 Entertainment"></a><nav class="sn-secs"><a href="../folders.html" class="on">Chosen case studies</a><a href="../map.html?s=production">Production</a><a href="../map.html?s=gifting">Gifting & seeding</a><a href="../map.html?s=moodboard">For Ambrosia</a></nav><a class="sn-all" href="../map.html">All work &#8599;</a></header>
+
+<div class="wrap">
+  <section class="cover">
+    <h1>Six Point<br>Five Million<br>Reach<span class="dot">.</span></h1>
+    <p class="deck">98's highest-reach concentrated activation. 20 creators delivering 6.49M combined reach for Farzi Cafe — Massive Restaurants' contemporary Indian concept. Anchored on Amar Sirohi (@foodie_incarnate, 2.35M public figure), Syma Verma (766K), Saanya Khatter (532K), Mehak Dhawan (338K), Harteerath Singh (297K). Founder Zorawar Kalra (Massive Restaurants) in the supporting roster — a rare founder presence.</p>
+  </section>
+
+<section class="sec">
+  
+  
+  
+  
+  
+  
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">01</div><div class="title">The Snapshot</div></div>
+  <p class="body-p"><strong>Farzi Cafe</strong> is a Massive Restaurants concept — contemporary Indian, multi-city, already a known name. The brief to 98 was specific: re-engage Delhi's food creator community after a pandemic-era visibility dip. The KPI wasn't 'launch the brand' — Farzi was already known. It was 'reaffirm the city's relationship with the venue'.</p>
+  <p class="body-p">98 anchored the campaign on Amar Sirohi (@foodie_incarnate, 2.35M verified public figure) — India's most-followed food creator. Syma Verma (766K verified reel creator), Saanya Khatter (532K verified public figure), Mehak Dhawan (@foodiesince96, 338K verified), and Harteerath Singh (297K verified) backed him up. Founder Zorawar Kalra appeared in the supporting roster — a founder-cameo pattern 98 has reused successfully on Poetry.</p>
+  <div class="kpi-row"><div><div class="kpi-num">20</div><div class="kpi-label">Creators activated</div></div>
+<div><div class="kpi-num">6.49<span class="small">M</span></div><div class="kpi-label">Combined follower reach</div></div>
+<div><div class="kpi-num">13</div><div class="kpi-label">Verified handles</div></div>
+<div><div class="kpi-num">70</div><div class="kpi-label">Story frames captured</div></div>
+</div>
+  <div class="snap-grid">
+    <div class="snap-cell"><h4>Client</h4><p>Farzi Cafe · Massive Restaurants.</p></div>
+    <div class="snap-cell"><h4>Format</h4><p>20-creator UGC seeding · reels + stories · 70 captured story frames.</p></div>
+    <div class="snap-cell"><h4>Agency</h4><p>98 Entertainment — casting and choreography for the #MagicMenuAtFarzi push across 20 creators.</p></div>
+    <div class="snap-cell"><h4>Engagement Layer</h4><p>Standardised tag stack (@farzicafe + @98.entertainment) across every visit.</p></div>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">02</div><div class="title">The Challenge</div></div>
+  <p class="body-p">Re-engagement campaigns are different from launch campaigns. The brand is not new — diners have priors, both positive and dormant. The job is to remind, not to introduce. That requires creators whose audiences will read 'oh, I forgot how good that is' — not 'oh, what's that?'.</p>
+  <ul class="dash"><li><strong>Re-engagement vs launch.</strong> Diners had a relationship with Farzi already. The campaign needed to remind, not introduce — different creator vocabulary.</li>
+<li><strong>Mega food anchor.</strong> Amar Sirohi at 2.35M is the largest single anchor in 98's portfolio. His audience trusts him on food specifically — exactly the muscle Farzi needed.</li>
+<li><strong>Founder cameo.</strong> Zorawar Kalra (Massive Restaurants founder) in the supporting roster. Founder-as-credibility is a 98 signature.</li>
+<li><strong>Verified density.</strong> 13 verified handles in 20 creators — 65% verification rate, one of our highest.</li>
+</ul>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">03</div><div class="title">The Strategic Move</div></div>
+  <p class="big-quote">When the brand is already known,<br><span class="accent">the creator stack reminds — it doesn't introduce.</span></p>
+  <div class="three-col"><div><div class="num">01</div><h5>Mega food-creator anchor.</h5><p>Amar Sirohi 2.35M signals 'Farzi is back on the food creator agenda'. The single biggest food-creator anchor in our portfolio.</p></div>
+<div><div class="num">02</div><h5>Founder cameo.</h5><p>Zorawar Kalra's appearance in the supporting roster brought founder-trust into the creator stack. Pattern reused from Poetry.</p></div>
+<div><div class="num">03</div><h5>65% verification rate.</h5><p>13 verified handles in 20 creators. The campaign reads as institutional, not deal-driven.</p></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">04</div><div class="title">The Roster</div></div>
+  <p class="body-p">Farzi Cafe · Massive Restaurants ran on a roster of 20 creators — 5 marquee, 15 supporting. Verticals covered: <strong>Public figure · food creator · digital creator · founder · lifestyle</strong>.</p>
+  <div class="roster-map">
+    <div class="vert">
+      <h4>Public Figure</h4>
+      <div class="role">Audience verticals</div>
+    </div>
+    <div class="creators"><div class="creator"><span class="h">@foodie_incarnate</span><span><span class="n">2.35M</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@symavermaaa</span><span><span class="n">766K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@saanyaakhatterr</span><span><span class="n">532K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@foodiesince96</span><span><span class="n">338K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@harteerathsingh</span><span><span class="n">297K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@chetanngoel</span><span><span class="n">293K</span></span></div>
+<div class="creator"><span class="h">@whatsupdilli</span><span><span class="n">248K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@priyalmittall</span><span><span class="n">246K</span></span></div>
+<div class="creator"><span class="h">@eatthisdelhi</span><span><span class="n">235K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@ilishask</span><span><span class="n">220K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@shatakshitomar</span><span><span class="n">137K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@shivanidhyani_</span><span><span class="n">133K</span></span></div>
+<div class="creator"><span class="h">@teeyachawla</span><span><span class="n">129K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@zkalra</span><span><span class="n">126K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@callmesrish</span><span><span class="n">107K</span></span></div>
+<div class="creator"><span class="h">@taste_bird</span><span><span class="n">102K</span></span></div>
+<div class="creator"><span class="h">@aakshikashyapofficial</span><span><span class="n">96K</span></span></div>
+<div class="creator"><span class="h">@aavyaduggall</span><span><span class="n">65K</span><span class="v">✓</span></span></div>
+<div class="creator"><span class="h">@swaritkapoor_</span><span><span class="n">43K</span></span></div>
+<div class="creator"><span class="h">@kalradd</span><span><span class="n">19K</span><span class="v">✓</span></span></div></div>
+  </div>
+  <p class="eyebrow">Soundtrack lock: Mixed creator audio</p>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Farzi Cafe · Massive Restaurants</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Amar Sirohi</div>
+    <div class="creator-meta">
+      <div class="handle">@foodie_incarnate</div>
+      <div class="role">Public figure</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">2.35M</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">PUBLIC FIGURE · FARZI CAFE · MASSIVE RESTAURANTS · MULTI-CITY · DELHI ANCHOR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>At 2.35M, @foodie_incarnate is Delhi food media in one account. Amar anchoring the campaign put Farzi's new menu in front of more people than any hoarding in the city could.</p>
+    <h4>What was posted</h4>
+    <p>His run opened on the FARZI facade lit against the night sky, went straight to the drinks — Farzi Ok, Litchi Panna — then the theatre: the tandoori paneer pizza flamed table-side, the jackfruit gyoza close enough to count the sesame. All under #MagicMenuAtFarzi.</p>
+    <h4>Editorial framing</h4>
+    <p>The flame frame is the one that travelled — the exact table-side theatre the menu was designed around, captured by the city's biggest food voice and re-run on Farzi's own grid.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Farzi Cafe · Massive Restaurants</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Syma Verma</div>
+    <div class="creator-meta">
+      <div class="handle">@symavermaaa</div>
+      <div class="role">Reel creator</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">766K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">REEL CREATOR · FARZI CAFE · MASSIVE RESTAURANTS · MULTI-CITY · DELHI ANCHOR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Syma's 766K and reel-first format gave the menu its motion coverage — dishes that perform table-side need video, not stills.</p>
+    <h4>What was posted</h4>
+    <p>A reel through the new menu's set pieces with stories around it, tagged and hashtagged into the campaign stack.</p>
+    <h4>Editorial framing</h4>
+    <p>Her cut became the campaign's shareable unit — short enough to forward, specific enough to book a table over.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Farzi Cafe · Massive Restaurants</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Saanya Khatter</div>
+    <div class="creator-meta">
+      <div class="handle">@saanyaakhatterr</div>
+      <div class="role">Public figure</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">532K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">PUBLIC FIGURE · FARZI CAFE · MASSIVE RESTAURANTS · MULTI-CITY · DELHI ANCHOR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Saanya's 532K public-figure reach reads as social proof rather than food reportage — the 'everyone was there' layer of the campaign.</p>
+    <h4>What was posted</h4>
+    <p>An evening at the venue in her own register — table, drinks, company — with the campaign tags carrying discovery.</p>
+    <h4>Editorial framing</h4>
+    <p>Public-figure frames like hers are what make a menu launch look like a season, not a promotion.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Farzi Cafe · Massive Restaurants</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Mehak Dhawan</div>
+    <div class="creator-meta">
+      <div class="handle">@foodiesince96</div>
+      <div class="role">Digital creator</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">338K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">DIGITAL CREATOR · FARZI CAFE · MASSIVE RESTAURANTS · MULTI-CITY · DELHI ANCHOR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>Mehak's 338K sit in the digital-creator tier that turns a big-brand campaign from broadcast into conversation.</p>
+    <h4>What was posted</h4>
+    <p>Reel plus story set from her visit — dish-forward, caption written for search, the standard tag stack.</p>
+    <h4>Editorial framing</h4>
+    <p>Her material filled the campaign's middle register — the posts between the anchor moments that kept the window continuous.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="creator-marker"><span>Marquee Creator</span><span>Farzi Cafe · Massive Restaurants</span></div>
+  <div class="creator-row">
+    <div class="creator-name">Harteerath<br>Singh Ahluwalia</div>
+    <div class="creator-meta">
+      <div class="handle">@harteerathsingh</div>
+      <div class="role">Founder · Author</div>
+      <div class="verified">✓ V E R I F I E D</div>
+    </div>
+  </div>
+  <div class="creator-stats">
+    <div><div class="cs-num">297K</div><div class="cs-label">Follower reach</div></div>
+    <div><div class="cs-num">V</div><div class="cs-label">Verified creator</div></div>
+    <div><div class="cs-num">1</div><div class="cs-label">Activation visit</div></div>
+    <div><div class="cs-num">5+</div><div class="cs-label">Frames posted</div></div>
+  </div>
+  <div class="creator-still empty">FOUNDER · AUTHOR · FARZI CAFE · MASSIVE RESTAURANTS · MULTI-CITY · DELHI ANCHOR</div>
+  <div class="creator-block">
+    <h4>Why the creator</h4>
+    <p>A founder's feed carries a different kind of trust — Harteerath's 297K follow a person, not a food page. His presence framed Farzi as a room serious people choose.</p>
+    <h4>What was posted</h4>
+    <p>Frames from the tasting in his understated register, tagged into the campaign — credibility content rather than spectacle.</p>
+    <h4>Editorial framing</h4>
+    <p>His post is why the roster reads 'curated' rather than 'bought' — the founder-class layer this agency casts deliberately.</p>
+  </div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">05</div><div class="title">Supporting Roster</div></div>
+  <p class="body-p">Behind the five above: fifteen more voices — including founder Zorawar Kalra's own presence — echoing the magic-menu frames through the same fortnight.</p>
+  <table class="support-table">
+    <thead><tr><th>Handle</th><th>Followers</th><th></th><th>Name · Role</th></tr></thead>
+    <tbody><tr><td class="handle">@chetanngoel</td><td class="followers">293K</td><td class="verified-cell"></td><td class="role-cell">Chetan Goel · Artist</td></tr>
+<tr><td class="handle">@whatsupdilli</td><td class="followers">248K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Palak Kapoor · Digital creator</td></tr>
+<tr><td class="handle">@priyalmittall</td><td class="followers">246K</td><td class="verified-cell"></td><td class="role-cell">Priyal Mittal · Lifestyle</td></tr>
+<tr><td class="handle">@eatthisdelhi</td><td class="followers">235K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Khushboo Khanna & Yashraaj Singh · Food creators</td></tr>
+<tr><td class="handle">@ilishask</td><td class="followers">220K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Ilisha Singh Kaurav · Lifestyle</td></tr>
+<tr><td class="handle">@shatakshitomar</td><td class="followers">137K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Shatakshi Tomar · Digital creator</td></tr>
+<tr><td class="handle">@shivanidhyani_</td><td class="followers">133K</td><td class="verified-cell"></td><td class="role-cell">Shivani Dhyani · Lifestyle</td></tr>
+<tr><td class="handle">@teeyachawla</td><td class="followers">129K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Teeya Chawla · Lifestyle</td></tr>
+<tr><td class="handle">@zkalra</td><td class="followers">126K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Zorawar Kalra · Founder · Massive Restaurants</td></tr>
+<tr><td class="handle">@callmesrish</td><td class="followers">107K</td><td class="verified-cell"></td><td class="role-cell">Srishti Kaur · Lifestyle</td></tr>
+<tr><td class="handle">@taste_bird</td><td class="followers">102K</td><td class="verified-cell"></td><td class="role-cell">Sonia Negi · Blogger</td></tr>
+<tr><td class="handle">@aakshikashyapofficial</td><td class="followers">96K</td><td class="verified-cell"></td><td class="role-cell">Aakshi Kashyap · Digital creator</td></tr>
+<tr><td class="handle">@aavyaduggall</td><td class="followers">65K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Aavya Duggal · Lifestyle</td></tr>
+<tr><td class="handle">@swaritkapoor_</td><td class="followers">43K</td><td class="verified-cell"></td><td class="role-cell">Swarit Kapoor · Actor</td></tr>
+<tr><td class="handle">@kalradd</td><td class="followers">19K</td><td class="verified-cell v">✓ V</td><td class="role-cell">Dildeep Kalra · Personal blog</td></tr></tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">06</div><div class="title">How It Was Run</div></div>
+  <p class="body-p">98 ran the Farzi Cafe · Massive Restaurants launch as a four-stage operation: brief and concept, creator match, visit choreography, and asset handover.</p>
+  <table class="ops-table">
+    <thead><tr><th>Stage</th><th>Owner</th><th>Detail</th></tr></thead>
+    <tbody><tr><td>Strategy</td><td>98 strategy</td><td>Re-engagement design · mega-anchor mandate.</td></tr>
+<tr><td>Talent</td><td>98 talent management</td><td>20 creators · 65% verification · ~5 working weeks.</td></tr>
+<tr><td>Production</td><td>98 production + Farzi team + Massive Restaurants</td><td>Multi-creator visit choreography.</td></tr>
+<tr><td>Asset Handover</td><td>98 → Farzi</td><td>Reels + 70 frames + founder cameo content.</td></tr>
+</tbody>
+  </table>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">07</div><div class="title">What Delivered</div></div>
+  <p class="body-p">The Farzi Cafe · Massive Restaurants campaign produced four distinct asset classes — built to live beyond the launch window and re-run on the brand's owned channels.</p>
+  <div class="deliv-grid"><div class="deliv-cell"><h4>Reels</h4><ul class="dash"><li>Multi-creator reel set led by Amar Sirohi.</li>
+<li>70 story frames captured.</li></ul></div>
+<div class="deliv-cell"><h4>Stories</h4><ul class="dash"><li>70 frames distributed across the stack.</li>
+<li>Founder cameo segments included.</li></ul></div>
+<div class="deliv-cell"><h4>Founder Asset</h4><ul class="dash"><li>Zorawar Kalra appearance — founder-trust signal.</li></ul></div>
+<div class="deliv-cell"><h4>Asset Library</h4><ul class="dash"><li>Multi-creator library for Farzi's owned channels.</li></ul></div>
+</div>
+  
+</section>
+
+<section class="sec">
+  
+  <div class="section-head"><div class="num">08</div><div class="title">98 · The Capability</div></div>
+  <p class="body-p">Farzi Cafe is 98's case for re-engagement campaigns. The mega-anchor (Amar Sirohi 2.35M) carries the message; the founder cameo carries the credibility; the verified density signals institutional weight. Same playbook applies to any brand that's gone quiet and needs to come back loud.</p>
+  <div class="note-block">
+    <div class="label">98 Entertainment</div>
+    <h3>Creator marketing for hospitality, lifestyle, and luxury.</h3>
+    <p>A known brand doesn't need introducing; it needs reminding at scale. Twenty creators, thirteen verified, sequenced across the window so Farzi stayed in Delhi's feed for weeks rather than a weekend.</p>
+  </div>
+  <p class="eyebrow">98 Entertainment · ninety-eight.in · @98.entertainment</p>
+  
+</section>
+
+  <div class="foot">
+    <span>98 Entertainment · New Delhi</span>
+    <a href="../folders.html">← Back to the work</a>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<div id="lb"><span>Close ✕</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.slats img, .creator-still img'); if(!t) return;
+    im.src=t.currentSrc||t.src; lb.classList.add('on');
+  });
+  lb.onclick=function(){lb.classList.remove('on');};
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
+</body></html>
