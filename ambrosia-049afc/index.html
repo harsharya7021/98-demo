@@ -46,6 +46,12 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   line-height:1.1;color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.95),0 0 4px rgba(0,0,0,.9)}
 .cap i{display:block;margin-top:5px;font-style:normal;font-family:var(--mono);font-size:9px;
   letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+/* The Usual and Well Given are set in Ambrosia's own identity. Their marks
+   here are Ambrosia's dusty rose, not 98's red, so the change of language is
+   visible from the entry page rather than sprung on you after a click. */
+.tile.amb .cap i{color:#B5677A}
+#dir a.amb::after{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;
+  background:#B5677A;margin-left:7px;vertical-align:middle;transform:translateY(-1px)}
 
 /* the click fallback — scroll is not the only way through */
 #expand{position:fixed;left:50%;bottom:104px;transform:translateX(-50%);z-index:6000;
@@ -275,7 +281,8 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
 
   const els=cards.map((c,i)=>{
     const b=document.createElement('button');
-    b.className='tile'; b.dataset.sec=c.sec.id;
+    b.className='tile'+(window.NAV.isClient(c.sec.id)?' amb':'');
+    b.dataset.sec=c.sec.id;
     b.style.zIndex=String(5+i);
     if(c.slides && c.slides.length){
       b.classList.add('slides');
@@ -436,6 +443,7 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
     const n=W.cases.filter(c=>c.sec===s.id).length;
     const a=document.createElement('a');
     a.href=secHref(s.id); a.innerHTML=s.n+'<i>'+n+'</i>';
+    if(window.NAV.isClient(s.id)) a.className='amb';
     a.addEventListener('mouseenter',()=>{ hoverIdx=i; lightUp(s.id); });
     a.addEventListener('mouseleave',()=>{ hoverIdx=-1; cool(); });
     dir.appendChild(a);

@@ -55,6 +55,14 @@
   gap:clamp(12px,2.4vw,34px); flex-wrap:nowrap; white-space:nowrap}
 .sh-secs a.on{color:var(--hd-ink); font-weight:700}
 
+/* The two sections that are set in Ambrosia's own identity carry a dusty-rose
+   mark, on every page. It is what tells a viewer the change of language ahead
+   is deliberate — without it, walking from 98's carbon into their blush reads
+   as the site losing its nerve rather than changing register on purpose. */
+.sh-secs a.amb::after{content:'';display:inline-block;width:4px;height:4px;
+  border-radius:50%;background:#B5677A;margin-left:7px;vertical-align:middle;
+  transform:translateY(-1px)}
+
 .sh-util{grid-column:3; justify-self:end; display:flex; align-items:center;
   gap:clamp(10px,1.6vw,20px); color:var(--hd-dim); white-space:nowrap}
 .sh-util a{color:var(--hd-ink)}

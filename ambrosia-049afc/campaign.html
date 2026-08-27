@@ -70,6 +70,10 @@ a{color:inherit}
   letter-spacing:-.012em;line-height:.9;margin:18px 0 0}
 .mast .sub{font-size:clamp(15px,1.5vw,20px);line-height:1.68;color:var(--dim);
   max-width:52ch;margin-top:26px;font-weight:300}
+/* the line that names the change of language — a rose rule, then the fact */
+.mast .shift{margin-top:26px;padding-left:16px;border-left:2px solid var(--rose);
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:clamp(16px,1.6vw,21px);line-height:1.4;color:var(--ink);max-width:40ch}
 
 /* ---- hero ---- */
 .hero{position:relative;margin:clamp(20px,4vh,44px) 0 0;overflow:hidden;background:var(--frame)}
@@ -270,10 +274,15 @@ a{color:inherit}
     }).join('');
 
   /* ---- masthead ---- */
+  /* Naming the change of language is what makes it read as a decision. Without
+     this line, walking in from 98's carbon-and-red pages looks like the site
+     lost its nerve; with it, the client sees their own identity being used
+     deliberately. Kept to their voice: plain, no adjectives, no pitch. */
   document.getElementById('mast').innerHTML=
     '<div class="code">'+esc(CFG.num)+' · Made for Ambrosia</div>'+
     '<h1>'+esc(sec.n)+'</h1>'+
-    '<p class="sub">'+esc(sec.d)+'</p>';
+    '<p class="sub">'+esc(sec.d)+'</p>'+
+    '<p class="shift">Set in your own palette and typefaces.</p>';
 
   /* ---- hero ----
      The strongest concept frame opens the page full-bleed. Its case is then

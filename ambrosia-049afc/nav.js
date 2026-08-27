@@ -17,17 +17,30 @@
     wellgiven: 'campaign.html?c=wellgiven'
   };
 
+  /* The two campaign sections are the speculative work made for Ambrosia, and
+     they are the only pages set in Ambrosia's own palette and typefaces. The
+     rest of the site is 98's, because the rest of the site is 98's work.
+     Marking these two everywhere the bar appears is what turns that jump from
+     an inconsistency into a doorway. */
+  var AMBROSIA={usual:1, wellgiven:1};
+
   window.NAV={
     /* unknown ids fall back to the map, so a section added to data.js still
        resolves to something real before anyone edits this file */
     href:function(id){ return HREF[id] || ('map.html?s='+id); },
 
+    /* true for the sections that speak in the client's identity, not 98's */
+    isClient:function(id){ return !!AMBROSIA[id]; },
+
     /* renders the section links into el, marking `current` with .on */
     render:function(el,current){
       if(!el || !window.WORK || !window.WORK.sections) return;
       el.innerHTML=window.WORK.sections.map(function(s){
-        var on=(s.id===current)?' class="on"':'';
-        return '<a href="'+window.NAV.href(s.id)+'"'+on+'>'+s.n+'</a>';
+        var cls=[];
+        if(s.id===current) cls.push('on');
+        if(window.NAV.isClient(s.id)) cls.push('amb');
+        return '<a href="'+window.NAV.href(s.id)+'"'+
+               (cls.length?' class="'+cls.join(' ')+'"':'')+'>'+s.n+'</a>';
       }).join('');
     },
 
