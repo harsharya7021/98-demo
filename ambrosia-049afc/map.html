@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Ambrosia × 98 — The Work</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="head.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-webkit-tap-highlight-color:transparent}
@@ -34,20 +34,15 @@ canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-ind
 
 .hud{position:fixed;z-index:6;font-family:var(--mono);font-size:10px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--dim)}
-#logo{top:22px;left:26px;font-family:var(--sans);font-size:30px;font-weight:600;letter-spacing:-.04em;
-  color:var(--ink);line-height:1;text-transform:none}
-#logo b{color:var(--red);font-weight:600}
-#nav{top:26px;right:26px;display:flex;gap:20px}
-#nav a{color:var(--dim);text-decoration:none;transition:color .3s;white-space:nowrap}
-#nav a:hover{color:var(--ink)}
-#nav a.on{color:var(--ink)}
-
-#addr{bottom:24px;left:26px;line-height:1.7}
+/* #logo, #nav and #addr scattered the header across three HUD corners.
+   They are one bar now — see head.css. It sits above the HUD (6) but below the
+   case panel (12), its scrim (11) and the loader (20), so those still cover it. */
+.sitehead{z-index:10}
 #contact{bottom:24px;right:26px;text-align:right;line-height:1.7}
 #contact i{font-style:normal;color:var(--ink)}
 
 /* ---- category legend: the standing index ---- */
-#legend{position:fixed;z-index:6;left:26px;top:50%;transform:translateY(-50%);
+#legend{position:fixed;z-index:6;left:26px;top:calc(50% + 22px);transform:translateY(-50%);
   display:flex;flex-direction:column;gap:2px}
 #legend .lg{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;
   color:var(--dimmer);cursor:pointer;padding:5px 0;display:flex;align-items:baseline;gap:9px;
@@ -139,8 +134,7 @@ canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-ind
   #tip .t2{font-size:16px}
 }
 
-#addr{transition:color .3s} #addr:hover{color:var(--red)}
-#secname{bottom:24px;left:26px;transform:translateY(-22px);font-family:var(--sans);
+#secname{bottom:24px;left:26px;font-family:var(--sans);
   font-size:22px;font-weight:600;letter-spacing:-.03em;color:var(--ink);text-transform:none}
 @media(max-width:860px){#secname{display:none}}
 </style>
@@ -149,9 +143,7 @@ canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-ind
 <canvas id="stage"></canvas>
 <div id="dots"></div><div id="grain"></div><div id="vig"></div>
 
-<div id="logo" class="hud"><a href="index.html"><img src="logo98.png" alt="98" style="height:30px;display:block"></a></div>
-<nav id="nav" class="hud"></nav>
-<a id="addr" class="hud" href="index.html" style="text-decoration:none">&larr; All sections</a>
+<header class="sitehead fixed"></header>
 <div id="secname" class="hud"></div>
 <div id="contact" class="hud"><i id="cTot">26</i> shoots &amp; campaigns · food<br>harsh@ninety-eight.in</div>
 
@@ -667,8 +659,8 @@ requestAnimationFrame(frame);
 
 </script>
 <script>
-  (function(){var nv=document.getElementById('nav');if(nv&&window.WORK){window.NAV.render(nv,_secId);}var e=document.getElementById('secname'); if(e) e.textContent=_sec.n;
-   var a=document.getElementById('addr'); if(a) a.style.bottom='24px';})();
+  (function(){ window.NAV.mount(_secId,'');
+   var e=document.getElementById('secname'); if(e) e.textContent=_sec.n; })();
 </script>
 </body>
 </html>

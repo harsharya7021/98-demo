@@ -1,0 +1,78 @@
+/* head.css — one header for every page.
+
+   There used to be five: folders.html had a logo with a centred nav, the dark
+   pages had "← All sections" with the nav pushed right and no logo at all,
+   map.html scattered the same parts across four HUD corners, and roll.html had
+   only a back link. Same information, four alignments.
+
+   The structure is now identical everywhere — mark left, sections centred,
+   utility right — and only the palette changes. folders.html is paper-white by
+   design; that is a register, not an inconsistency, so it gets `.light`
+   rather than a second component.
+
+   Columns are placed explicitly so that hiding the section nav on narrow
+   screens leaves the utility in the right-hand column instead of sliding it
+   into the middle one. */
+
+.sitehead{
+  --hd-bg:rgba(10,10,10,.86);
+  --hd-rule:rgba(233,234,228,.16);
+  --hd-dim:rgba(233,234,228,.46);
+  --hd-ink:#E9EAE4;
+  --hd-hot:#E4322B;
+
+  position:sticky; top:0; z-index:400;
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+  gap:clamp(14px,3vw,40px);
+  padding:11px calc(max(0px,(100% - 1500px))/2 + clamp(20px,3.6vw,52px));
+  background:var(--hd-bg);
+  border-bottom:1px solid var(--hd-rule);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  backdrop-filter:saturate(180%) blur(14px);
+  font-family:"Space Mono",ui-monospace,Menlo,monospace;
+  font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; line-height:1;
+}
+
+/* the paper-white folder index */
+.sitehead.light{
+  --hd-bg:rgba(255,255,255,.95);
+  --hd-rule:#e2e2e2;
+  --hd-dim:#6c6c75;
+  --hd-ink:#0E0E10;
+  --hd-hot:#DD3D38;
+}
+
+/* map.html is a fixed full-screen canvas with nothing in normal flow to stick to */
+.sitehead.fixed{position:fixed; left:0; right:0; top:0}
+
+.sitehead a{text-decoration:none; color:var(--hd-dim); transition:color .25s}
+.sitehead a:hover{color:var(--hd-hot)}
+
+.sh-mark{grid-column:1; justify-self:start; display:block; line-height:0}
+.sh-mark img{display:block; height:21px; width:auto}
+
+.sh-secs{grid-column:2; justify-self:center; display:flex; align-items:center;
+  gap:clamp(12px,2.4vw,34px); flex-wrap:nowrap; white-space:nowrap}
+.sh-secs a.on{color:var(--hd-ink); font-weight:700}
+
+.sh-util{grid-column:3; justify-self:end; display:flex; align-items:center;
+  gap:clamp(10px,1.6vw,20px); color:var(--hd-dim); white-space:nowrap}
+.sh-util a{color:var(--hd-ink)}
+.sh-util a:hover{color:var(--hd-hot)}
+
+/* shared pill used by the campaign switcher and the roll's layout buttons */
+.sh-util .btn{padding:6px 11px; border:1px solid transparent; border-radius:2px;
+  color:var(--hd-dim); cursor:pointer; background:none;
+  font:inherit; letter-spacing:inherit; text-transform:inherit}
+.sh-util .btn:hover{color:var(--hd-ink)}
+.sh-util .btn.on{color:var(--hd-ink); border-color:var(--hd-rule);
+  background:rgba(233,234,228,.06)}
+.sitehead.light .sh-util .btn.on{background:rgba(0,0,0,.05)}
+
+@media(max-width:1040px){
+  .sh-secs{display:none}
+}
+@media(max-width:520px){
+  .sitehead{gap:12px; padding-left:20px; padding-right:20px}
+  .sh-mark img{height:18px}
+}

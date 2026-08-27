@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="head.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
@@ -22,17 +23,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 a{color:inherit}
 .mono{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
 
-/* ---- top bar ---- */
-header{position:sticky;top:0;z-index:30;background:rgba(10,10,10,.86);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--dimmer)}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px var(--pad)}
-.bar a,.bar span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--dim);text-decoration:none;transition:color .3s}
-.bar a:hover{color:var(--red)}
-.secs{display:flex;align-items:center;gap:clamp(10px,1.8vw,26px);flex-wrap:nowrap;overflow:hidden}
-.secs a{white-space:nowrap}
-.secs a.on{color:var(--ink)}
-@media(max-width:1040px){.secs{display:none}}
+/* the header lives in head.css now */
 
 /* The section bar already carries both campaigns, so the two-up switcher is a
    duplicate wherever that bar is showing. It takes over only below 1040px,
@@ -165,13 +156,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(10,10,10,.86);backdrop-f
 </head>
 <body>
 
-<header>
-  <div class="bar">
-    <a href="index.html">← All sections</a>
-    <nav class="secs" id="snsecs"></nav>
-    <nav class="switch" id="switch"></nav>
-  </div>
-</header>
+<header class="sitehead"></header>
 
 <section class="mast" id="mast"></section>
 <div class="hero" id="hero"></div>
@@ -227,7 +212,7 @@ header{position:sticky;top:0;z-index:30;background:rgba(10,10,10,.86);backdrop-f
   const pieces=all.filter(c=>c.id!==CFG.board);
 
   document.title=sec.n+' — For Ambrosia';
-  window.NAV.render(document.getElementById('snsecs'),key);
+  window.NAV.mount(key,'<nav class="switch" id="switch"></nav>');
 
   /* ---- switcher ---- */
   document.getElementById('switch').innerHTML=

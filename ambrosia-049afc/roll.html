@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Work — Frames</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="head.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
@@ -23,14 +23,7 @@ a{color:inherit}
 main.strips .zoom{display:grid}
 .mono{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
 
-/* top bar */
-header{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.86);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--dimmer)}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;
-  padding:14px clamp(20px,4vw,56px)}
-.bar a.back{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--dim);text-decoration:none;transition:color .3s}
-.bar a.back:hover{color:var(--red)}
+/* the header lives in head.css now */
 .lay{display:none}
 .lay button{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
   background:none;border:1px solid transparent;color:var(--dim);padding:6px 11px;border-radius:2px;
@@ -131,11 +124,7 @@ main.strips figure:hover .zoom{opacity:1;transform:translate(-50%,0) scale(1)}
 </style>
 </head>
 <body>
-<header>
-  <div class="bar">
-    <a class="back" id="back" href="index.html">← Back</a>
-  </div>
-</header>
+<header class="sitehead"></header>
 
 <section class="intro" id="intro"></section>
 <main id="main" class="grid"></main>
@@ -157,8 +146,10 @@ main.strips figure:hover .zoom{opacity:1;transform:translate(-50%,0) scale(1)}
   const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
   document.title=c.n+' — The Work';
-  document.getElementById('back').href=window.NAV.href(c.sec);
-  document.getElementById('back').textContent='← '+sec.n;
+  /* the section link is the header's utility slot now — the mark on the left
+     is what goes home, so a second back link would be a duplicate */
+  window.NAV.mount(c.sec,
+    '<a href="'+window.NAV.href(c.sec)+'">All of '+esc(sec.n)+' &#8599;</a>');
 
   document.getElementById('intro').innerHTML=
     '<div class="code">'+esc(c.code)+' · '+esc(sec.n)+'</div>'+

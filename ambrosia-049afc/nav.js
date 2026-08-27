@@ -22,15 +22,31 @@
        resolves to something real before anyone edits this file */
     href:function(id){ return HREF[id] || ('map.html?s='+id); },
 
-    /* renders the shared section bar into el, marking `current` with .on.
-       Every page styles .on itself — folders.html is paper-white, the rest
-       are black, and both are meant to be. */
+    /* renders the section links into el, marking `current` with .on */
     render:function(el,current){
       if(!el || !window.WORK || !window.WORK.sections) return;
       el.innerHTML=window.WORK.sections.map(function(s){
         var on=(s.id===current)?' class="on"':'';
         return '<a href="'+window.NAV.href(s.id)+'"'+on+'>'+s.n+'</a>';
       }).join('');
+    },
+
+    /* Builds the whole header — mark, sections, utility — into
+       <header class="sitehead">. Every page called this bar something
+       different and aligned it differently; the markup lives here now so
+       there is one of it. `util` is the only page-specific part.
+       Styling comes from head.css; add class "light" for the paper variant
+       and "fixed" where nothing in normal flow exists to stick to. */
+    mount:function(current, util){
+      var h=document.querySelector('.sitehead');
+      if(!h) return null;
+      h.innerHTML=
+        '<a class="sh-mark" href="index.html" aria-label="All sections">'+
+          '<img src="logo98.png" alt="Ninety-Eight Entertainment"></a>'+
+        '<nav class="sh-secs"></nav>'+
+        '<div class="sh-util">'+(util||'')+'</div>';
+      window.NAV.render(h.querySelector('.sh-secs'), current);
+      return h;
     }
   };
 })();
