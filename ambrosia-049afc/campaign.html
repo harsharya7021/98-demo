@@ -7,54 +7,84 @@
 <title>For Ambrosia — Campaign</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Poppins:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="head.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+
+/* ---------------------------------------------------------------------------
+   These two pages are the speculative work made FOR Ambrosia, so they stop
+   speaking in 98's carbon-and-red and speak in Ambrosia's own identity —
+   near-black, blush, dusty rose, Cormorant Garamond over Poppins. The other
+   three sections stay 98's. That contrast is the point: the client sees their
+   brand already understood, on the pages that are about their brand.
+
+   Every component below is written against --ink / --dim / --dimmer / --frame
+   rather than literal colours, so the blush band further down re-themes the
+   whole section by redefining four variables instead of duplicating rules.
+--------------------------------------------------------------------------- */
 :root{
-  --ink:#E9EAE4; --bg:#0A0A0A; --dim:rgba(233,234,228,.44); --dimmer:rgba(233,234,228,.16);
-  --red:#E4322B; --mono:"Space Mono",ui-monospace,Menlo,monospace;
-  --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
+  --noir:#1C1B1B;          /* Ambrosia near-black */
+  --blush:#EFDCDD;         /* Ambrosia blush     */
+  --rose:#B5677A;          /* Ambrosia dusty rose */
+  --ink:#F2E7E7;           /* warm off-white, pulled off the blush — not pure white */
+  --dim:rgba(242,231,231,.58);
+  --dimmer:rgba(242,231,231,.18);
+  --frame:#262424;         /* ground behind a loading image */
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Poppins",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
   --pad:clamp(20px,4vw,56px);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
+body{background:var(--noir);color:var(--ink);font-family:var(--sans);
+  font-weight:300;line-height:1.5}
 a{color:inherit}
-.mono{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
 
-/* the header lives in head.css now */
+/* the shared header component, re-tinted — head.css exposes these */
+.sitehead{
+  --hd-bg:rgba(28,27,27,.88);
+  --hd-rule:rgba(242,231,231,.20);
+  --hd-dim:rgba(242,231,231,.58);
+  --hd-ink:var(--ink);
+  --hd-hot:var(--rose);
+}
+
+/* one micro-label treatment, used everywhere small type appears */
+.lbl,.mast .code,.piece .k,.piece .tag,.piece .more,.rule i,.pal span,
+.rules b,.pager a,.hero .cap,.mosaic figcaption,.switch a,#lb .x{
+  font-family:var(--sans);font-weight:500;letter-spacing:.18em;text-transform:uppercase}
 
 /* The section bar already carries both campaigns, so the two-up switcher is a
-   duplicate wherever that bar is showing. It takes over only below 1040px,
-   where .secs hides — otherwise there is no way across on a phone. */
+   duplicate wherever that bar is showing. It takes over only below 1040px. */
 .switch{display:none;gap:6px}
-.switch a{padding:6px 12px;border:1px solid transparent;border-radius:2px}
-.switch a.on{color:var(--ink);border-color:var(--dimmer);background:rgba(233,234,228,.06)}
+.switch a{padding:6px 12px;border:1px solid transparent;border-radius:2px;font-size:9px}
+.switch a.on{color:var(--ink);border-color:var(--dimmer);background:rgba(242,231,231,.07)}
 @media(max-width:1040px){.switch{display:flex}}
 
 /* ---- masthead ---- */
 .mast{padding:clamp(56px,11vh,132px) var(--pad) clamp(28px,5vh,52px);max-width:1500px;margin:0 auto}
-.mast .code{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
-.mast h1{font-size:clamp(40px,8.4vw,124px);font-weight:600;letter-spacing:-.042em;line-height:.94;margin:16px 0 0}
-.mast .sub{font-size:clamp(15px,1.6vw,21px);line-height:1.55;color:rgba(233,234,228,.82);
-  max-width:56ch;margin-top:26px}
+.mast .code{font-size:10px;letter-spacing:.2em;color:var(--rose)}
+.mast h1{font-family:var(--serif);font-size:clamp(46px,9.4vw,138px);font-weight:300;
+  letter-spacing:-.012em;line-height:.9;margin:18px 0 0}
+.mast .sub{font-size:clamp(15px,1.5vw,20px);line-height:1.68;color:var(--dim);
+  max-width:52ch;margin-top:26px;font-weight:300}
 
 /* ---- hero ---- */
-.hero{position:relative;margin:clamp(20px,4vh,44px) 0 0;overflow:hidden;background:#141414}
+.hero{position:relative;margin:clamp(20px,4vh,44px) 0 0;overflow:hidden;background:var(--frame)}
 .hero img{display:block;width:100%;height:clamp(320px,64vh,760px);object-fit:cover}
 .hero .cap{position:absolute;left:var(--pad);bottom:22px;right:var(--pad);
-  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(233,234,228,.9);text-shadow:0 2px 24px rgba(0,0,0,.9)}
+  font-size:10px;color:rgba(242,231,231,.92);text-shadow:0 2px 24px rgba(0,0,0,.9)}
 .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(transparent 55%,rgba(10,10,10,.72))}
+  background:linear-gradient(transparent 55%,rgba(28,27,27,.78))}
 
 /* ---- section rule ---- */
 .rule{max-width:1500px;margin:clamp(56px,10vh,116px) auto clamp(22px,4vh,40px);padding:0 var(--pad);
-  display:flex;align-items:baseline;gap:16px}
-.rule h2{font-size:clamp(20px,2.4vw,32px);font-weight:600;letter-spacing:-.02em;white-space:nowrap}
-.rule i{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--red)}
+  display:flex;align-items:baseline;gap:18px}
+.rule h2{font-family:var(--serif);font-size:clamp(24px,3vw,40px);font-weight:400;
+  letter-spacing:-.005em;white-space:nowrap}
+.rule i{font-style:normal;font-size:10px;color:var(--rose)}
 .rule .ln{flex:1;height:1px;background:var(--dimmer)}
 
 /* ---- concept pieces: alternating editorial ---- */
@@ -64,91 +94,113 @@ a{color:inherit}
   transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .piece.in{opacity:1;transform:none}
 .piece:nth-child(even) .shot{order:2}
-.piece .shot{position:relative;background:#141414}
+.piece .shot{position:relative;background:var(--frame)}
 .piece .shot img{display:block;width:100%;height:auto;cursor:zoom-in}
-.piece .shot .n{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:9px;
-  letter-spacing:.18em;color:var(--red);background:rgba(10,10,10,.72);padding:5px 8px}
-.piece h3{font-size:clamp(24px,3vw,42px);font-weight:600;letter-spacing:-.03em;line-height:1.04}
-.piece .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--dim);margin-top:12px}
-.piece p{font-size:15px;line-height:1.62;color:rgba(233,234,228,.82);margin-top:18px;max-width:52ch}
-.piece blockquote{margin-top:22px;padding-left:16px;border-left:2px solid var(--red);
-  font-size:clamp(15px,1.5vw,19px);line-height:1.45;color:rgba(233,234,228,.92);max-width:34ch}
-.piece .did{list-style:none;margin-top:22px}
-.piece .did li{position:relative;padding-left:18px;margin-bottom:9px;font-size:13px;line-height:1.55;
-  color:rgba(233,234,228,.74)}
-.piece .did li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:1px;background:var(--red)}
+.piece .shot .n{position:absolute;top:12px;left:12px;font-family:var(--sans);font-weight:500;
+  font-size:9px;letter-spacing:.2em;color:var(--blush);background:rgba(28,27,27,.78);padding:5px 9px}
+.piece h3{font-family:var(--serif);font-size:clamp(28px,3.6vw,50px);font-weight:400;
+  letter-spacing:-.008em;line-height:1.06}
+.piece .k{font-size:10px;color:var(--dim);margin-top:13px}
+.piece p{font-size:14.5px;line-height:1.72;color:var(--dim);margin-top:18px;max-width:52ch}
+.piece blockquote{margin-top:24px;padding-left:18px;border-left:2px solid var(--rose);
+  font-family:var(--serif);font-style:italic;font-size:clamp(19px,2vw,27px);font-weight:300;
+  line-height:1.35;color:var(--ink);max-width:34ch}
+.piece .did{list-style:none;margin-top:24px}
+.piece .did li{position:relative;padding-left:20px;margin-bottom:10px;font-size:13px;
+  line-height:1.6;color:var(--dim)}
+.piece .did li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:1px;background:var(--rose)}
 /* both were inline-block, so the frames link and the note tag sat shoulder to
    shoulder on one line and ran into each other */
-.piece .tag{margin-top:20px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--dim);border:1px dashed var(--dimmer);padding:9px 11px;
-  display:block;width:fit-content;max-width:100%;line-height:1.6}
-.piece .more{display:block;width:fit-content;margin-top:16px;font-family:var(--mono);font-size:9.5px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--red);text-decoration:none}
+.piece .tag{margin-top:22px;font-size:9px;color:var(--dim);
+  border:1px dashed var(--dimmer);padding:10px 12px;
+  display:block;width:fit-content;max-width:100%;line-height:1.7;letter-spacing:.14em}
+.piece .more{display:block;width:fit-content;margin-top:16px;font-size:9.5px;
+  color:var(--rose);text-decoration:none}
 .piece .more:hover{color:var(--ink)}
 /* The opening piece has no image of its own — the hero above it is its
    photograph. It runs as a single wide column so the absence reads as a lede
    rather than a missing picture. */
-.piece.lede{grid-template-columns:1fr;align-items:start;
-  margin-bottom:clamp(48px,9vh,116px)}
-.piece.lede h3{font-size:clamp(28px,4.4vw,62px)}
-.piece.lede p{font-size:clamp(15px,1.55vw,19px);max-width:58ch}
-.piece.lede blockquote{font-size:clamp(17px,1.9vw,25px);max-width:42ch}
+/* A written entry with no photography of its own: title set against its body
+   in facing columns, so it holds the page instead of trailing down the left
+   third of it. Same measure as a piece that has an image beside it. */
+.piece.flat{grid-template-columns:1fr 1.18fr;align-items:start;
+  margin-bottom:clamp(36px,6.5vh,80px)}
+.piece.flat > div:first-child{padding-top:6px}
+.piece.flat .k{margin-top:15px}
+.piece.flat p{margin-top:0;max-width:54ch}
+@media(max-width:880px){.piece.flat{grid-template-columns:1fr}}
+.piece.lede{grid-template-columns:1fr;align-items:start;margin-bottom:clamp(48px,9vh,116px)}
+.piece.lede h3{font-size:clamp(34px,5vw,72px)}
+.piece.lede p{font-size:clamp(15px,1.5vw,19px);max-width:56ch}
+.piece.lede blockquote{font-size:clamp(22px,2.4vw,34px);max-width:40ch}
 @media(max-width:880px){
   .piece{grid-template-columns:1fr;gap:22px}
   .piece:nth-child(even) .shot{order:0}
 }
 
-/* ---- palette ---- */
-.pal{max-width:1500px;margin:0 auto;padding:0 var(--pad) clamp(24px,4vh,44px);
-  display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,30px)}
-.pal div{display:flex;align-items:center;gap:11px}
-.pal b{width:38px;height:38px;border-radius:2px;display:block;border:1px solid rgba(233,234,228,.14)}
-.pal span{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.pal span i{display:block;font-style:normal;color:var(--ink);margin-top:3px}
+/* ---- the blush band ----------------------------------------------------
+   The colour break. Section 02 lifts onto Ambrosia's blush ground and the
+   type flips to their near-black. Redefining four tokens re-themes every
+   component inside it — no duplicated rules. */
+.band{background:var(--blush);
+  --ink:#1C1B1B;
+  --dim:rgba(28,27,27,.62);
+  --dimmer:rgba(28,27,27,.18);
+  --frame:rgba(28,27,27,.07);
+  color:var(--ink);
+  margin-top:clamp(56px,10vh,116px);
+  padding:clamp(10px,2vh,26px) 0 clamp(60px,10vh,124px)}
+.band .rule{margin-top:clamp(44px,8vh,92px)}
 
 /* ---- board mosaic ---- */
 /* the second max-width overrode the first, shrinking the block to 64ch and
    letting margin:auto centre it away from the left margin — the measure now
    lives on the paragraph, the gutter on its wrapper */
 .boardwrap{max-width:1500px;margin:0 auto;padding:0 var(--pad)}
-.boardlede{max-width:64ch;font-size:15px;line-height:1.62;color:rgba(233,234,228,.82)}
+.boardlede{max-width:62ch;font-size:15px;line-height:1.72;color:var(--dim)}
 .mosaic{max-width:1500px;margin:clamp(22px,4vh,40px) auto 0;padding:0 var(--pad);
   columns:4 250px;column-gap:clamp(10px,1.4vw,18px)}
-.mosaic figure{margin:0 0 clamp(10px,1.4vw,18px);break-inside:avoid;position:relative;background:#141414;
-  opacity:0;transform:translateY(18px);
+.mosaic figure{margin:0 0 clamp(10px,1.4vw,18px);break-inside:avoid;position:relative;
+  background:var(--frame);opacity:0;transform:translateY(18px);
   transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .mosaic figure.in{opacity:1;transform:none}
 .mosaic img{display:block;width:100%;height:auto;cursor:zoom-in}
+/* the caption sits over photography, so it stays dark-on-light whatever the band */
 .mosaic figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 9px;opacity:0;
-  background:linear-gradient(transparent,rgba(10,10,10,.9));transition:opacity .35s ease;
-  font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+  background:linear-gradient(transparent,rgba(28,27,27,.92));transition:opacity .35s ease;
+  font-size:9px;letter-spacing:.14em;color:rgba(242,231,231,.72)}
 .mosaic figure:hover figcaption{opacity:1}
-.mosaic figcaption a{color:var(--red);text-decoration:none}
-.mosaic figcaption a:hover{color:var(--ink)}
+.mosaic figcaption a{color:var(--blush);text-decoration:none;border-bottom:1px solid rgba(239,220,221,.4)}
+.mosaic figcaption a:hover{color:#fff}
+
+/* ---- palette swatches ---- */
+.pal{max-width:1500px;margin:0 auto;padding:clamp(20px,3vh,34px) var(--pad) 0;
+  display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,30px)}
+.pal div{display:flex;align-items:center;gap:11px}
+.pal b{width:38px;height:38px;border-radius:2px;display:block;border:1px solid var(--dimmer)}
+.pal span{font-size:9px;letter-spacing:.16em;color:var(--dim)}
+.pal span i{display:block;font-style:normal;color:var(--ink);margin-top:3px;letter-spacing:.1em}
 
 /* ---- rules of the board ---- */
 .rules{max-width:1500px;margin:clamp(40px,7vh,80px) auto 0;padding:0 var(--pad);
   display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(18px,3vw,44px)}
-.rules div{border-top:1.5px solid var(--ink);padding-top:14px}
-.rules b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--red);margin-bottom:9px}
-.rules p{font-size:13.5px;line-height:1.6;color:rgba(233,234,228,.8)}
+.rules div{border-top:1.5px solid var(--ink);padding-top:15px}
+.rules b{display:block;font-size:9px;letter-spacing:.2em;color:var(--rose);margin-bottom:10px}
+.rules p{font-size:13.5px;line-height:1.68;color:var(--dim)}
 
 /* ---- pager ---- */
 .pager{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  padding:clamp(40px,7vh,80px) var(--pad) 90px;max-width:1500px;margin:clamp(48px,8vh,96px) auto 0;
+  padding:clamp(40px,7vh,80px) var(--pad) 90px;max-width:1500px;margin:0 auto;
   border-top:1px solid var(--dimmer)}
-.pager a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--dim);text-decoration:none;transition:color .3s}
-.pager a:hover{color:var(--red)}
+.pager a{font-size:10px;letter-spacing:.16em;color:var(--dim);text-decoration:none;transition:color .3s}
+.pager a:hover{color:var(--rose)}
 
 /* ---- lightbox ---- */
-#lb{position:fixed;inset:0;z-index:60;background:rgba(6,6,6,.96);display:none;place-items:center;
-  cursor:zoom-out;padding:3vh 3vw}
+#lb{position:fixed;inset:0;z-index:6100;background:rgba(28,27,27,.97);display:none;
+  place-items:center;cursor:zoom-out;padding:3vh 3vw}
 #lb.on{display:grid}
 #lb img{max-width:100%;max-height:94vh;object-fit:contain}
-#lb .x{position:fixed;top:20px;right:26px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--dim)}
+#lb .x{position:fixed;top:20px;right:26px;font-size:10px;color:rgba(242,231,231,.6)}
 </style>
 </head>
 <body>
@@ -161,11 +213,13 @@ a{color:inherit}
 <div class="rule" id="ruleWork"><i id="workNum"></i><h2 id="workTitle"></h2><span class="ln"></span></div>
 <div id="pieces"></div>
 
-<div class="rule"><i>02</i><h2>The board it gets shot against</h2><span class="ln"></span></div>
-<div class="boardwrap"><p class="boardlede" id="boardLede"></p></div>
-<div class="pal" id="pal"></div>
-<div class="mosaic" id="mosaic"></div>
-<div class="rules" id="rules"></div>
+<div class="band">
+  <div class="rule"><i>02</i><h2>The board it gets shot against</h2><span class="ln"></span></div>
+  <div class="boardwrap"><p class="boardlede" id="boardLede"></p></div>
+  <div class="pal" id="pal"></div>
+  <div class="mosaic" id="mosaic"></div>
+  <div class="rules" id="rules"></div>
+</div>
 
 <nav class="pager" id="pager"></nav>
 
@@ -241,14 +295,19 @@ a{color:inherit}
   document.getElementById('workNum').textContent='01';
   document.getElementById('workTitle').textContent=CFG.workTitle;
 
-  const copyBlock=(c,fr)=>
+  /* split in two so a piece with no photography can set its title against its
+     body in facing columns, instead of running down the left third of a very
+     wide page with nothing opposite it */
+  const titleBlock=c=>
     '<h3>'+esc(c.n)+'</h3>'+
-    '<div class="k">'+esc(c.k)+'</div>'+
+    '<div class="k">'+esc(c.k)+'</div>';
+  const bodyBlock=(c,fr)=>
     '<p>'+esc(c.s)+'</p>'+
     (c.pull?'<blockquote>'+esc(c.pull)+'</blockquote>':'')+
     (c.did&&c.did.length?'<ul class="did">'+c.did.map(d=>'<li>'+esc(d)+'</li>').join('')+'</ul>':'')+
     (fr.length>1?'<a class="more" href="roll.html?c='+c.id+'">All '+fr.length+' frames ↗</a>':'')+
     (c.note?'<div class="tag">'+esc(c.note)+'</div>':'');
+  const copyBlock=(c,fr)=>titleBlock(c)+bodyBlock(c,fr);
 
   const lede = heroCase
     ? '<article class="piece lede"><div class="txt">'+
@@ -257,12 +316,18 @@ a{color:inherit}
 
   document.getElementById('pieces').innerHTML = lede + rest.map((c,i)=>{
     const fr=window.CURATION.framesFor(c);
-    const shot=fr.length
-      ? '<div class="shot"><img loading="lazy" src="'+fr[0].src+'" alt="'+esc(c.n)+'"'+
-        (fr[0].w?' width="'+fr[0].w+'" height="'+fr[0].h+'"':'')+'>'+
-        '<span class="n">'+String(i+2).padStart(2,'0')+'</span></div>'
-      : '<div class="shot"></div>';
-    return '<article class="piece">'+shot+'<div>'+copyBlock(c,fr)+'</div></article>';
+    /* A piece with no photography runs full width. Emitting an empty .shot
+       instead left half the grid blank, which reads as a failed image rather
+       than a deliberately written entry. */
+    if(!fr.length)
+      return '<article class="piece flat">'+
+        '<div>'+titleBlock(c)+'</div>'+
+        '<div>'+bodyBlock(c,fr)+'</div></article>';
+    return '<article class="piece">'+
+      '<div class="shot"><img loading="lazy" src="'+fr[0].src+'" alt="'+esc(c.n)+'"'+
+      (fr[0].w?' width="'+fr[0].w+'" height="'+fr[0].h+'"':'')+'>'+
+      '<span class="n">'+String(i+2).padStart(2,'0')+'</span></div>'+
+      '<div>'+copyBlock(c,fr)+'</div></article>';
   }).join('');
 
   /* ---- the board ---- */
