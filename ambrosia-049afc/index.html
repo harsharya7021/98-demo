@@ -171,10 +171,19 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
     const shots = window.CURATION.framesFor(c).map(f=>f.src).slice(0,AMB_MAX_SLIDES);
     if(shots.length>1) SLIDES[sid]=shots;
   });
-  /* Gifting & seeding is all operational, text-only cases (seeding, PR boxes,
-     festive, plus the creator activations) — no imagery of its own. Point its
-     card at our Mittal gift-tin frame: still our work, still gifting, it just
-     lives under Production now. */
+  /* Gifting & seeding used to have no imagery of its own and borrowed a single
+     Mittal frame. The packaging work now lives in that section where it always
+     belonged, so its card rolls like the others — the strongest frame from each
+     shot case, taken straight from data.js. */
+  (function(){
+    const shots=[];
+    W.cases.filter(c=>c.sec==='gifting').forEach(c=>{
+      const fr=window.CURATION.framesFor(c);
+      if(fr.length) shots.push(fr[0].src);
+      if(fr.length>3) shots.push(fr[Math.floor(fr.length/2)].src);
+    });
+    if(shots.length>1) SLIDES.gifting=shots.slice(0,AMB_MAX_SLIDES);
+  })();
   /* Four destinations, four registers — the constellation is no longer the
      answer to every section. Chosen case studies opens the folder index;
      Production keeps the star map (21 cases, all with frames); Gifting is a
@@ -182,7 +191,7 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
      campaigns get a page each, because three plates floating in black is what
      "thin" looks like. The routing table itself lives in nav.js. */
   const secHref = id => window.NAV.href(id);
-  const CARD_OVERRIDE={ gifting:'frames/mittal/03.jpg' };
+  const CARD_OVERRIDE={};   // gifting no longer needs to borrow a frame
   const pickFor=s=>CARD_OVERRIDE[s.id] || window.CURATION.heroFor(s,W) || '';
   /* Five orbits now, not four. These were indexed i%4, so at five sections two
      cards drew identical angle/radius/speed and sat welded together. One entry
