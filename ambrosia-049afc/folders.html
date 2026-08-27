@@ -187,6 +187,14 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
   /* the section bar used to be hardcoded here and still pointed at the
      deleted 'moodboard' section — it is rendered from nav.js now */
   if(window.NAV) window.NAV.render(document.getElementById('snsecs'),'cases');
+
+  /* Drawer counts were hand-typed into the markup and went stale the moment a
+     tab was added — "Rooms that had to arrive" still said 4 with five in it.
+     Count the tabs instead, so adding or removing one needs no second edit. */
+  document.querySelectorAll('.grp').forEach(function(g){
+    var n = g.querySelector('.cat .n');
+    if(n) n.textContent = g.querySelectorAll('.tab').length;
+  });
   var BY = {}; W.cases.forEach(function(c){ BY[c.id] = c; });
   var esc = function(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(m){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]; }); };
