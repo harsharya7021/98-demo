@@ -187,10 +187,17 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   /* Five orbits now, not four. These were indexed i%4, so at five sections two
      cards drew identical angle/radius/speed and sat welded together. One entry
      per section, all four values deliberately out of step so nothing syncs. */
-  const ANG =[0, 1.15, 2.35, 3.75, 5.05];     // uneven starts
-  const RMUL=[1.00, 0.62, 1.06, 0.72, 0.88];  // different orbit sizes
-  const SPD =[1.00, 1.38, 0.74, 1.16, 0.91];  // different speeds — they cross over each other
-  const SZ  =[1.00, 0.84, 1.06, 0.90, 0.95];
+  const ANG =[0, 1.26, 2.51, 3.77, 5.03];     // evenly spread, offset from vertical
+  /* Radii used to run 0.62–1.06, which pulled one card almost to the centre while
+     another swung wide. Held close to 1 now so the five read as one ring. */
+  const RMUL=[1.00, 0.94, 1.03, 0.92, 0.97];
+  const SPD =[1.00, 1.14, 0.88, 1.07, 0.94];  // still out of step, but they no longer lap each other
+  /* Every card is the same size. There used to be a per-card multiplier
+     (0.84–1.06) stacked on top of the depth scale (0.90–1.08), so the biggest
+     card rendered ~50% larger than the smallest — which reads as inconsistency,
+     not perspective. Depth is carried by z-order and the much tighter scale
+     below instead. */
+  const SZ  =[1.00, 1.00, 1.00, 1.00, 1.00];
   const cards=W.sections.map((s,i)=>{
     const own=pickFor(s);
     return {sec:s, own:own, slides:SLIDES[s.id]||null,
@@ -201,7 +208,8 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
 
   /* geometry — trimmed from 0.205/380 now that a fifth card shares the field */
   const CARD_W=()=>Math.max(196, Math.min(336, innerWidth*0.184));
-  const RX=()=>innerWidth*0.170, RY=()=>innerHeight*0.208;   // wider field for five
+  // wider field for five — at 0.170/0.208 the ring was still sized for four
+  const RX=()=>innerWidth*0.205, RY=()=>innerHeight*0.240;
 
   const els=cards.map((c,i)=>{
     const b=document.createElement('button');
@@ -213,6 +221,17 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
         '<img src="'+s+'" alt="" class="'+(k===0?'on':'')+'" loading="'+(k?'lazy':'eager')+'">').join('');
       const ims=[...b.querySelectorAll('img')];
       let k=0;
+      /* A card fires up to 24 image requests at once. If one drops — a flaky
+         connection, a server that stops answering under the burst — that frame
+         would otherwise sit in the rotation forever as a blank card. Take it
+         out of the cycle instead. Never empties the rotation. */
+      ims.forEach(im=>im.addEventListener('error',()=>{
+        const j=ims.indexOf(im);
+        if(j<0 || ims.length<2) return;
+        ims.splice(j,1);
+        im.remove();
+        if(k>=ims.length) k=0;
+      },{once:true}));
       // stagger each card's cycle so they never change in lockstep
       setTimeout(()=>setInterval(()=>{
         const out=ims[k];
@@ -273,7 +292,9 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
       const y=Math.sin(a)*ry*c.rm + Math.sin(clock*0.7+i*1.7)*8;  // gentle bob
       const zv=Math.sin(a)*c.rm;                          // true depth: angle AND orbit size
       const depth=(zv/1.1+1)/2;                          // 0 far → 1 near
-      const s=(hoverIdx===i?1.1:1)*(0.9+depth*0.18)*c.sz;
+      // depth scale kept to a whisper (0.97–1.03) — enough to sit in front or
+      // behind, not enough to look like the cards are different sizes
+      const s=(hoverIdx===i?1.06:1)*(0.97+depth*0.06)*c.sz;
       el.style.width=w+'px';
       el.style.height=(w*0.66)+'px';
       el.style.transform='translate(calc(-50% + '+x.toFixed(1)+'px), calc(-50% + '+y.toFixed(1)+'px)) scale('+s.toFixed(3)+')';
