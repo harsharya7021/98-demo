@@ -98,8 +98,6 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
 #tl{top:24px;left:26px}
 #tr{top:24px;right:26px;text-align:right}
 #tr i{font-style:normal;color:var(--ink)}
-#bl{bottom:24px;left:26px}
-#br{bottom:24px;right:26px;text-align:right}
 #hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:6000;
   font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--dimmer);transition:opacity .6s ease}
@@ -154,8 +152,6 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
 
 <div id="tl" class="hud">Ninety-Eight<br>Entertainment</div>
 <div id="tr" class="hud">Prepared for <i>Ambrosia</i><br>August 2026</div>
-<div id="bl" class="hud">New Delhi · IN<br><a href="curate.html" style="color:var(--dimmer);text-decoration:none">Curate ↗</a></div>
-<div id="br" class="hud"><i id="tot">—</i> shoots &amp; campaigns<br>harsh@ninety-eight.in</div>
 <div id="dir"></div>
 <div id="rev"><i></i></div>
 <div id="hint">Scroll to open and turn the wheel · click to enter</div>
@@ -174,7 +170,6 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
         cloud=document.getElementById('cloud'), core=document.getElementById('core'),
         label=document.getElementById('label'), dir=document.getElementById('dir'),
         revBar=document.querySelector('#rev i');
-  document.getElementById('tot').textContent=W.cases.length;
 
   /* one card per section — every card is now our own work, no stock */
   /* ---- home-page card art -------------------------------------------------
