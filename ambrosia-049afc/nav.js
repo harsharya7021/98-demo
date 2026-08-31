@@ -7,12 +7,15 @@
    map, Gifting is a written ledger, and the two campaigns get a page each.
    That routing now lives here and nowhere else — folders.html had a hardcoded
    copy that still pointed at the deleted 'moodboard' section, which is exactly
-   the drift this file exists to prevent. */
+   the drift this file exists to prevent.
+
+   Gifting & seeding was folded into Chosen case studies (2026-08-31): its
+   twelve cases are three drawers in folders.html now, so it is no longer a
+   section and gifting.html redirects there. */
 (function(){
   var HREF={
     cases:     'folders.html',
     production:'map.html?s=production',
-    gifting:   'gifting.html',
     usual:     'campaign.html?c=usual',
     wellgiven: 'campaign.html?c=wellgiven'
   };
