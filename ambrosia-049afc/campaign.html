@@ -199,6 +199,23 @@ a{color:inherit}
   .mosaic.drift figure{width:clamp(140px,40vw,280px)}
 }
 
+/* ---- and Well Given's turns instead (MWG 078) -------------------------
+   Same stage, same figures; the frames cross left to right through a
+   perspective and tumble on all three axes as they go. .drift and .tumble
+   are alternatives — a board is one or the other, never both. */
+.mosaic.tumble{columns:auto;column-gap:0;height:100vh;position:relative;overflow:hidden;
+  max-width:none;margin:0;padding:0;perspective:90vw}
+.mosaic.tumble figure{position:absolute;right:100%;top:0;margin:0;
+  width:clamp(140px,14vw,260px);opacity:1;transform:none;transition:none;
+  will-change:transform;transform-style:preserve-3d}
+.mosaic.tumble img{display:block;width:100%;height:auto;max-height:34vh;object-fit:contain}
+.mosaic.tumble figcaption{position:absolute;left:0;right:0;bottom:0;opacity:0;
+  padding:18px 8px 7px;background:linear-gradient(transparent,rgba(28,27,27,.88))}
+.mosaic.tumble figure:hover figcaption{opacity:1}
+@media(max-width:768px){
+  .mosaic.tumble figure{width:clamp(130px,30vw,240px)}
+}
+
 /* ---- palette swatches ---- */
 .pal{max-width:1500px;margin:0 auto;padding:clamp(20px,3vh,34px) var(--pad) 0;
   display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,30px)}
@@ -278,12 +295,14 @@ a{color:inherit}
      burgundy without hexes — same two values, same campaign system. */
   const CAMPAIGNS={
     usual:{
-      num:'Campaign one', board:'amb-board-usual', other:'wellgiven',
+      /* board motion is a property of the campaign, not of the template:
+         the everyday menu runs level, the gifting campaign turns in depth */
+      num:'Campaign one', board:'amb-board-usual', other:'wellgiven', motion:'drift',
       workTitle:'The statics and the mood',
       palette:[['#F4EFE8','Paper'],['#564230','Cocoa'],['#4B141E','Burgundy']]
     },
     wellgiven:{
-      num:'Campaign two', board:'amb-board-gifting', other:'usual',
+      num:'Campaign two', board:'amb-board-gifting', other:'usual', motion:'tumble',
       workTitle:'The concepts',
       palette:[['#F4EFE8','Cream'],['#4B141E','Burgundy']]
     }
@@ -429,6 +448,29 @@ a{color:inherit}
   }),{rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.piece'+(DRIFT?'':',.mosaic figure')).forEach(el=>io.observe(el));
 
+  /* The published 078 loads GSAP's CustomEase plugin for one curve. GSAP
+     accepts a plain function as an ease, so the curve is sampled here from
+     the same path instead — exact, and one fewer script on the page.
+     Path: M0,0 C0,.301 .299,.447 .5,.5 .71,.554 1,.703 1,1 — fast, slow,
+     fast, which is what makes a frame arrive, hang mid-stage and leave. */
+  function pathEase(){
+    const S=[[0,0,.299,.5, 0,.301,.447,.5],[.5,.71,1,1, .5,.554,.703,1]];
+    const N=512, xs=new Float64Array(N+1), ys=new Float64Array(N+1);
+    const bez=(a,b,c,d,t)=>{const u=1-t;
+      return u*u*u*a + 3*u*u*t*b + 3*u*t*t*c + t*t*t*d;};
+    for(let i=0;i<=N;i++){
+      const g=i/N, k=g<.5?0:1, t=(g-k*.5)*2, p=S[k];
+      xs[i]=bez(p[0],p[1],p[2],p[3],t); ys[i]=bez(p[4],p[5],p[6],p[7],t);
+    }
+    return x=>{
+      if(x<=0) return 0; if(x>=1) return 1;
+      let lo=0,hi=N;
+      while(hi-lo>1){ const m=(lo+hi)>>1; if(xs[m]<x) lo=m; else hi=m; }
+      const span=xs[hi]-xs[lo];
+      return span>1e-9 ? ys[lo]+(ys[hi]-ys[lo])*(x-xs[lo])/span : ys[lo];
+    };
+  }
+
   /* ---- MWG 083: the board, pinned and drifting ------------------------
      Four lanes on power1..power4 easings, so the frames separate as they
      cross instead of travelling as one block. Vertical placement is
@@ -437,7 +479,48 @@ a{color:inherit}
      same band and leaves the top third empty. Each frame gets its own
      horizontal slice and jitters inside it, off a seeded generator so the
      board looks the same on every load and in every screenshot. */
-  if(DRIFT && bf.length){
+  if(DRIFT && bf.length && CFG.motion==='tumble'){
+    /* ---- MWG 078: the board turns ------------------------------------
+       Each frame crosses once, in sequence rather than in lanes, tumbling
+       through the perspective as it goes. Start heights are stratified and
+       seeded for the same reason the drift's are: the published effect
+       randomises y per frame, which clumps on a nineteen-frame board. */
+    const figs=[...mos.querySelectorAll('figure')];
+    const pin=document.getElementById('driftPin');
+    const cue=document.getElementById('driftCue');
+    cue.hidden=false; cue.textContent='Scroll — the board turns';
+    mos.classList.add('tumble');
+
+    let seed=0; for(const ch of (board.id||'board')) seed=(seed*31+ch.charCodeAt(0))>>>0;
+    const rnd=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296);
+    const strata=figs.map((_,i)=>i);
+    for(let i=strata.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [strata[i],strata[j]]=[strata[j],strata[i]]; }
+
+    const ease=pathEase();
+    const master=gsap.timeline({scrollTrigger:{
+      trigger:pin, start:'top top', end:'bottom bottom', pin:mos, pinSpacing:false, scrub:true}});
+
+    figs.forEach((fig,i)=>{
+      const band=(strata[i]+0.15+rnd()*0.7)/figs.length;      // its own slice
+      const rx=(rnd()-0.5)*120, ry=(rnd()-0.5)*120, rz=(rnd()-0.5)*120;
+      const tl=gsap.timeline();
+      tl.fromTo(fig,{
+        xPercent:-30, yPercent:-50,
+        y:()=>innerHeight*(0.5+band*0.5),
+        rotationX:rx, rotationY:ry, rotationZ:rz
+      },{
+        xPercent:130, x:()=>innerWidth,
+        y:()=>innerHeight*(0.5+band*0.5) - 0.5*innerHeight,
+        rotationX:-rx, rotationY:-ry, rotationZ:-rz,
+        ease:ease, duration:0.4
+      });
+      master.add(tl, i*(1/figs.length));
+    });
+    pin.style.height=Math.min(560,180+figs.length*20)+'vh';
+    addEventListener('resize',()=>ScrollTrigger.refresh());
+    ScrollTrigger.refresh();
+
+  } else if(DRIFT && bf.length){
     const figs=[...mos.querySelectorAll('figure')];
     const pin=document.getElementById('driftPin');
     document.getElementById('driftCue').hidden=false;
