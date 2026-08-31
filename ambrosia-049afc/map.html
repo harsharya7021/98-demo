@@ -137,10 +137,30 @@ canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-ind
 #secname{bottom:24px;left:26px;font-family:var(--sans);
   font-size:22px;font-weight:600;letter-spacing:-.03em;color:var(--ink);text-transform:none}
 @media(max-width:860px){#secname{display:none}}
+
+/* ---- MWG 106 — the production wheel ------------------------------------
+   A flat 3D carousel of real frames from the shoots: the cursor tilts the
+   disc, the scroll wheel spins it, every plate clicks through to its case.
+   It replaces the constellation for ?s=production only; the dot/vignette/
+   grain overlays sit above it (z 2–3) so the room reads the same. */
+#wheel106{position:fixed;inset:0;z-index:1;display:none;overflow:hidden}
+#wheel106.on{display:block}
+#wheel106 .w-container{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+#wheel106 .w-medias{position:relative;z-index:2;width:100%;height:100%;transform-style:preserve-3d}
+#wheel106 .w-media{position:absolute;top:calc(50% - 7vw);left:calc(50% - 5.5vw);width:11vw;height:14vw;
+  transform-style:preserve-3d;will-change:transform;display:block;cursor:pointer}
+#wheel106 .w-media img{width:100%;height:100%;object-fit:cover;display:block;background:#0d0d0d;
+  outline:1px solid rgba(233,234,228,.14);outline-offset:-1px;
+  transition:outline-color .3s ease,filter .3s ease}
+#wheel106 .w-media:hover img{outline-color:rgba(233,234,228,.65)}
+@media(max-width:768px){
+  #wheel106 .w-media{top:calc(50% - 15vw);left:calc(50% - 12vw);width:24vw;height:30vw}
+}
 </style>
 </head>
 <body>
 <canvas id="stage"></canvas>
+<section id="wheel106" aria-label="Production — the wheel"><div class="w-container"><div class="w-medias"></div></div></section>
 <div id="dots"></div><div id="grain"></div><div id="vig"></div>
 
 <header class="sitehead fixed"></header>
@@ -165,6 +185,7 @@ canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-ind
 <script src="curation.js"></script>
 <script src="nav.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 
 /* ---- Ambrosia edition: data comes from data.js, filtered by ?s=<section> ---- */
@@ -230,6 +251,12 @@ const _PL={"amsterdam":"plates/amsterdam.jpg","araana":"plates/araana.jpg","ayur
 const PLATES={};
 _list.forEach(c=>{ if(_PL[c.id]) PLATES[c.id]=_PL[c.id]; });
 document.title = _sec.n + ' — The Work';
+
+/* Production runs on the MWG 106 wheel (further down); the constellation
+   below still serves every other section that lands on this page. */
+const WHEEL = (_secId === 'production');
+
+if(!WHEEL){
 
 
 /* ============================================================
@@ -418,6 +445,48 @@ const ray=new THREE.Raycaster();
 let hovered=null, focused=null, panelOpen=false, pointerSeen=false;
 let pan=0, panT=0;
 
+/* ---------- snap to the nearest plate ------------------------------------
+   Ported from MWG 107, "Bulged infinite grid": when a gesture ends, the plate
+   closest to the centre of the frame is brought to the centre.
+
+   Only the idea is borrowed. 107 itself is a CSS-3D dome of <img> tags, and
+   swapping this scene for it would mean giving up the shader plates, the
+   raycast hover, the category dimming and — the real loss — the link lines
+   between cases that share creators. That graph is the argument this page
+   makes; no published effect knows about it.
+
+   What 107 has that this did not is resolution. Letting go of a drag used to
+   leave the camera wherever momentum died, usually with a plate half out of
+   frame and a small target to click. The rig now translates so the nearest
+   plate lands dead centre, and because the whole camera moves rather than the
+   look-at angle, the next drag orbits AROUND that plate. Same behaviour as
+   107's snap, expressed in this page's spherical camera. */
+const focus=new THREE.Vector3(), focusT=new THREE.Vector3();
+const REDUCED = matchMedia('(prefers-reduced-motion:reduce)').matches;
+let snapTimer=0;
+
+function nearestToCentre(){
+  let best=null, bestD=Infinity;
+  const list = pickList||tiles;
+  for(let i=0;i<list.length;i++){
+    const m=list[i];
+    proj.copy(m.position).project(camera);
+    if(proj.z>1) continue;                       // behind the camera
+    const d=proj.x*proj.x + proj.y*proj.y;
+    if(d<bestD){ bestD=d; best=m; }
+  }
+  return best;
+}
+function snapToNearest(){
+  if(panelOpen || dragging || REDUCED) return;
+  const m=nearestToCentre();
+  if(m) focusT.copy(m.position);
+}
+function queueSnap(ms){
+  clearTimeout(snapTimer);
+  snapTimer=setTimeout(snapToNearest, ms);
+}
+
 function extents(m){
   let ex=0,ey=0,ez=0;
   CASES.forEach(c=>{const p=c.L[m];
@@ -443,6 +512,10 @@ function setMode(m){
   });
   radiusT=fitRadius(m);
   if(m===3){ thetaT=0; phiT=Math.PI/2; }
+  /* every plate is about to move, so a focus locked to an old position would
+     drag the camera to empty space. Recentre and let the next gesture settle. */
+  clearTimeout(snapTimer);
+  focusT.set(0,0,0);
   document.getElementById('hint').classList.add('off');
 }
 
@@ -452,6 +525,7 @@ addEventListener('pointerdown',e=>{
   dragging=true;moved=0;lastX=e.clientX;lastY=e.clientY;
   document.getElementById('hint').classList.add('off');
   document.body.classList.add('drag');idle=0;
+  clearTimeout(snapTimer);        // a new gesture outranks a pending settle
 });
 addEventListener('pointermove',e=>{
   pointerSeen=true;
@@ -467,12 +541,18 @@ addEventListener('pointermove',e=>{
 });
 addEventListener('pointerup',e=>{
   document.body.classList.remove('drag');
+  const wasDrag = dragging && moved>=6;
   if(dragging && moved<6 && hovered && !panelOpen){const _d=hovered.userData.data;if(_d&&_d.page){document.body.style.cursor='wait';location.href=_d.page;}else openCase(hovered);}
   dragging=false;
+  /* a real drag resolves onto the nearest plate; a click already went somewhere */
+  if(wasDrag) queueSnap(90);
 });
 addEventListener('wheel',e=>{
   if(panelOpen && e.target.closest('#panel')) return;
   radiusT=Math.max(17,Math.min(66, radiusT*(1+e.deltaY*0.0011)));idle=0;
+  /* wheel events arrive in bursts, so settle only once the burst stops —
+     snapping mid-zoom would fight the user's own gesture */
+  queueSnap(220);
 },{passive:true});
 let pinch=0;
 addEventListener('touchmove',e=>{
@@ -481,9 +561,10 @@ addEventListener('touchmove',e=>{
                        e.touches[0].clientY-e.touches[1].clientY);
     if(pinch) radiusT=Math.max(17,Math.min(66,radiusT*(pinch/d)));
     pinch=d;idle=0;
+    clearTimeout(snapTimer);
   }
 },{passive:true});
-addEventListener('touchend',()=>{pinch=0;});
+addEventListener('touchend',()=>{ if(pinch) queueSnap(220); pinch=0; });
 addEventListener('keydown',e=>{
   if(e.key==='Escape') closeCase();
 });
@@ -515,6 +596,11 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','
 function openCase(t){
   const d=t.userData.data, links=adj[t.userData.i];
   focused=t;panelOpen=true;hovered=null;panT=1;
+  /* 107 centres whatever you click. Here that matters more than it does there:
+     the panel slides in over the right-hand side, so an opened plate sitting
+     off to the right would end up underneath it. */
+  clearTimeout(snapTimer);
+  if(!REDUCED) focusT.copy(t.position);
   pbody.innerHTML=
     '<div class="pcode">'+esc(d.code)+' · '+esc(d.cat)+'</div>'+
     '<h1>'+esc(d.n)+'</h1>'+
@@ -586,6 +672,14 @@ function frame(now){
   const shift=pan*radius*0.135;
   camPos.addScaledVector(right,shift);
   CENTER.addScaledVector(right,shift);
+  /* The snap. A rigid translation of the whole rig, applied after fwd/right
+     are taken — moving camera and look-at together keeps the orientation and
+     simply slides the framing, so the focused plate ends up centred without
+     the horizon tipping. Slower than the orbit lerps on purpose: the settle
+     should read as the scene coming to rest, not as a correction. */
+  focus.lerp(focusT, Math.min(1, 0.045*dt));
+  camPos.add(focus);
+  CENTER.add(focus);
   camera.position.copy(camPos);
   camera.lookAt(CENTER);
   camera.updateMatrixWorld();
@@ -657,6 +751,175 @@ function frame(now){
 }
 requestAnimationFrame(frame);
 
+} /* end of the constellation — Production never enters it */
+
+</script>
+<script>
+/* ============================================================
+   MWG 106 — the production wheel.
+   Ported from the published effect; adapted to carry the actual
+   book: one frame per production case, arranged on a flat 3D
+   disc. Cursor tilts the disc, scroll spins it, a click opens
+   the case page. Uses the same loader, hint and tip chrome as
+   the constellation, and — folders.html's policy — degrades to
+   a static, clickable ring if the GSAP CDN is unreachable.
+   ============================================================ */
+if(WHEEL){(function(){
+  const root  = document.getElementById('wheel106');
+  const holder= root.querySelector('.w-medias');
+  root.classList.add('on');
+  document.getElementById('stage').style.display='none';
+  document.body.style.cursor='default';
+  const arrEl=document.getElementById('arr'); if(arrEl) arrEl.style.display='none';
+
+  const hint=document.getElementById('hint');
+  hint.textContent='Move to tilt \u00b7 scroll to spin \u00b7 click a frame to open the case';
+  setTimeout(()=>hint.classList.add('off'), 9000);
+
+  /* one representative frame per production case */
+  const items=_list.filter(c=>c.frames && c.frames.length).map(c=>({
+    id:c.id, n:c.n, code:c.code, k:c.k,
+    src:'frames/'+c.id+'/'+c.frames[0].f,
+    page:c.casepage || ('roll.html?c='+c.id)
+  }));
+
+  const tip=document.getElementById('tip');
+  const t1=tip.querySelector('.t1'), t2=tip.querySelector('.t2'),
+        t3=tip.querySelector('.t3'), t4=tip.querySelector('.t4');
+
+  const medias=items.map(it=>{
+    const a=document.createElement('a');
+    a.className='w-media'; a.href=it.page; a.setAttribute('aria-label',it.n);
+    const im=document.createElement('img');
+    im.src=it.src; im.alt=it.n; im.draggable=false;
+    a.appendChild(im); holder.appendChild(a);
+    a.addEventListener('mouseenter',()=>{
+      t1.textContent=it.code;
+      t2.textContent=it.n;
+      t3.textContent=_sec.n+' \u00b7 '+(it.k||'');
+      t4.textContent='Open the case \u2197';
+      tip.classList.add('on');
+    });
+    a.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+    return a;
+  });
+
+  /* loader — same contract the constellation kept */
+  const pctEl=document.getElementById('pct');
+  let done=0; const total=Math.max(1,medias.length);
+  let revealed=false;
+  function reveal(){ if(revealed) return; revealed=true;
+    document.getElementById('load').classList.add('done'); pctEl.classList.add('done'); }
+  function tick(){ done++;
+    pctEl.textContent=Math.min(100,Math.round(done/total*100))+'%';
+    if(done>=total) setTimeout(reveal,420); }
+  medias.forEach(a=>{ const im=a.firstChild;
+    if(im.complete) tick(); else { im.onload=tick; im.onerror=tick; } });
+  setTimeout(reveal,7000);
+  document.getElementById('cTot').textContent=items.length;
+
+  const n=medias.length;
+  const baseAngles=Array.from({length:n},(_,i)=>(i/n)*Math.PI*2);
+  const REDUCED=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const G=window.gsap;
+
+  let mediaVw = innerWidth<=768 ? 30 : 12;
+  function getLayout(){
+    const scale=mediaVw/12;
+    return { w:innerWidth, h:innerHeight,
+      radiusDivisor:3.5/scale, minDivisor:2.2/scale,
+      wheelRadiusFactor:0.12/scale, translateZ:-26*scale };
+  }
+  let layout=getLayout();
+
+  /* ---- no-GSAP fallback: a still, clickable ellipse ---- */
+  if(!G){
+    const radius=layout.w/layout.radiusDivisor;
+    medias.forEach((el,i)=>{
+      const a=baseAngles[i];
+      el.style.transform='translate('+(Math.sin(a)*radius).toFixed(1)+'px,'
+        +(Math.cos(a)*radius*0.42).toFixed(1)+'px)';
+    });
+    return;
+  }
+
+  /* resting pose is slightly open — a 90deg disc is an edge-on line until
+     the first mousemove, which a touch viewer would never send */
+  const transform={rotateX:80,rotateY:0,rotateZ:1,translateX:0,translateY:0};
+  const autoOffset={value:0}, wheelOffset={value:0}, wheelIntensity={value:0};
+
+  function renderTilt(){
+    const {translateX,translateY,rotateX,rotateY,rotateZ}=transform;
+    holder.style.transform=
+      'translate3d('+translateX+'vw,'+translateY+'vw,'+layout.translateZ+'vw) '+
+      'rotateX('+rotateX+'deg) rotateY('+rotateY+'deg) rotateZ('+rotateZ+'deg)';
+    /* counter-rotate every plate so the frames keep facing the viewer */
+    medias.forEach(el=>G.set(el,{rotationX:-rotateX,rotationY:-rotateY,rotation:-rotateZ}));
+  }
+  function updateScene(){
+    root.style.perspective=(100+wheelIntensity.value*30)+'vw';
+    const offset=autoOffset.value+wheelOffset.value;
+    const radius=layout.w/Math.max(layout.minDivisor,
+      layout.radiusDivisor-wheelIntensity.value*layout.wheelRadiusFactor);
+    medias.forEach((el,i)=>{
+      const a=offset+baseAngles[i];
+      G.set(el,{x:Math.sin(a)*radius,y:Math.cos(a)*radius});
+    });
+  }
+
+  const tiltCfg={duration:0.55,ease:'power3'};
+  const setRotateX=G.quickTo(transform,'rotateX',tiltCfg);
+  const setRotateY=G.quickTo(transform,'rotateY',tiltCfg);
+  const setRotateZ=G.quickTo(transform,'rotateZ',{...tiltCfg,onUpdate:renderTilt});
+  const setWheelIntensity=G.quickTo(wheelIntensity,'value',{duration:1.3,ease:'power2.out',onUpdate:updateScene});
+  const setWheelOffset=G.quickTo(wheelOffset,'value',{duration:0.5,ease:'power2',onUpdate:updateScene});
+
+  let wheelSpeed=0, wheelResetTimer=0;
+
+  /* the demo swings +/-25deg — right for a toy, wrong for click targets.
+     Half the sway keeps the parallax and stops plates fleeing the cursor. */
+  function applyTilt(cx,cy){
+    setRotateY((cx/layout.w)*20-10);
+    setRotateX((cy/layout.h)*16-8+82);
+    setRotateZ(-(cx/layout.w)*5+2.5);
+  }
+  root.addEventListener('mousemove',e=>{
+    applyTilt(e.clientX,e.clientY);
+    tip.style.transform='translate(-50%,0) translate('+e.clientX+'px,'+(e.clientY+30)+'px)';
+  });
+  function onTouch(e){ if(e.touches && e.touches[0]) applyTilt(e.touches[0].clientX,e.touches[0].clientY); }
+  root.addEventListener('touchstart',onTouch,{passive:true});
+  root.addEventListener('touchmove',onTouch,{passive:true});
+  root.addEventListener('wheel',e=>{
+    wheelSpeed+=e.deltaY/20;
+    setWheelOffset(wheelSpeed*0.017);
+    setWheelIntensity(Math.abs(e.deltaY)/12);
+    clearTimeout(wheelResetTimer);
+    wheelResetTimer=setTimeout(()=>setWheelIntensity(0),120);
+    hint.classList.add('off');
+  },{passive:true});
+
+  /* a slow standing rotation — the demo's 12s is a screensaver,
+     36s is a bookshelf. Reduced-motion viewers get a still disc, and the
+     spin pauses while a plate is under the cursor: these are click
+     targets, and nobody should have to chase one. */
+  const autoTween = REDUCED ? null :
+    G.to(autoOffset,{value:Math.PI*2,duration:36,repeat:-1,ease:'none',onUpdate:updateScene});
+  root.addEventListener('mouseover',e=>{
+    if(autoTween && e.target.closest('.w-media')) G.to(autoTween,{timeScale:0,duration:0.35,overwrite:'auto'});
+  });
+  root.addEventListener('mouseout',e=>{
+    if(autoTween && e.target.closest('.w-media') && !(e.relatedTarget&&e.relatedTarget.closest('.w-media')))
+      G.to(autoTween,{timeScale:1,duration:0.6,overwrite:'auto'});
+  });
+
+  addEventListener('resize',()=>{
+    mediaVw = innerWidth<=768 ? 30 : 12;
+    layout=getLayout(); renderTilt(); updateScene();
+  });
+
+  renderTilt(); updateScene();
+})();}
 </script>
 <script>
   (function(){ window.NAV.mount(_secId,'');
