@@ -138,6 +138,41 @@ canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-ind
   font-size:22px;font-weight:600;letter-spacing:-.03em;color:var(--ink);text-transform:none}
 @media(max-width:860px){#secname{display:none}}
 
+/* ---- the paper register (Production only) -------------------------------
+   The wheel is photography on a page, so it sits on the folder index's paper
+   rather than the map's carbon. Scoped to html.paper — set from the query
+   string before anything paints — because this same file still renders the
+   WebGL constellation for every other section, and that scene clears to
+   #0a0a0a in the shader. A bone HUD over a black canvas is the failure mode
+   this class exists to prevent.
+
+   Four things here had to be re-cut rather than recoloured: the dot field is
+   screen-blended (invisible on light, so it multiplies now), the vignette was
+   a black halo, the plate hairline was bone-on-dark, and plates need a shadow
+   to sit on paper instead of looking pasted onto it. */
+html.paper{
+  --ink:#0E0E10; --bg:#F6F5F2;
+  --dim:rgba(14,14,16,.52); --dimmer:rgba(14,14,16,.26);
+  --red:#DD3D38;
+}
+html.paper body{background:var(--bg);color:var(--ink)}
+html.paper #dots{background-image:radial-gradient(circle at 50% 50%, rgba(14,14,16,.16) .6px, transparent .7px);
+  mix-blend-mode:multiply;opacity:.42}
+html.paper #vig{background:radial-gradient(ellipse 92% 78% at 50% 50%,
+  transparent 42%, rgba(246,245,242,.55) 82%, rgba(240,238,233,.92) 100%)}
+html.paper #grain{opacity:.028;mix-blend-mode:multiply}
+html.paper #wheel106 .w-media img{background:#F6F5F2;
+  outline-color:rgba(14,14,16,.16);
+  box-shadow:0 10px 26px rgba(14,14,16,.13), 0 2px 6px rgba(14,14,16,.07)}
+html.paper #wheel106 .w-media:hover img{outline-color:rgba(14,14,16,.62);
+  box-shadow:0 16px 40px rgba(14,14,16,.20), 0 3px 8px rgba(14,14,16,.10)}
+html.paper #load{background:var(--bg)}
+html.paper #load .mark{border-color:var(--dimmer);color:var(--dim)}
+html.paper #panel{background:#fff;border-left-color:rgba(14,14,16,.13)}
+html.paper #arr{border-color:rgba(14,14,16,.18)}
+html.paper #arr button.on{background:var(--ink);color:var(--bg)}
+html.paper #scrim{background:linear-gradient(90deg,transparent 40%,rgba(14,14,16,.28) 100%)}
+
 /* ---- MWG 106 — the production wheel ------------------------------------
    A flat 3D carousel of real frames from the shoots: the cursor tilts the
    disc, the scroll wheel spins it, every plate clicks through to its case.
@@ -159,6 +194,10 @@ canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-ind
 </style>
 </head>
 <body>
+<script>/* before first paint, and without waiting on data.js — only an explicit
+   ?s=production reaches the wheel, so the query string is enough to know */
+if(new URLSearchParams(location.search).get('s')==='production')
+  document.documentElement.classList.add('paper');</script>
 <canvas id="stage"></canvas>
 <section id="wheel106" aria-label="Production — the wheel"><div class="w-container"><div class="w-medias"></div></div></section>
 <div id="dots"></div><div id="grain"></div><div id="vig"></div>
@@ -769,6 +808,9 @@ if(WHEEL){(function(){
   const holder= root.querySelector('.w-medias');
   root.classList.add('on');
   document.getElementById('stage').style.display='none';
+  /* head.css already defines the paper palette as .light for the folder
+     index; reuse it rather than restating the tokens here */
+  const shead=document.querySelector('.sitehead'); if(shead) shead.classList.add('light');
   document.body.style.cursor='default';
   const arrEl=document.getElementById('arr'); if(arrEl) arrEl.style.display='none';
 
