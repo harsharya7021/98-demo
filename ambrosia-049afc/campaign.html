@@ -320,6 +320,11 @@ a{color:inherit}
     (c.note?'<div class="tag">'+esc(c.note)+'</div>':'');
   const copyBlock=(c,fr)=>titleBlock(c)+bodyBlock(c,fr);
 
+  /* The badge only appears on a piece that has a photograph, but the count
+     used to run over every piece including the written ones — so the numbers
+     read 01 then 04 with nothing in between. Number the frames, not the
+     entries. */
+  let shot=0;
   document.getElementById('pieces').innerHTML = rest.map((c,i)=>{
     const fr=window.CURATION.framesFor(c);
     /* A piece with no photography runs full width. Emitting an empty .shot
@@ -332,7 +337,7 @@ a{color:inherit}
     return '<article class="piece">'+
       '<div class="shot"><img loading="lazy" src="'+fr[0].src+'" alt="'+esc(c.n)+'"'+
       (fr[0].w?' width="'+fr[0].w+'" height="'+fr[0].h+'"':'')+'>'+
-      '<span class="n">'+String(i+1).padStart(2,'0')+'</span></div>'+
+      '<span class="n">'+String(++shot).padStart(2,'0')+'</span></div>'+
       '<div>'+copyBlock(c,fr)+'</div></article>';
   }).join('');
 
