@@ -244,7 +244,8 @@ a{color:inherit}
 
 <div id="lb"><span class="x">Close ✕</span><img alt=""></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/InertiaPlugin.min.js"></script>
 <script src="data.js"></script>
 <script src="curation.js"></script>
 <script src="nav.js"></script>
@@ -417,21 +418,27 @@ a{color:inherit}
   }),{rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.piece,.mosaic figure').forEach(el=>io.observe(el));
 
-  /* ---- MWG Free 001: throw and spring back --------------------------
-     The published version uses InertiaPlugin (Club GSAP) to convert cursor
-     velocity into a throw. Rebuilt here on core GSAP so the page carries no
-     licensed plugin: the frame is thrown along the pointer's last movement,
-     capped so a fast flick cannot hurl it across the section, then returns
-     on an elastic settle. The wobble is the effect's own yoyo rotation. */
+  /* ---- MWG Free 001: throw and settle --------------------------------
+     The real thing: InertiaPlugin converts the cursor's velocity into a
+     throw and decays it back to rest, which is why the frame keeps going a
+     little after the hand has passed and slows the way an object with mass
+     would. (The plugin used to be Club-only; GSAP 3.13 — April 2025 — made
+     every plugin free under the standard licence, so the site simply pins
+     3.13.0 everywhere and loads it.)
+
+     If the plugin fails to arrive, the tween falls back to a plain throw and
+     an elastic return: the same gesture with worse physics, which is the
+     right way round for a CDN hiccup. */
   if(FLUTTER && bf.length){
+    const INERTIA = !!window.InertiaPlugin;
+    if(INERTIA) gsap.registerPlugin(InertiaPlugin);
+
     const figs=[...mos.querySelectorAll('figure')];
     let oldX=0, oldY=0, dx=0, dy=0;
     mos.addEventListener('mousemove',e=>{
       dx=e.clientX-oldX; dy=e.clientY-oldY;
       oldX=e.clientX; oldY=e.clientY;
     });
-    const CAP=90;                                  // px; a flick has a ceiling
-    const clamp=v=>Math.max(-CAP,Math.min(CAP,v));
     let seed=0; for(const ch of (board.id||'board')) seed=(seed*31+ch.charCodeAt(0))>>>0;
     const rnd=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296);
 
@@ -440,8 +447,14 @@ a{color:inherit}
         const img=fig.querySelector('img');
         const tl=gsap.timeline({onComplete:()=>tl.kill()});
         tl.timeScale(1.2);
-        tl.to(img,{x:clamp(dx*2.2), y:clamp(dy*2.2), duration:0.22, ease:'power2.out'})
-          .to(img,{x:0, y:0, duration:0.9, ease:'elastic.out(1,0.5)'});
+        if(INERTIA){
+          tl.to(img,{inertia:{x:{velocity:dx*30, end:0},
+                              y:{velocity:dy*30, end:0}}});
+        } else {
+          const CAP=90, clamp=v=>Math.max(-CAP,Math.min(CAP,v));
+          tl.to(img,{x:clamp(dx*2.2), y:clamp(dy*2.2), duration:0.22, ease:'power2.out'})
+            .to(img,{x:0, y:0, duration:0.9, ease:'elastic.out(1,0.5)'});
+        }
         tl.fromTo(img,{rotate:0},{duration:0.4, rotate:(rnd()-0.5)*30,
           yoyo:true, repeat:1, ease:'power1.inOut'}, '<');
       });
