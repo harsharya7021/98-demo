@@ -53,7 +53,7 @@ a{color:inherit}
 
 /* one micro-label treatment, used everywhere small type appears */
 .lbl,.mast .code,.piece .k,.piece .tag,.piece .more,.rule i,.pal span,
-.rules b,.pager a,.hero .cap,.mosaic figcaption,.switch a,#lb .x{
+.rules b,.pager a,.mosaic figcaption,.switch a,#lb .x{
   font-family:var(--sans);font-weight:500;letter-spacing:.18em;text-transform:uppercase}
 
 /* The section bar already carries both campaigns, so the two-up switcher is a
@@ -74,14 +74,6 @@ a{color:inherit}
 .mast .shift{margin-top:26px;padding-left:16px;border-left:2px solid var(--rose);
   font-family:var(--serif);font-style:italic;font-weight:300;
   font-size:clamp(16px,1.6vw,21px);line-height:1.4;color:var(--ink);max-width:40ch}
-
-/* ---- hero ---- */
-.hero{position:relative;margin:clamp(20px,4vh,44px) 0 0;overflow:hidden;background:var(--frame)}
-.hero img{display:block;width:100%;height:clamp(320px,64vh,760px);object-fit:cover}
-.hero .cap{position:absolute;left:var(--pad);bottom:22px;right:var(--pad);
-  font-size:10px;color:rgba(242,231,231,.92);text-shadow:0 2px 24px rgba(0,0,0,.9)}
-.hero::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(transparent 55%,rgba(28,27,27,.78))}
 
 /* ---- section rule ---- */
 .rule{max-width:1500px;margin:clamp(56px,10vh,116px) auto clamp(22px,4vh,40px);padding:0 var(--pad);
@@ -121,9 +113,6 @@ a{color:inherit}
 .piece .more{display:block;width:fit-content;margin-top:16px;font-size:9.5px;
   color:var(--rose);text-decoration:none}
 .piece .more:hover{color:var(--ink)}
-/* The opening piece has no image of its own — the hero above it is its
-   photograph. It runs as a single wide column so the absence reads as a lede
-   rather than a missing picture. */
 /* A written entry with no photography of its own: title set against its body
    in facing columns, so it holds the page instead of trailing down the left
    third of it. Same measure as a piece that has an image beside it. */
@@ -133,10 +122,6 @@ a{color:inherit}
 .piece.flat .k{margin-top:15px}
 .piece.flat p{margin-top:0;max-width:54ch}
 @media(max-width:880px){.piece.flat{grid-template-columns:1fr}}
-.piece.lede{grid-template-columns:1fr;align-items:start;margin-bottom:clamp(48px,9vh,116px)}
-.piece.lede h3{font-size:clamp(34px,5vw,72px)}
-.piece.lede p{font-size:clamp(15px,1.5vw,19px);max-width:56ch}
-.piece.lede blockquote{font-size:clamp(22px,2.4vw,34px);max-width:40ch}
 @media(max-width:880px){
   .piece{grid-template-columns:1fr;gap:22px}
   .piece:nth-child(even) .shot{order:0}
@@ -186,7 +171,7 @@ a{color:inherit}
    the hover; the figure underneath is the target and never moves. The caption
    keeps its pointer events, so the `source ↗` credit stays clickable. */
 /* --frame is a ground painted behind an image while it loads, and it works
-   everywhere an image sits still — .hero and .piece .shot keep it. Here the
+   everywhere an image sits still — .piece .shot keeps it. Here the
    image no longer sits still: the throw slides it off its own box, and the
    ground was left showing as a white rectangle behind every frame. The
    mosaic's figures carry no ground now, so there is nothing to expose. */
@@ -232,7 +217,6 @@ a{color:inherit}
 <header class="sitehead"></header>
 
 <section class="mast" id="mast"></section>
-<div class="hero" id="hero"></div>
 
 <div class="rule" id="ruleWork"><i id="workNum"></i><h2 id="workTitle"></h2><span class="ln"></span></div>
 <div id="pieces"></div>
@@ -312,21 +296,11 @@ a{color:inherit}
     '<p class="sub">'+esc(sec.d)+'</p>'+
     '<p class="shift">Set in your own palette and typefaces.</p>';
 
-  /* ---- hero ----
-     The strongest concept frame opens the page full-bleed. Its case is then
-     REMOVED from the alternating pieces below and written out as a lede
-     instead — running it in both places showed the same photograph twice,
-     a screen and a half apart. */
-  const heroCase=pieces.find(c=>(window.CURATION.framesFor(c)||[]).length);
-  const rest=pieces.filter(c=>c!==heroCase);
-  if(heroCase){
-    const f=window.CURATION.framesFor(heroCase)[0];
-    document.getElementById('hero').innerHTML=
-      '<img src="'+f.src+'" alt="'+esc(heroCase.n)+'">'+
-      '<div class="cap">'+esc(heroCase.n)+' — '+esc(heroCase.m||'')+'</div>';
-  }else{
-    document.getElementById('hero').style.display='none';
-  }
+  /* The page used to open on a full-bleed hero frame, and the case it came
+     from was pulled out of the list below and written as a lede so the same
+     photograph did not run twice. The hero is gone, so nothing needs pulling
+     out: every piece runs once, in the editorial grid, in order. */
+  const rest=pieces;
 
   /* ---- concept pieces ---- */
   document.getElementById('workNum').textContent='01';
@@ -346,12 +320,7 @@ a{color:inherit}
     (c.note?'<div class="tag">'+esc(c.note)+'</div>':'');
   const copyBlock=(c,fr)=>titleBlock(c)+bodyBlock(c,fr);
 
-  const lede = heroCase
-    ? '<article class="piece lede"><div class="txt">'+
-      copyBlock(heroCase, window.CURATION.framesFor(heroCase))+'</div></article>'
-    : '';
-
-  document.getElementById('pieces').innerHTML = lede + rest.map((c,i)=>{
+  document.getElementById('pieces').innerHTML = rest.map((c,i)=>{
     const fr=window.CURATION.framesFor(c);
     /* A piece with no photography runs full width. Emitting an empty .shot
        instead left half the grid blank, which reads as a failed image rather
@@ -363,7 +332,7 @@ a{color:inherit}
     return '<article class="piece">'+
       '<div class="shot"><img loading="lazy" src="'+fr[0].src+'" alt="'+esc(c.n)+'"'+
       (fr[0].w?' width="'+fr[0].w+'" height="'+fr[0].h+'"':'')+'>'+
-      '<span class="n">'+String(i+2).padStart(2,'0')+'</span></div>'+
+      '<span class="n">'+String(i+1).padStart(2,'0')+'</span></div>'+
       '<div>'+copyBlock(c,fr)+'</div></article>';
   }).join('');
 
@@ -474,7 +443,7 @@ a{color:inherit}
        re-trigger itself, so a click there lands on the figure */
     const fig=e.target.closest('.mosaic figure');
     const im=fig ? fig.querySelector('img')
-                 : e.target.closest('.piece img, .hero img');
+                 : e.target.closest('.piece img');
     if(!im) return;
     lbi.src=im.dataset.full||im.currentSrc||im.src; lb.classList.add('on');
   });
