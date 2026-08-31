@@ -7,7 +7,7 @@
 <title>Ambrosia × 98 — The Work</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* =============================================================
    The entry page — MWG 108, "hover list with flanking media".
@@ -20,8 +20,9 @@
    moment the cursor lands on a name.
 
    Ground is bone #F6F5F2 — the same paper as the folder index and
-   the production wheel. The two campaign sections keep Ambrosia's
-   dusty rose so the change of language is visible from here.
+   the production wheel. All five names share one face; the two
+   campaign sections are set in Ambrosia's dusty rose, so the change
+   of language is visible from here without a second typeface.
    ============================================================= */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
@@ -40,11 +41,6 @@
   --row:calc(var(--tile) + 22px);   /* always taller than a tile: the clearance */
   --mono:"Space Mono",ui-monospace,Menlo,monospace;
   --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
-  /* Ambrosia's own face and warm near-black, lifted from campaign.html — the
-     two campaign sections are set in the client's identity, so they speak in
-     it here too rather than waiting until you click. */
-  --amb-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-  --amb-ink:#1C1B1B;
 }
 html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
 
@@ -80,15 +76,14 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   font-size:var(--name);font-weight:800;letter-spacing:-.03em;
   padding:.06em .1em;position:relative;
   transition:opacity .3s ease,color .3s ease}
-/* The two sections set in Ambrosia's identity are said in Ambrosia's voice:
-   Cormorant at a reading weight against Archivo's 800, their warm near-black
-   rather than 98's carbon, and the tracking opened back to normal because
-   tight negative tracking is a grotesk habit, not a garalde one. It is the
-   quietest way to say "you are about to change language" — and with the
-   counts gone it is the standing signal the rose numeral used to carry.
-   Serifs at the same pixel size read smaller, so they take a little more. */
-.lines a.amb{font-family:var(--amb-serif);font-weight:500;color:var(--amb-ink);
-  font-size:calc(var(--name) * 1.14);letter-spacing:-.005em}
+/* One type across all five names — the list is a single voice reading a
+   contents page, and swapping the face for two of them broke that.
+   The two sections set in Ambrosia's identity are marked in colour instead:
+   their dusty rose against 98's carbon, which is the same mark the rose dot
+   makes in the site header and the rose numeral used to make here. At this
+   size and weight it clears AA on bone (3.8:1), so it is a quiet signal
+   rather than a weak one. */
+.lines a.amb{color:var(--rose)}
 .lines a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 /* while one name is hovered the others step back — the list behaves like the
    gallery slats do, one thing in focus at a time */
@@ -125,8 +120,7 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   padding:22px 0}
 #m a:last-child{border-bottom:1px solid var(--dimmer)}
 #m .n{font-size:30px;font-weight:800;letter-spacing:-.03em}
-#m a.amb .n{font-family:var(--amb-serif);font-weight:500;color:var(--amb-ink);
-  font-size:35px;letter-spacing:-.005em}
+#m a.amb .n{color:var(--rose)}
 #m .d{font-size:17px;line-height:28px;color:var(--dim);margin-top:8px;max-width:52ch}
 #m .s{display:flex;gap:6px;margin-top:14px}
 #m .s img{width:74px;height:74px;object-fit:cover;border-radius:2px;background:#F6F5F2}
