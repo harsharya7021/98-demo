@@ -185,7 +185,12 @@ a{color:inherit}
    The image is pointer-transparent so that its own travel cannot re-trigger
    the hover; the figure underneath is the target and never moves. The caption
    keeps its pointer events, so the `source ↗` credit stays clickable. */
-.mosaic figure{cursor:default}
+/* --frame is a ground painted behind an image while it loads, and it works
+   everywhere an image sits still — .hero and .piece .shot keep it. Here the
+   image no longer sits still: the throw slides it off its own box, and the
+   ground was left showing as a white rectangle behind every frame. The
+   mosaic's figures carry no ground now, so there is nothing to expose. */
+.mosaic figure{cursor:default;background:none}
 .mosaic img{will-change:transform;pointer-events:none}
 .mosaic figcaption{pointer-events:auto}
 
