@@ -7,531 +7,295 @@
 <title>Ambrosia × 98 — The Work</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* =============================================================
+   The entry page — MWG 108, "hover list with flanking media".
+
+   What replaced what: this was an orbiting cloud of five circular
+   cards on black. The cloud had a real problem — a card had to be
+   hunted before it would say its own name, so the five doors were
+   never all legible at once. A list says all five at once, in type,
+   and spends the photography on answering "what is in there?" the
+   moment the cursor lands on a name.
+
+   Ground is bone #F6F5F2 — the same paper as the folder index and
+   the production wheel. The two campaign sections keep Ambrosia's
+   dusty rose so the change of language is visible from here.
+   ============================================================= */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 :root{
-  --ink:#E9EAE4; --bg:#000; --dim:rgba(233,234,228,.44); --dimmer:rgba(233,234,228,.18);
-  --red:#E4322B; --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --ink:#0E0E10; --bg:#F6F5F2;
+  --dim:rgba(14,14,16,.52); --dimmer:rgba(14,14,16,.26);
+  --red:#DD3D38; --rose:#B5677A;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
   --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
 }
 html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
 
-#cloud{position:fixed;inset:0;z-index:2}
-#field{position:absolute;inset:0;will-change:transform}
-/* Round at every size, and clipped — the image has to be cropped to the circle.
-   The radius used to be set inline while the card morphed into a rectangle for
-   the grid; that is gone, so it lives here now. */
-.tile{position:absolute;left:50%;top:50%;display:block;padding:0;border:0;background:none;
-  cursor:pointer;will-change:transform,opacity;opacity:0;overflow:hidden;border-radius:50%;
-  box-shadow:0 24px 60px rgba(0,0,0,.55);
-  transition:opacity .9s cubic-bezier(.2,.7,.2,1),filter .5s ease}
-.tile.in{opacity:1}
-.tile img{display:block;width:100%;height:100%;object-fit:cover;background:#0d0d0d}
-
-/* The name belongs only to whichever card the wheel has brought to the focus.
-   The scrim has to carry white type over a pale beach sky and a lit brass
-   teapot, so it is deeper than it looks like it needs to be, and clipping to
-   the circle turns it into a chord across the bottom. */
-/* Centred, and inset by a fifth on each side. The card is a circle, so near the
-   bottom the visible chord is much narrower than the card — left-aligned text
-   at 14px started outside the circle and got its first letters clipped. */
-.cap{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:34% 18% 11%;
-  text-align:center;pointer-events:none;opacity:0;
-  /* darkest where the type actually sits, not at the very bottom edge — the
-     name lands around 80% down and was floating in a half-strength scrim */
-  background:linear-gradient(transparent,rgba(0,0,0,.72) 62%,rgba(0,0,0,.95) 88%)}
-.cap b{display:block;font-size:clamp(14px,1.3vw,19px);font-weight:600;letter-spacing:-.02em;
-  line-height:1.1;color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.95),0 0 4px rgba(0,0,0,.9)}
-.cap i{display:block;margin-top:5px;font-style:normal;font-family:var(--mono);font-size:9px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
-/* The Usual and Well Given are set in Ambrosia's own identity. Their marks
-   here are Ambrosia's dusty rose, not 98's red, so the change of language is
-   visible from the entry page rather than sprung on you after a click. */
-.tile.amb .cap i{color:#B5677A}
-#dir a.amb::after{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;
-  background:#B5677A;margin-left:7px;vertical-align:middle;transform:translateY(-1px)}
-
-/* the click fallback — scroll is not the only way through */
-#expand{position:fixed;left:50%;bottom:104px;transform:translateX(-50%);z-index:6000;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--dim);border:1px solid var(--dimmer);border-radius:2px;
-  /* the open wheel passes behind this, so it needs a ground of its own */
-  background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  padding:9px 16px;cursor:pointer;transition:color .3s,border-color .3s,opacity .5s}
-#expand:hover{color:var(--ink);border-color:var(--dim)}
-/* Production runs a slideshow of on-location frames — stacked, cross-faded */
-.tile.slides{overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55);background:#0d0d0d}
-/* The incoming frame fades in ON TOP of the outgoing one, which stays fully
-   opaque underneath until the dissolve finishes. Fading both at once left them
-   half-transparent mid-cycle, so one logo showed through the other. */
-.tile.slides img{position:absolute;inset:0;box-shadow:none;opacity:0;z-index:1;
-  transition:opacity 1.2s cubic-bezier(.4,0,.2,1)}
-.tile.slides img.under{opacity:1;z-index:1;transition:none}
-.tile.slides img.on{opacity:1;z-index:2}
-#cloud.hot .tile{opacity:.14;filter:saturate(.15)}
-#cloud.hot .tile.lit{opacity:1;filter:none}
-
-#vig{position:fixed;inset:0;z-index:14;pointer-events:none;
-  background:radial-gradient(ellipse 72% 68% at 50% 50%, transparent 48%, rgba(0,0,0,.45) 80%, #000 100%)}
-
-#core{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;
-  text-align:center;pointer-events:none;width:min(760px,72vw)}
-#mark{transition:opacity .5s ease}
-#mark img{height:46px;display:block;margin:0 auto}
-
-#core.hot #mark{opacity:0}
-#label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;
-  font-size:clamp(24px,4vw,56px);font-weight:600;letter-spacing:-.035em;line-height:1.02;
-  opacity:0;transition:opacity .4s ease;text-shadow:0 2px 40px rgba(0,0,0,.9)}
-#label.on{opacity:1}
-#label small{display:block;margin-top:12px;font-family:var(--mono);font-size:10px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700}
-
-/* An open wheel is deliberately bigger than the screen, so cards run under the
-   chrome at the edges. The HUD sits above them and carries a shadow, or the
-   directory becomes unreadable behind a 500px circle. */
-.hud{position:fixed;z-index:6000;font-family:var(--mono);font-size:10px;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--dim);line-height:1.7;
-  text-shadow:0 1px 12px rgba(0,0,0,.95),0 0 3px rgba(0,0,0,.9)}
+/* ---- the corners ------------------------------------------------------- */
+.hud{position:fixed;z-index:40;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);line-height:1.8}
 #tl{top:24px;left:26px}
 #tr{top:24px;right:26px;text-align:right}
 #tr i{font-style:normal;color:var(--ink)}
-#hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:6000;
+#hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:40;
   font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--dimmer);transition:opacity .6s ease}
+  color:var(--dimmer);transition:opacity .6s ease;white-space:nowrap}
 #hint.off{opacity:0}
 
-/* speed read-out — a thin arc that fills as you spin */
-#rev{position:fixed;left:50%;bottom:52px;transform:translateX(-50%);z-index:6000;
-  width:120px;height:1px;background:rgba(233,234,228,.12)}
-#rev i{display:block;height:100%;width:0%;background:var(--red);transition:width .18s linear}
+/* ---- the entry ---------------------------------------------------------- */
+.entry{position:relative;height:100%;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mark{display:block;margin-bottom:clamp(18px,3.4vh,34px)}
+.mark img{height:34px;display:block}
+/* the kicker is on the locked scale — 13px, +.12em — like every other
+   kicker on the site */
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:clamp(20px,4vh,44px)}
 
-/* Full-bleed, not left:50% — a fixed box anchored at 50% with no width is
-   capped at half the viewport, so the fifth section wrapped onto a second row
-   and landed on top of the speed bar. */
-#dir{position:fixed;left:0;right:0;bottom:72px;z-index:6000;padding:0 26px;
-  display:flex;gap:clamp(10px,2.1vw,30px);flex-wrap:wrap;justify-content:center}
-#dir a{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.95),0 0 3px rgba(0,0,0,.9);
-  color:var(--dim);text-decoration:none;transition:color .3s;white-space:nowrap}
-#dir a:hover{color:var(--ink)}
-#dir a i{font-style:normal;color:var(--dimmer);margin-left:6px}
+.lines{list-style:none;display:flex;flex-direction:column;align-items:center;width:100%}
+.lines li{display:flex;width:100%;justify-content:center}
+/* Display type, and deliberately not the 48/52 the reading pages are locked
+   to: this is a poster, not a document. Everything else here — kicker, counts,
+   corners — stays on the locked scale, so the exception is the one line that
+   is supposed to behave like a headline. */
+.lines a{display:block;line-height:1.24;text-decoration:none;color:var(--ink);
+  font-size:clamp(38px,4.6vw,68px);font-weight:800;letter-spacing:-.03em;
+  padding:.06em .1em;position:relative;
+  transition:opacity .3s ease,color .3s ease}
+.lines a i{font-style:normal;font-family:var(--mono);font-size:13px;font-weight:400;
+  letter-spacing:.12em;color:var(--dimmer);vertical-align:.72em;margin-left:14px}
+/* the two sections set in Ambrosia's identity carry their rose, here as
+   everywhere else */
+.lines a.amb i{color:var(--rose)}
+.lines a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+/* while one name is hovered the others step back — the list behaves like the
+   gallery slats do, one thing in focus at a time */
+.lines.hot a{opacity:.34}
+.lines.hot a.on{opacity:1}
+.lines a.on::after{content:'';position:absolute;left:.1em;right:.1em;bottom:.12em;height:2px;
+  background:var(--red);transform-origin:left;animation:rule .45s cubic-bezier(.2,.7,.2,1)}
+.lines a.amb.on::after{background:var(--rose)}
+@keyframes rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
-#load{position:fixed;inset:0;z-index:60;background:#000;display:grid;place-items:center;
-  transition:opacity .9s ease .15s,visibility .9s ease .15s}
+/* ---- the flanking media ------------------------------------------------- */
+.medias{position:absolute;inset:0;z-index:2;visibility:hidden;opacity:0;pointer-events:none}
+.media{position:absolute;top:0;left:0;width:8vw;aspect-ratio:1;visibility:hidden;
+  pointer-events:none;will-change:transform}
+/* the inner tiles sit above the outer ones, so a fan reads as depth */
+.media:nth-child(8){z-index:1}.media:nth-child(7){z-index:2}
+.media:nth-child(6){z-index:3}.media:nth-child(5){z-index:4}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
+  border-radius:2px;background:#F6F5F2;
+  box-shadow:0 10px 26px rgba(14,14,16,.14),0 2px 6px rgba(14,14,16,.07)}
+
+/* ---- loader ------------------------------------------------------------- */
+#load{position:fixed;inset:0;z-index:60;background:var(--bg);display:grid;place-items:center;
+  transition:opacity .8s ease .1s,visibility .8s ease .1s}
 #load.off{opacity:0;visibility:hidden}
 #pct{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim)}
 
+/* ---- the phone gets a list, not a fan ----------------------------------
+   The effect is a cursor instrument: it needs a pointer position to decide
+   how the fan splits left and right. Rather than fake that with a scrub,
+   small screens get the same five doors as plain stacked cards. */
+#m{display:none;padding:88px 24px 64px;overflow-y:auto;height:100%}
+#m a{display:block;text-decoration:none;color:inherit;border-top:1px solid var(--dimmer);
+  padding:22px 0}
+#m a:last-child{border-bottom:1px solid var(--dimmer)}
+#m .n{font-size:30px;font-weight:800;letter-spacing:-.03em}
+#m .n i{font-style:normal;font-family:var(--mono);font-size:13px;font-weight:400;
+  letter-spacing:.12em;color:var(--dimmer);margin-left:10px;vertical-align:.5em}
+#m a.amb .n i{color:var(--rose)}
+#m .d{font-size:17px;line-height:28px;color:var(--dim);margin-top:8px;max-width:52ch}
+#m .s{display:flex;gap:6px;margin-top:14px}
+#m .s img{width:74px;height:74px;object-fit:cover;border-radius:2px;background:#F6F5F2}
+
 @media (max-width:820px){
-  html,body{overflow:auto}
-  #cloud,#core,#hint,#rev,#dir,#expand{display:none}
-  #m{display:block!important}
+  html,body{overflow:hidden}
+  .entry,#hint{display:none}
+  #m{display:block}
+  #tr{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .tile{transition:none}
+  .lines a.on::after{animation:none}
 }
-#m{display:none;padding:96px 20px 60px}
-#m a{display:block;border-top:1px solid var(--dimmer);padding:22px 0;text-decoration:none;color:inherit}
-#m a:last-child{border-bottom:1px solid var(--dimmer)}
-#m .n{font-size:30px;font-weight:600;letter-spacing:-.03em}
-#m .d{font-size:13px;color:var(--dim);margin-top:6px}
-#m .s{display:flex;gap:6px;margin-top:12px}
-#m .s img{width:64px;height:40px;object-fit:cover;border-radius:2px}
 </style>
 </head>
 <body>
 
-<div id="cloud"><div id="field"></div></div>
-<div id="vig"></div>
-
-<div id="core">
-  <div id="mark"><img src="logo98.png" alt="Ninety-Eight"></div>
-  <div id="label"></div>
-</div>
-
 <div id="tl" class="hud">Ninety-Eight<br>Entertainment</div>
 <div id="tr" class="hud">Prepared for <i>Ambrosia</i><br>August 2026</div>
-<div id="dir"></div>
-<div id="rev"><i></i></div>
-<div id="hint">Scroll to open and turn the wheel · click to enter</div>
-<button id="expand" type="button">Expand ↓</button>
+
+<section class="entry" id="entry">
+  <span class="mark"><img src="logo98.png" alt="Ninety-Eight Entertainment"></span>
+  <p class="kicker">The work</p>
+  <ul class="lines" id="lines"></ul>
+  <div class="medias" id="medias"></div>
+</section>
+
+<div id="hint">Hover a section to see inside · click to enter</div>
 
 <main id="m"></main>
 
 <div id="load"><div id="pct">0%</div></div>
 
 <script src="data.js"></script>
-<script src="curation.js"></script>
 <script src="nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 (function(){
-  const W=window.WORK, field=document.getElementById('field'),
-        cloud=document.getElementById('cloud'), core=document.getElementById('core'),
-        label=document.getElementById('label'), dir=document.getElementById('dir'),
-        revBar=document.querySelector('#rev i');
+  const W = window.WORK, SECTIONS = W.sections;
+  const TILES = 16;                       // 8 per side — the zone maths below is tuned to it
+  const tile = (sec,i) => 'home/'+sec+'-'+String(i+1).padStart(2,'0')+'.jpg';
+  const count = id => W.cases.filter(c=>c.sec===id).length;
 
-  /* one card per section — every card is now our own work, no stock */
-  /* ---- home-page card art -------------------------------------------------
-     Production  — on-location frames: the beach build, the crane rig, dusk on
-                   set, the doorway, the drone overhead.
-     Chosen case — the client roster itself, one brand at a time. Same logo
-                   plates the constellation uses, set full-bleed on each
-                   brand's own ground. Dessert, coffee and patisserie rooms
-                   lead, because that is the shelf Ambrosia sells from.
-     Gifting and For Ambrosia stay on our own frames.                       -- */
-  const USE_STOCK = false;                 // nothing on this page is stock any more
-  const Q='?w=1500&q=75&auto=format&fit=crop';
-  const STOCK={};
-  const SLIDES={
-    production:['bts/01.jpg','bts/02.jpg','bts/03.jpg','bts/04.jpg','bts/05.jpg'],
-    cases:['poetry','cs-monet','cs-slay','cs-dejabrew','cs-skylantern','cs-ophelia',
-           'cs-khubani','one8','cs-bayroute','cs-daryaganj','cs-farzicafe','cs-fastup',
-           'cs-flaunt','cs-hardrock','cs-iskate','cs-local','cs-nao','cs-punjabgrill',
-           'cs-rizq','cs-slique','cs-tgisf','cs-yyc_group','cs-tablespoon','cs-the_weekend']
-          /* ?v bumps whenever the card art is regenerated — the filenames never
-             change, so without it browsers keep serving the old cards */
-          .map(id=>'plates/cs-card/'+id+'.jpg?v=2')
-  };
-  const SLIDE_MS = 4200;
-  /* The two campaign tiles — The Usual and Well Given. Each rolls its own
-     reference board. Built from data.js at RUNTIME rather than a hardcoded
-     list, which matters: while a board is empty (before tools/fetch-boards.py
-     has run) the list comes back short and we leave SLIDES.<sec> unset, so the
-     tile quietly keeps its static hero instead of flashing broken images. It
-     lights up on its own once the frames land — no second edit here.
-     Capped so a visitor sees a full cycle: 19 frames at 4.2s is an 80-second
-     loop, which nobody waits out. */
-  const AMB_MAX_SLIDES = 12;                 // ~50s cycle, same rhythm as Production
-  [['usual','amb-board-usual'],['wellgiven','amb-board-gifting']].forEach(([sid,bid])=>{
-    const c = W.cases.find(x=>x.id===bid);
-    if(!c) return;
-    const shots = window.CURATION.framesFor(c).map(f=>f.src).slice(0,AMB_MAX_SLIDES);
-    if(shots.length>1) SLIDES[sid]=shots;
-  });
-  /* Gifting & seeding used to have no imagery of its own and borrowed a single
-     Mittal frame. The packaging work now lives in that section where it always
-     belonged, so its card rolls like the others — the strongest frame from each
-     shot case, taken straight from data.js. */
-  (function(){
-    const shots=[];
-    W.cases.filter(c=>c.sec==='gifting').forEach(c=>{
-      const fr=window.CURATION.framesFor(c);
-      if(fr.length) shots.push(fr[0].src);
-      if(fr.length>3) shots.push(fr[Math.floor(fr.length/2)].src);
-    });
-    if(shots.length>1) SLIDES.gifting=shots.slice(0,AMB_MAX_SLIDES);
-  })();
-  /* Four destinations, four registers — the constellation is no longer the
-     answer to every section. Chosen case studies opens the folder index;
-     Production keeps the star map (21 cases, all with frames); Gifting is a
-     written ledger because it has no photography of its own; and the two
-     campaigns get a page each, because three plates floating in black is what
-     "thin" looks like. The routing table itself lives in nav.js. */
-  const secHref = id => window.NAV.href(id);
-  const CARD_OVERRIDE={};   // gifting no longer needs to borrow a frame
-  const pickFor=s=>CARD_OVERRIDE[s.id] || window.CURATION.heroFor(s,W) || '';
-  /* ---- ring → grid ---------------------------------------------------------
-     One card per section, spaced evenly around a true circle. Everything about
-     a card's rendered state is interpolated between two poses by a single
-     `zoom` value: at 0 it is a circle sitting on the ring; at 1 it is a
-     rectangular tile in a centred grid. Position, width, height and
-     border-radius all cross the same way, so the circle squares off as it flies
-     to its slot.
-
-     The cards no longer carry individual speeds or radii. They did, and the
-     result was five things drifting at cross purposes; one ring turning as a
-     body is both calmer and what the reference does. */
-  const N=W.sections.length;
-  const cards=W.sections.map((s,i)=>{
-    const own=pickFor(s);
-    return {sec:s, own:own, slides:SLIDES[s.id]||null,
-            src:(USE_STOCK && STOCK[s.id]) ? STOCK[s.id] : own,
-            ang:(i/N)*Math.PI*2 - Math.PI/2,   // evenly spaced, starting at 12 o'clock
-            n:W.cases.filter(c=>c.sec===s.id).length};
-  });
-
-  /* Rest: a small ring of small circles, whole thing on screen.
-     Open: the same ring, far bigger, and pushed sideways by exactly its own
-     radius — so its leftmost point lands dead centre and the rest of the wheel
-     arcs off the right edge. That offset is the whole trick; the reference does
-     the same thing with `--zoom-offset: calc(var(--zoom) * max(400px,80cqmin))`,
-     which is its radius to the pixel. */
-  const DIA=()=>Math.max(108, Math.min(208, Math.min(innerWidth,innerHeight)*0.185));
-  const RAD=()=>Math.max(DIA()*1.18, Math.min(innerWidth*0.215, innerHeight*0.295));
-  /* Also capped against height: the focused card renders at 1.9× this, and it
-     has to clear the directory strip at the bottom or it sits on top of it. */
-  const DIA_BIG=()=>Math.max(140, Math.min(300, innerWidth*0.215, innerHeight*0.38));
-  /* Capped against height as well as width: the two circles either side of the
-     focus sit at ±0.95R vertically, so a radius chosen off width alone pushes
-     them clean off a short screen and the wheel stops reading as a wheel. */
-  const RAD_BIG=()=>Math.min(innerWidth*0.40, innerHeight*0.54);
-
-  const TAU=Math.PI*2;
-  const lerp=(a,b,t)=>a+(b-a)*t;
-  const ease=t=>t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;   // easeInOutCubic
-  const wrap=v=>{ v=(v+Math.PI)%TAU; if(v<0) v+=TAU; return v-Math.PI; };
-  // 1 when a card sits at the focus point, falling to 0 one neighbour away
-  const focusOf=a=>Math.max(0, 1-Math.abs(wrap(a-Math.PI))/(TAU/N));
-
-  const els=cards.map((c,i)=>{
-    const b=document.createElement('button');
-    b.className='tile'+(window.NAV.isClient(c.sec.id)?' amb':'');
-    b.dataset.sec=c.sec.id;
-    b.style.zIndex=String(5+i);
-    if(c.slides && c.slides.length){
-      b.classList.add('slides');
-      b.innerHTML=c.slides.map((s,k)=>
-        '<img src="'+s+'" alt="" class="'+(k===0?'on':'')+'" loading="'+(k?'lazy':'eager')+'">').join('');
-      const ims=[...b.querySelectorAll('img')];
-      let k=0;
-      /* A card fires up to 24 image requests at once. If one drops — a flaky
-         connection, a server that stops answering under the burst — that frame
-         would otherwise sit in the rotation forever as a blank card. Take it
-         out of the cycle instead. Never empties the rotation. */
-      ims.forEach(im=>im.addEventListener('error',()=>{
-        const j=ims.indexOf(im);
-        if(j<0 || ims.length<2) return;
-        ims.splice(j,1);
-        im.remove();
-        if(k>=ims.length) k=0;
-      },{once:true}));
-      // stagger each card's cycle so they never change in lockstep
-      setTimeout(()=>setInterval(()=>{
-        const out=ims[k];
-        k=(k+1)%ims.length;
-        out.classList.add('under');            // hold it solid, underneath
-        out.classList.remove('on');
-        ims[k].classList.add('on');            // and dissolve the next one over it
-        setTimeout(()=>out.classList.remove('under'), 1400);
-      }, SLIDE_MS), 900*i);
-    }else{
-      b.innerHTML='<img src="'+c.src+'" alt="" loading="eager">';
-      const im0=b.querySelector('img');
-      im0.addEventListener('error',()=>{ if(c.own && im0.src!==c.own) im0.src=c.own; },{once:true});
-    }
-    b.setAttribute('aria-label',c.sec.n+' — '+c.n+' entries');
-    // the caption only earns its place once the card is a tile
-    const cap=document.createElement('span');
-    cap.className='cap';
-    cap.innerHTML='<b>'+c.sec.n+'</b><i>'+c.n+' — enter ↗</i>';
-    b.appendChild(cap);
-    /* Only the wheel-slowing lives here now. The lighting is proximity's job —
-       and a pointer sitting inside a card is far past the 0.55 threshold, so it
-       lights exactly as it always did. Leaving the old lightUp() call in as well
-       would have the two systems arguing every frame at the card's edge. */
-    b.addEventListener('mouseenter',()=>{ hoverIdx=i; });
-    b.addEventListener('mouseleave',()=>{ hoverIdx=-1; });
-    b.addEventListener('click',()=>{ location.href=secHref(c.sec.id); });
-    field.appendChild(b);
-    setTimeout(()=>b.classList.add('in'), 200+160*i);
-    return b;
-  });
-  const caps=els.map(el=>el.querySelector('.cap'));
-
-  /* ---- state ----
-     `t`    ring rotation, always turning, boosted by the wheel
-     `zoom` 0 = ring of circles, 1 = grid of tiles. One wheel gesture drives
-            both: rotation keeps going forever, zoom clamps at the ends. */
-  const BASE=0.045;                 // slow idle drift (rad/sec)
-  let spin=BASE, target=BASE, t=0, clock=0, hoverIdx=-1, last=performance.now();
-  let px=0, py=0, mx=0, my=0;
-  let zoom=0, zoomTo=0, focusIdx=-1;   // focusIdx: whichever card is at the focus point
-
-  /* ---- proximity focus -----------------------------------------------------
-     Adapted from MWG 025, "Randomize & Focus" — the one they call their own
-     favourite. Its point is that a set of cards answers the cursor CONTINUOUSLY
-     rather than waiting to be hovered: the nearest swells, its neighbours give
-     way by how close they are, and MWG describe the result as running your hand
-     over them.
-
-     Their code cannot be dropped in here. 025 tweens `transform` with GSAP; the
-     loop below rewrites `el.style.transform` on every frame from the ring maths.
-     Two owners for one property means the loop wins sixty times a second and the
-     tween never lands. So the behaviour is rebuilt where the transform already
-     lives — inside the frame — which also means it costs no library.
-
-     The gain is real on this layout: five circles on a ring have wide gaps, and
-     until now the cloud did nothing at all unless the pointer landed inside one.
-     Now it responds across the whole field.
-
-     `hoverIdx` is deliberately NOT driven from this. It slows the wheel so a card
-     can be clicked, and proximity is true most of the time the pointer is on
-     screen — wiring it here would stop the ring turning and turning is the page. */
-  const prox = new Array(cards.length).fill(0);
-  let cx=-1e5, cy=-1e5, pointerIn=false, nearIdx=-1, dirLock=false;
-  const clamp01 = v => v<0?0:v>1?1:v;
-  /* the page already honours this for the CSS transitions; the loop has to as
-     well, or reduced-motion still gets cards breathing under the cursor */
-  const CALM = matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-  const hint=document.getElementById('hint');
-  const expand=document.getElementById('expand');
-  function setZoom(v){
-    zoomTo=Math.max(0,Math.min(1,v));
-    expand.textContent = zoomTo>0.5 ? 'Collapse ↑' : 'Expand ↓';
-  }
-
-  addEventListener('wheel',e=>{
-    /* This page has nothing to scroll — body is overflow:hidden and the wheel
-       IS the interaction, so preventing default here is not hijacking a
-       scrollable page. Below 820px the whole cloud is display:none and a plain
-       list takes over, so none of this runs on a phone. */
-    e.preventDefault();
-    const d=(e.deltaY>0?1:-1)*Math.min(1.6,Math.abs(e.deltaY)/220);
-    setZoom(zoomTo + d*0.16);          // scroll down opens, scroll up closes
-    target += d*0.55;                  // and the ring keeps turning either way
-    target = Math.max(-6, Math.min(6, target));
-    hint.classList.add('off');
-  },{passive:false});
-
-  expand.addEventListener('click',()=>{ setZoom(zoomTo>0.5?0:1); hint.classList.add('off'); });
-  addEventListener('keydown',e=>{
-    if(e.key==='Escape' && zoomTo>0.5){ setZoom(0); return; }
-    // Enter opens whatever the wheel has brought round to the focus
-    if((e.key==='Enter'||e.key===' ') && focusIdx>=0 && document.activeElement===document.body){
-      e.preventDefault();
-      location.href=secHref(cards[focusIdx].sec.id);
-    }
-  });
-
-  addEventListener('mousemove',e=>{
-    mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5);
-    cx=e.clientX; cy=e.clientY; pointerIn=true;
-  });
-  /* a pointer that has left the window should let the whole field settle back,
-     not freeze the last card it happened to be near */
-  addEventListener('mouseleave',()=>{ pointerIn=false; });
-  addEventListener('blur',()=>{ pointerIn=false; });
-
-  function frame(now){
-    const dt=Math.min(0.05,(now-last)/1000); last=now;
-
-    zoom += (zoomTo-zoom)*(1-Math.pow(0.0008,dt));
-    const e=ease(zoom);
-
-    // scroll boost bleeds back to the idle drift
-    target += (BASE-target) * (1-Math.pow(0.06,dt));
-    /* Holding a card slows the wheel so it can be clicked. It never stops
-       turning otherwise — scrolling on an open wheel is what brings the next
-       section round to the focus, which is the whole point of it. */
-    const want = hoverIdx>=0 ? BASE*0.06 : target;
-    spin += (want-spin) * (1-Math.pow(0.005,dt));
-    t += spin*dt;
-    clock += dt;                       // independent of spin — keeps the bob calm
-
-    // parallax belongs to the resting cloud, not to a wheel the size of the screen
-    px += (mx*22-px)*0.06; py += (my*16-py)*0.06;
-    const fx=-px*(1-e), fy=-py*(1-e);
-    field.style.transform='translate('+fx+'px,'+fy+'px)';
-
-    const R=lerp(RAD(), RAD_BIG(), e);
-    const off=lerp(0, RAD_BIG(), e);        // push the wheel right by its own radius
-    const d=lerp(DIA(), DIA_BIG(), e);
-    /* how far from a card the cursor still counts as "near". Scaled off the
-       card, so it holds at every viewport instead of being a magic pixel count. */
-    const reach=d*1.35;
-    /* proximity smoothing has to be frame-rate independent — a fixed lerp factor
-       makes this twice as twitchy on a 120Hz screen as on a 60Hz one */
-    const k=1-Math.pow(0.0006,dt);
-    let lead=0, leadF=-1, best=-1, bestP=0;
-    els.forEach((el,i)=>{
-      const a=cards[i].ang + t;
-      const f=focusOf(a);
-      if(f>leadF){ leadF=f; lead=i; }
-      const x=Math.cos(a)*R + off;
-      const y=Math.sin(a)*R + Math.sin(clock*0.7+i*1.7)*8*(1-e);   // bob only at rest
-      const depth=(Math.sin(a)+1)/2;
-
-      /* where this card actually sits on screen, field offset included */
-      const sx=innerWidth/2+fx+x, sy=innerHeight/2+fy+y;
-      const w=(pointerIn && !CALM) ? clamp01(1-Math.hypot(sx-cx,sy-cy)/reach) : 0;
-      prox[i] += (w*w*(3-2*w) - prox[i])*k;      // smoothstep, so the falloff has shoulders
-      if(prox[i]>bestP){ bestP=prox[i]; best=i; }
-
-      // at rest a whisper of depth; open, the card at the focus swells
-      const s=(hoverIdx===i?1.06:1)*(1+prox[i]*0.13)*lerp(0.97+depth*0.06, 1+f*0.9, e);
-
-      el.style.width=el.style.height=d.toFixed(1)+'px';
-      el.style.transform='translate(calc(-50% + '+x.toFixed(1)+'px), calc(-50% + '+y.toFixed(1)+'px)) scale('+s.toFixed(3)+')';
-      el.style.zIndex=String(1000+Math.round(f*1200)+Math.round(prox[i]*400)+Math.round(Math.sin(a)*300)+(hoverIdx===i?1500:0));
-      // the name belongs to whichever card is at the focus, and only once open
-      caps[i].style.opacity=(e*Math.max(0,(f-0.45)/0.55)).toFixed(3);
-    });
-
-    /* The nearest card takes the lit treatment once the cursor is properly over
-       its neighbourhood. The threshold is what stops the label flickering
-       between two cards as you cross the gap between them — it has to be clearly
-       nearest, not marginally. Below it, everything cools. */
-    if(!dirLock){
-      const want = (bestP>0.55) ? best : -1;
-      if(want!==nearIdx){
-        nearIdx=want;
-        if(nearIdx<0) cool(); else lightUp(cards[nearIdx].sec.id);
-      }
-    }
-    // clicking the wheel enters whatever is at the focus
-    focusIdx = e>0.45 ? lead : -1;
-
-    // the focused card lands dead centre, which is where the 98 mark sits
-    core.style.opacity=(1-Math.min(1,e*1.6)).toFixed(3);
-    core.style.pointerEvents=e>0.2?'none':'';
-
-    revBar.style.width=(e*100).toFixed(1)+'%';
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-
-  function lightUp(sec){
-    const s=W.sections.find(x=>x.id===sec);
-    const n=W.cases.filter(c=>c.sec===sec).length;
-    cloud.classList.add('hot'); core.classList.add('hot');
-    els.forEach(el=>el.classList.toggle('lit', el.dataset.sec===sec));
-    label.innerHTML=s.n+'<small>'+n+' — enter ↗</small>';
-    label.classList.add('on');
-    document.getElementById('hint').classList.add('off');
-  }
-  function cool(){
-    cloud.classList.remove('hot'); core.classList.remove('hot');
-    els.forEach(el=>el.classList.remove('lit'));
-    label.classList.remove('on');
-  }
-
-  /* directory + mobile list */
-  W.sections.forEach((s,i)=>{
-    const n=W.cases.filter(c=>c.sec===s.id).length;
+  /* ---- the list: five doors, said out loud ---- */
+  const list = document.getElementById('lines');
+  SECTIONS.forEach(s=>{
+    const li=document.createElement('li');
     const a=document.createElement('a');
-    a.href=secHref(s.id); a.innerHTML=s.n+'<i>'+n+'</i>';
+    a.href = window.NAV.href(s.id);
+    a.innerHTML = s.n + '<i>' + count(s.id) + '</i>';
     if(window.NAV.isClient(s.id)) a.className='amb';
-    /* The directory sits at the bottom of the screen, well away from the ring,
-       so proximity would read 0 there and cool the card this link just lit. The
-       lock hands the lighting to the directory for as long as a link is held. */
-    a.addEventListener('mouseenter',()=>{ hoverIdx=i; dirLock=true; nearIdx=-1; lightUp(s.id); });
-    a.addEventListener('mouseleave',()=>{ hoverIdx=-1; dirLock=false; cool(); });
-    dir.appendChild(a);
-
-    const heroes=(W.heroes&&W.heroes[s.id])||[];
-    const m=document.getElementById('m'), ma=document.createElement('a');
-    ma.href=secHref(s.id);
-    ma.innerHTML='<div class="n">'+s.n+'</div><div class="d">'+s.d+'</div><div class="s">'+
-      heroes.slice(0,4).map(src=>'<img src="'+src+'" alt="">').join('')+'</div>';
-    m.appendChild(ma);
+    li.appendChild(a); list.appendChild(li);
   });
+  const lines = [...list.querySelectorAll('a')].map((a,index)=>({a,index}));
 
-  /* preload then reveal */
-  const srcs=cards.map(c=>c.src).filter(Boolean); let done=0;
-  const pctEl=document.getElementById('pct');
-  const finish=()=>document.getElementById('load').classList.add('off');
-  if(!srcs.length) setTimeout(finish,400);
-  srcs.forEach(src=>{
-    const im=new Image();
-    im.onload=im.onerror=()=>{ done++;
-      pctEl.textContent=Math.round(done/srcs.length*100)+'%';
-      if(done>=srcs.length) setTimeout(finish,260);
-    };
-    im.src=src;
-  });
-  setTimeout(finish,3500);
+  /* ---- the phone's stacked list (built either way; CSS decides) ---- */
+  const m=document.getElementById('m');
+  m.innerHTML = SECTIONS.map(s=>
+    '<a href="'+window.NAV.href(s.id)+'"'+(window.NAV.isClient(s.id)?' class="amb"':'')+'>'+
+      '<div class="n">'+s.n+'<i>'+count(s.id)+'</i></div>'+
+      '<div class="d">'+(s.d||'')+'</div>'+
+      '<div class="s">'+[0,1,2].map(i=>'<img src="'+tile(s.id,i)+'" alt="" loading="lazy">').join('')+'</div>'+
+    '</a>').join('');
+
+  const DESKTOP = matchMedia('(min-width:821px)').matches;
+  const REDUCED = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const G = window.gsap;
+  const loadEl=document.getElementById('load'), pct=document.getElementById('pct');
+  const done=()=>loadEl.classList.add('off');
+
+  /* Without GSAP (CDN down) or on a phone, the list is still the page: five
+     real anchors, already rendered. Skip the instrument, keep the doors. */
+  if(!DESKTOP || !G || REDUCED){ pct.textContent='100%'; setTimeout(done,250); return; }
+
+  /* ---- media columns: one column per slot, one frame per section ---- */
+  const mediasContainer = document.getElementById('medias');
+  for(let i=0;i<TILES;i++){
+    const col=document.createElement('div'); col.className='media';
+    SECTIONS.forEach((s,j)=>{
+      const im=document.createElement('img');
+      im.alt=''; im.decoding='async';
+      im.loading = j===0 ? 'eager' : 'lazy';   // first section up front, rest warmed below
+      im.src=tile(s.id,i);
+      col.appendChild(im);
+    });
+    mediasContainer.appendChild(col);
+  }
+  const medias=[...mediasContainer.querySelectorAll('.media')];
+  const half=medias.length/2;
+
+  /* the loader waits only on the first section's row; the other four are
+     warmed in the background once the page is up, so a hover is never blank */
+  let loaded=0; const first=[...mediasContainer.querySelectorAll('.media img:first-child')];
+  const step=()=>{ loaded++; pct.textContent=Math.round(loaded/first.length*100)+'%';
+    if(loaded>=first.length){ setTimeout(done,180); warm(); } };
+  first.forEach(im=>{ if(im.complete) step(); else { im.onload=step; im.onerror=step; } });
+  setTimeout(()=>{ done(); warm(); }, 6000);
+  let warmed=false;
+  function warm(){ if(warmed) return; warmed=true;
+    SECTIONS.slice(1).forEach((s,k)=>setTimeout(()=>{
+      for(let i=0;i<TILES;i++){ const im=new Image(); im.src=tile(s.id,i); }
+    }, 350*k));
+  }
+
+  /* ---- MWG 108's placement, unchanged in shape --------------------------
+     The fan is anchored to the hovered line's own box, and how much of it
+     falls left versus right is decided by which fifth of the window the
+     cursor is in — so the tiles open away from the pointer rather than
+     under it. Those two arrays are the effect's tuning; left alone. */
+  const FADE={duration:.2,ease:'power1.inOut'};
+  const LEFT_INNER=[8,7,6,5,4], RIGHT_INNER=[5,4,3,2,1];
+  let zIndex=0, currentZone=2, currentIndex=-1, active=false;
+  const hidden=new Array(medias.length).fill(false);
+  const root=document.getElementById('entry');
+
+  function positions(el){
+    const r=root.getBoundingClientRect(), t=el.getBoundingClientRect();
+    const size=medias[0].offsetWidth, gap=innerWidth*.015;
+    const li=LEFT_INNER[currentZone], ri=RIGHT_INNER[currentZone];
+    const y=t.top-r.top+t.height/2-size/2;
+    const slots=medias.map((_,i)=>{
+      if(i<half){ const num=i+1, slot=-(li-num+1);
+        return {x:(t.left-r.left)+slot*(size+gap), hidden:num>li}; }
+      const num=i-half+1, slot=num-ri+1;
+      return {x:(t.right-r.left)+gap+(slot-1)*(size+gap), hidden:num<ri};
+    });
+    return {slots,y};
+  }
+  function place(el,isLineChange){
+    const {slots,y}=positions(el);
+    medias.forEach((media,i)=>{
+      const s=slots[i];
+      const duration=isLineChange? Math.random()/3+.2 : .3;
+      const appearing=!s.hidden && hidden[i] && !isLineChange;
+      if(s.hidden){
+        G.to(media,{scale:0,autoAlpha:0,duration:isLineChange?duration:FADE.duration,
+          ease:isLineChange?'back.out(1)':FADE.ease,overwrite:'auto',
+          ...(isLineChange&&{x:s.x,y})});
+      } else if(appearing){
+        G.set(media,{x:s.x,y,overwrite:true});
+        G.to(media,{scale:1,autoAlpha:1,...FADE,overwrite:true});
+      } else {
+        G.to(media,{x:s.x,y,scale:1,duration,ease:'back.out(1)',overwrite:'auto'});
+        if(active) G.to(media,{autoAlpha:1,...FADE});
+      }
+      hidden[i]=s.hidden;
+    });
+  }
+  function show(){ active=true; G.to(mediasContainer,{...FADE,autoAlpha:1}); }
+  function hide(){ active=false; G.to(mediasContainer,{...FADE,autoAlpha:0});
+    list.classList.remove('hot');
+    lines.forEach(l=>l.a.classList.remove('on'));
+    currentIndex=-1; }
+
+  function reveal(index){
+    if(index===currentIndex) return;
+    const el=lines[index].a;
+    currentIndex=index; show();
+    list.classList.add('hot');
+    lines.forEach(l=>l.a.classList.toggle('on', l.index===index));
+    zIndex++;
+    const on=mediasContainer.querySelectorAll('.media img:nth-child('+(index+1)+')');
+    G.fromTo(on,{autoAlpha:0,zIndex:zIndex},{autoAlpha:1,...FADE,onComplete:()=>{
+      G.set(mediasContainer.querySelectorAll('.media img:not(:nth-child('+(index+1)+'))'),{autoAlpha:0});
+    }});
+    place(el,true);
+  }
+  function zone(clientX,force){
+    if(clientX<0||clientX>innerWidth) return;
+    const z=Math.min(4,Math.floor(clientX/(innerWidth/5)));
+    const changed=z!==currentZone;
+    if(changed) currentZone=z;
+    if(!changed&&!force) return;
+    if(currentIndex>=0) place(lines[currentIndex].a);
+  }
+
+  const init=positions(lines[0].a);
+  medias.forEach((media,i)=>{ G.set(media,{x:init.slots[i].x,y:init.y,scale:1});
+    hidden[i]=init.slots[i].hidden; });
+
+  lines.forEach(({a,index})=>a.addEventListener('mouseenter',()=>reveal(index)));
+  list.addEventListener('mouseenter',show);
+  list.addEventListener('mouseleave',hide);
+  addEventListener('mousemove',e=>zone(e.clientX));
+  const hint=document.getElementById('hint');
+  addEventListener('mousemove',()=>hint.classList.add('off'),{once:true});
+  addEventListener('resize',()=>{ if(currentIndex>=0) place(lines[currentIndex].a); });
 })();
 </script>
 </body>
