@@ -29,6 +29,15 @@
   --ink:#0E0E10; --bg:#F6F5F2;
   --dim:rgba(14,14,16,.52); --dimmer:rgba(14,14,16,.26);
   --red:#DD3D38; --rose:#B5677A;
+  /* The tile size and the row height come from here and nowhere else.
+     They used to be set apart — type capped at 68px, tiles left at 8vw —
+     so on a wide screen the tiles kept growing after the rows had stopped
+     and a fan sat across the names above and below it. Both now answer the
+     same clamp, and both take vh as well as vw so a short laptop screen
+     shrinks the whole instrument instead of clipping it. */
+  --tile:clamp(62px, min(6.2vw, 10vh), 100px);
+  --name:clamp(30px, min(4.4vw, 7vh), 64px);
+  --row:calc(var(--tile) + 22px);   /* always taller than a tile: the clearance */
   --mono:"Space Mono",ui-monospace,Menlo,monospace;
   --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
 }
@@ -56,13 +65,14 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   color:var(--dim);margin-bottom:clamp(20px,4vh,44px)}
 
 .lines{list-style:none;display:flex;flex-direction:column;align-items:center;width:100%}
-.lines li{display:flex;width:100%;justify-content:center}
+.lines li{display:flex;width:100%;justify-content:center;align-items:center;
+  min-height:var(--row)}
 /* Display type, and deliberately not the 48/52 the reading pages are locked
    to: this is a poster, not a document. Everything else here — kicker, counts,
    corners — stays on the locked scale, so the exception is the one line that
    is supposed to behave like a headline. */
 .lines a{display:block;line-height:1.24;text-decoration:none;color:var(--ink);
-  font-size:clamp(38px,4.6vw,68px);font-weight:800;letter-spacing:-.03em;
+  font-size:var(--name);font-weight:800;letter-spacing:-.03em;
   padding:.06em .1em;position:relative;
   transition:opacity .3s ease,color .3s ease}
 .lines a i{font-style:normal;font-family:var(--mono);font-size:13px;font-weight:400;
@@ -82,7 +92,7 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
 
 /* ---- the flanking media ------------------------------------------------- */
 .medias{position:absolute;inset:0;z-index:2;visibility:hidden;opacity:0;pointer-events:none}
-.media{position:absolute;top:0;left:0;width:8vw;aspect-ratio:1;visibility:hidden;
+.media{position:absolute;top:0;left:0;width:var(--tile);aspect-ratio:1;visibility:hidden;
   pointer-events:none;will-change:transform}
 /* the inner tiles sit above the outer ones, so a fan reads as depth */
 .media:nth-child(8){z-index:1}.media:nth-child(7){z-index:2}
@@ -127,7 +137,7 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
 <body>
 
 <div id="tl" class="hud">Ninety-Eight<br>Entertainment</div>
-<div id="tr" class="hud">Prepared for <i>Ambrosia</i><br>August 2026</div>
+<div id="tr" class="hud">Prepared for <i>Ambrosia</i><br>September 2026</div>
 
 <section class="entry" id="entry">
   <span class="mark"><img src="logo98.png" alt="Ninety-Eight Entertainment"></span>
