@@ -316,8 +316,12 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
     cap.className='cap';
     cap.innerHTML='<b>'+c.sec.n+'</b><i>'+c.n+' — enter ↗</i>';
     b.appendChild(cap);
-    b.addEventListener('mouseenter',()=>{ hoverIdx=i; lightUp(c.sec.id); });
-    b.addEventListener('mouseleave',()=>{ hoverIdx=-1; cool(); });
+    /* Only the wheel-slowing lives here now. The lighting is proximity's job —
+       and a pointer sitting inside a card is far past the 0.55 threshold, so it
+       lights exactly as it always did. Leaving the old lightUp() call in as well
+       would have the two systems arguing every frame at the card's edge. */
+    b.addEventListener('mouseenter',()=>{ hoverIdx=i; });
+    b.addEventListener('mouseleave',()=>{ hoverIdx=-1; });
     b.addEventListener('click',()=>{ location.href=secHref(c.sec.id); });
     field.appendChild(b);
     setTimeout(()=>b.classList.add('in'), 200+160*i);
@@ -333,6 +337,33 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   let spin=BASE, target=BASE, t=0, clock=0, hoverIdx=-1, last=performance.now();
   let px=0, py=0, mx=0, my=0;
   let zoom=0, zoomTo=0, focusIdx=-1;   // focusIdx: whichever card is at the focus point
+
+  /* ---- proximity focus -----------------------------------------------------
+     Adapted from MWG 025, "Randomize & Focus" — the one they call their own
+     favourite. Its point is that a set of cards answers the cursor CONTINUOUSLY
+     rather than waiting to be hovered: the nearest swells, its neighbours give
+     way by how close they are, and MWG describe the result as running your hand
+     over them.
+
+     Their code cannot be dropped in here. 025 tweens `transform` with GSAP; the
+     loop below rewrites `el.style.transform` on every frame from the ring maths.
+     Two owners for one property means the loop wins sixty times a second and the
+     tween never lands. So the behaviour is rebuilt where the transform already
+     lives — inside the frame — which also means it costs no library.
+
+     The gain is real on this layout: five circles on a ring have wide gaps, and
+     until now the cloud did nothing at all unless the pointer landed inside one.
+     Now it responds across the whole field.
+
+     `hoverIdx` is deliberately NOT driven from this. It slows the wheel so a card
+     can be clicked, and proximity is true most of the time the pointer is on
+     screen — wiring it here would stop the ring turning and turning is the page. */
+  const prox = new Array(cards.length).fill(0);
+  let cx=-1e5, cy=-1e5, pointerIn=false, nearIdx=-1, dirLock=false;
+  const clamp01 = v => v<0?0:v>1?1:v;
+  /* the page already honours this for the CSS transitions; the loop has to as
+     well, or reduced-motion still gets cards breathing under the cursor */
+  const CALM = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   const hint=document.getElementById('hint');
   const expand=document.getElementById('expand');
@@ -364,7 +395,14 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
     }
   });
 
-  addEventListener('mousemove',e=>{ mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5); });
+  addEventListener('mousemove',e=>{
+    mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5);
+    cx=e.clientX; cy=e.clientY; pointerIn=true;
+  });
+  /* a pointer that has left the window should let the whole field settle back,
+     not freeze the last card it happened to be near */
+  addEventListener('mouseleave',()=>{ pointerIn=false; });
+  addEventListener('blur',()=>{ pointerIn=false; });
 
   function frame(now){
     const dt=Math.min(0.05,(now-last)/1000); last=now;
@@ -384,12 +422,19 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
 
     // parallax belongs to the resting cloud, not to a wheel the size of the screen
     px += (mx*22-px)*0.06; py += (my*16-py)*0.06;
-    field.style.transform='translate('+(-px*(1-e))+'px,'+(-py*(1-e))+'px)';
+    const fx=-px*(1-e), fy=-py*(1-e);
+    field.style.transform='translate('+fx+'px,'+fy+'px)';
 
     const R=lerp(RAD(), RAD_BIG(), e);
     const off=lerp(0, RAD_BIG(), e);        // push the wheel right by its own radius
     const d=lerp(DIA(), DIA_BIG(), e);
-    let lead=0, leadF=-1;
+    /* how far from a card the cursor still counts as "near". Scaled off the
+       card, so it holds at every viewport instead of being a magic pixel count. */
+    const reach=d*1.35;
+    /* proximity smoothing has to be frame-rate independent — a fixed lerp factor
+       makes this twice as twitchy on a 120Hz screen as on a 60Hz one */
+    const k=1-Math.pow(0.0006,dt);
+    let lead=0, leadF=-1, best=-1, bestP=0;
     els.forEach((el,i)=>{
       const a=cards[i].ang + t;
       const f=focusOf(a);
@@ -397,15 +442,34 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
       const x=Math.cos(a)*R + off;
       const y=Math.sin(a)*R + Math.sin(clock*0.7+i*1.7)*8*(1-e);   // bob only at rest
       const depth=(Math.sin(a)+1)/2;
+
+      /* where this card actually sits on screen, field offset included */
+      const sx=innerWidth/2+fx+x, sy=innerHeight/2+fy+y;
+      const w=(pointerIn && !CALM) ? clamp01(1-Math.hypot(sx-cx,sy-cy)/reach) : 0;
+      prox[i] += (w*w*(3-2*w) - prox[i])*k;      // smoothstep, so the falloff has shoulders
+      if(prox[i]>bestP){ bestP=prox[i]; best=i; }
+
       // at rest a whisper of depth; open, the card at the focus swells
-      const s=(hoverIdx===i?1.06:1)*lerp(0.97+depth*0.06, 1+f*0.9, e);
+      const s=(hoverIdx===i?1.06:1)*(1+prox[i]*0.13)*lerp(0.97+depth*0.06, 1+f*0.9, e);
 
       el.style.width=el.style.height=d.toFixed(1)+'px';
       el.style.transform='translate(calc(-50% + '+x.toFixed(1)+'px), calc(-50% + '+y.toFixed(1)+'px)) scale('+s.toFixed(3)+')';
-      el.style.zIndex=String(1000+Math.round(f*1200)+Math.round(Math.sin(a)*300)+(hoverIdx===i?1500:0));
+      el.style.zIndex=String(1000+Math.round(f*1200)+Math.round(prox[i]*400)+Math.round(Math.sin(a)*300)+(hoverIdx===i?1500:0));
       // the name belongs to whichever card is at the focus, and only once open
       caps[i].style.opacity=(e*Math.max(0,(f-0.45)/0.55)).toFixed(3);
     });
+
+    /* The nearest card takes the lit treatment once the cursor is properly over
+       its neighbourhood. The threshold is what stops the label flickering
+       between two cards as you cross the gap between them — it has to be clearly
+       nearest, not marginally. Below it, everything cools. */
+    if(!dirLock){
+      const want = (bestP>0.55) ? best : -1;
+      if(want!==nearIdx){
+        nearIdx=want;
+        if(nearIdx<0) cool(); else lightUp(cards[nearIdx].sec.id);
+      }
+    }
     // clicking the wheel enters whatever is at the focus
     focusIdx = e>0.45 ? lead : -1;
 
@@ -439,8 +503,11 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
     const a=document.createElement('a');
     a.href=secHref(s.id); a.innerHTML=s.n+'<i>'+n+'</i>';
     if(window.NAV.isClient(s.id)) a.className='amb';
-    a.addEventListener('mouseenter',()=>{ hoverIdx=i; lightUp(s.id); });
-    a.addEventListener('mouseleave',()=>{ hoverIdx=-1; cool(); });
+    /* The directory sits at the bottom of the screen, well away from the ring,
+       so proximity would read 0 there and cool the card this link just lit. The
+       lock hands the lighting to the directory for as long as a link is held. */
+    a.addEventListener('mouseenter',()=>{ hoverIdx=i; dirLock=true; nearIdx=-1; lightUp(s.id); });
+    a.addEventListener('mouseleave',()=>{ hoverIdx=-1; dirLock=false; cool(); });
     dir.appendChild(a);
 
     const heroes=(W.heroes&&W.heroes[s.id])||[];
