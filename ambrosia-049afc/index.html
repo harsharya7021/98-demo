@@ -7,7 +7,7 @@
 <title>Ambrosia × 98 — The Work</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* =============================================================
    The entry page — MWG 108, "hover list with flanking media".
@@ -40,6 +40,11 @@
   --row:calc(var(--tile) + 22px);   /* always taller than a tile: the clearance */
   --mono:"Space Mono",ui-monospace,Menlo,monospace;
   --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
+  /* Ambrosia's own face and warm near-black, lifted from campaign.html — the
+     two campaign sections are set in the client's identity, so they speak in
+     it here too rather than waiting until you click. */
+  --amb-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --amb-ink:#1C1B1B;
 }
 html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
 
@@ -75,11 +80,15 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   font-size:var(--name);font-weight:800;letter-spacing:-.03em;
   padding:.06em .1em;position:relative;
   transition:opacity .3s ease,color .3s ease}
-.lines a i{font-style:normal;font-family:var(--mono);font-size:13px;font-weight:400;
-  letter-spacing:.12em;color:var(--dimmer);vertical-align:.72em;margin-left:14px}
-/* the two sections set in Ambrosia's identity carry their rose, here as
-   everywhere else */
-.lines a.amb i{color:var(--rose)}
+/* The two sections set in Ambrosia's identity are said in Ambrosia's voice:
+   Cormorant at a reading weight against Archivo's 800, their warm near-black
+   rather than 98's carbon, and the tracking opened back to normal because
+   tight negative tracking is a grotesk habit, not a garalde one. It is the
+   quietest way to say "you are about to change language" — and with the
+   counts gone it is the standing signal the rose numeral used to carry.
+   Serifs at the same pixel size read smaller, so they take a little more. */
+.lines a.amb{font-family:var(--amb-serif);font-weight:500;color:var(--amb-ink);
+  font-size:calc(var(--name) * 1.14);letter-spacing:-.005em}
 .lines a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 /* while one name is hovered the others step back — the list behaves like the
    gallery slats do, one thing in focus at a time */
@@ -116,9 +125,8 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   padding:22px 0}
 #m a:last-child{border-bottom:1px solid var(--dimmer)}
 #m .n{font-size:30px;font-weight:800;letter-spacing:-.03em}
-#m .n i{font-style:normal;font-family:var(--mono);font-size:13px;font-weight:400;
-  letter-spacing:.12em;color:var(--dimmer);margin-left:10px;vertical-align:.5em}
-#m a.amb .n i{color:var(--rose)}
+#m a.amb .n{font-family:var(--amb-serif);font-weight:500;color:var(--amb-ink);
+  font-size:35px;letter-spacing:-.005em}
 #m .d{font-size:17px;line-height:28px;color:var(--dim);margin-top:8px;max-width:52ch}
 #m .s{display:flex;gap:6px;margin-top:14px}
 #m .s img{width:74px;height:74px;object-fit:cover;border-radius:2px;background:#F6F5F2}
@@ -160,7 +168,6 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   const W = window.WORK, SECTIONS = W.sections;
   const TILES = 16;                       // 8 per side — the zone maths below is tuned to it
   const tile = (sec,i) => 'home/'+sec+'-'+String(i+1).padStart(2,'0')+'.jpg';
-  const count = id => W.cases.filter(c=>c.sec===id).length;
 
   /* ---- the list: five doors, said out loud ---- */
   const list = document.getElementById('lines');
@@ -168,7 +175,7 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
     const li=document.createElement('li');
     const a=document.createElement('a');
     a.href = window.NAV.href(s.id);
-    a.innerHTML = s.n + '<i>' + count(s.id) + '</i>';
+    a.textContent = s.n;
     if(window.NAV.isClient(s.id)) a.className='amb';
     li.appendChild(a); list.appendChild(li);
   });
@@ -178,7 +185,7 @@ html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sa
   const m=document.getElementById('m');
   m.innerHTML = SECTIONS.map(s=>
     '<a href="'+window.NAV.href(s.id)+'"'+(window.NAV.isClient(s.id)?' class="amb"':'')+'>'+
-      '<div class="n">'+s.n+'<i>'+count(s.id)+'</i></div>'+
+      '<div class="n">'+s.n+'</div>'+
       '<div class="d">'+(s.d||'')+'</div>'+
       '<div class="s">'+[0,1,2].map(i=>'<img src="'+tile(s.id,i)+'" alt="" loading="lazy">').join('')+'</div>'+
     '</a>').join('');
