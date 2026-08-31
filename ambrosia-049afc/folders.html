@@ -9,7 +9,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 :root{--ink:#0E0E10;--paper:#ffffff;--mute:#6c6c75;--line:#dcdcdc;--hair:#efefef;
-  --red:#DD3D38;--tab-h:44px;--strip:60px;
+  --red:#DD3D38;--tab-h:44px;--strip:60px;--pm:64px;
   --mono:"Space Mono",ui-monospace,Menlo,monospace;
   --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif}
 html{scroll-behavior:smooth}
@@ -17,12 +17,12 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
 
 /* the header lives in head.css now */
 
-.wrap{max-width:1400px;margin:0 auto;padding:0 clamp(20px,3.2vw,48px)}
-.lede{padding:clamp(56px,12vh,150px) 0 clamp(34px,6vh,70px)}
-.lede h1{font-size:clamp(40px,6.6vw,94px);font-weight:800;letter-spacing:-.035em;
-  line-height:.94;max-width:16ch}
+.wrap{max-width:1500px;margin:0 auto;padding:0 var(--pm)}
+.lede{padding:128px 0 64px}
+.lede h1{font-size:48px;font-weight:800;letter-spacing:-.02em;
+  line-height:52px;max-width:16ch}
 .lede h1 .dot{color:var(--red)}
-.lede p{margin:26px 0 0;font-size:clamp(15px,1.5vw,19px);line-height:1.6;
+.lede p{margin:24px 0 0;font-size:17px;line-height:28px;font-weight:400;
   color:#26262b;max-width:58ch}
 
 /* ---------- the stack ---------- */
@@ -36,20 +36,28 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
 
 /* one file tab — 62:44 shoulders, butted together */
 .tab{display:flex;align-items:stretch;height:var(--tab-h);color:var(--tfg);text-decoration:none;
-  position:relative;transition:height .3s cubic-bezier(.2,.7,.2,1)}
+  position:relative}
 .tab__side{width:62px;height:100%;display:block;color:var(--tbg);flex:0 0 auto}
 .tab__side--end{transform:scaleX(-1)}
 .tab__mid{background:var(--tbg);display:flex;align-items:center;white-space:nowrap;
   font-family:var(--sans);font-size:clamp(12.5px,1.15vw,16px);font-weight:600;
   letter-spacing:-.005em;line-height:1;padding-bottom:2px;margin:0 -1px}
 /* the file is drawn UP out of its folder — bottom stays welded to the sheet,
-   so it grows rather than lifts off */
-.tab:hover{height:calc(var(--tab-h) + 11px);z-index:60!important}
+   so it grows rather than lifts off.
+
+   The height is driven by GSAP once it loads (MWG 109's back.out(2), which
+   overshoots and settles — a file being pulled has weight, and a linear ease
+   never sold that). These CSS rules are the fallback for no-JS and for the
+   CDN being unreachable, and they stand down the moment .gsap-on lands on
+   the body. Without that scoping the two would fight over the same property. */
+.tab:hover{z-index:60!important}
+body:not(.gsap-on) .tab{transition:height .3s cubic-bezier(.2,.7,.2,1)}
+body:not(.gsap-on) .tab:hover{height:calc(var(--tab-h) + 11px)}
 .tab:hover .tab__mid{color:var(--red)}
 .tab:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 
 .sheet{position:relative;border-radius:4px 4px 0 0;background:var(--gbg);color:var(--gfg);
-  padding:0 clamp(20px,2.6vw,38px);min-height:var(--strip);
+  padding:0 32px;min-height:var(--strip);
   border-top:1px solid rgba(14,14,16,.14);
   transition:min-height .5s cubic-bezier(.2,.7,.2,1), background .45s ease, color .45s ease;
   display:flex;flex-direction:column}
@@ -57,7 +65,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
 
 .cat{display:flex;align-items:center;justify-content:flex-end;gap:10px;width:100%;
   background:none;border:0;color:inherit;cursor:pointer;
-  font-family:var(--mono);font-size:clamp(9.5px,.9vw,11.5px);letter-spacing:.14em;
+  font-family:var(--mono);font-size:13px;letter-spacing:.12em;
   text-transform:uppercase;padding:22px 0 0;flex:0 0 auto;opacity:.86}
 .cat:hover{opacity:1;color:var(--red)}
 .cat .n{font-variant-numeric:tabular-nums;opacity:.55}
@@ -67,7 +75,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
 .desc{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)}
 .grp.open .desc{grid-template-rows:1fr}
 .desc__in{overflow:hidden}
-.desc p{font-family:var(--mono);font-size:clamp(11.5px,1vw,13px);line-height:1.85;
+.desc p{font-family:var(--mono);font-size:13px;line-height:1.85;
   max-width:64ch;padding:clamp(22px,4vh,42px) 0 0;color:#3a3a42}
 
 .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;
@@ -91,21 +99,33 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
    makes the stack read as filing, but it would sit on top of an open file, so
    an open folder reserves that height back */
 .grp.open .sheet{padding-bottom:calc(var(--tab-h) + 14px)}
-.file{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,44px);
-  align-items:start;padding:clamp(20px,3.5vh,34px) 0 clamp(24px,4vh,44px)}
+.file{display:grid;grid-template-columns:auto 1fr;gap:32px;
+  align-items:start;padding:32px 0 48px}
 @media(max-width:820px){.file{grid-template-columns:1fr}}
 /* the mark is the circular logo itself, not the card it sits on */
 .file__mark{width:clamp(88px,9vw,116px);aspect-ratio:1;border-radius:50%;object-fit:cover;
   display:block}
-.file__name{font-size:clamp(24px,3.2vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1}
-.file__kicker{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+.file__name{font-size:48px;font-weight:800;letter-spacing:-.02em;line-height:52px}
+.file__kicker{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:rgba(14,14,16,.55);margin-top:10px}
-.file__s{font-size:14.5px;line-height:1.7;max-width:62ch;margin-top:16px;color:#26262b}
+.file__s{font-size:17px;line-height:28px;font-weight:400;max-width:62ch;margin-top:16px;color:#26262b}
 /* a shut folder shows nothing — without this its old file keeps the sheet tall */
 .grp:not(.open) .filebox{display:none}
 /* the file that's currently out of its folder stays raised */
-.tab.is-open{height:calc(var(--tab-h) + 11px)}
+body:not(.gsap-on) .tab.is-open{height:calc(var(--tab-h) + 11px)}
 .tab.is-open .tab__mid{font-weight:700}
+
+/* The file slides in from whichever side you came from — move right along the
+   tabs and it enters from the right, go back and it comes from the left. That
+   directional entrance is the one idea worth taking from MWG 109; its own
+   layout is a horizontal accordion and does not transplant onto a vertical
+   stack of folders. The overflow clip is what keeps the travel inside the
+   sheet instead of spilling over the group below. */
+.filebox{overflow:hidden}
+
+/* ---- editorial normalization · design audit 2026-08: same 64px paper
+   margin and locked type scale as the case pages. */
+@media(max-width:640px){:root{--pm:24px}}
 </style></head><body>
 
 <header class="sitehead light"></header>
@@ -167,6 +187,11 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
 </main>
 </div>
 
+<!-- GSAP core only. This page needs no plugins and no smooth scroll: everything
+     here is hover- and click-driven, so ScrollTrigger and Lenis would be weight
+     for nothing. If the CDN is unreachable the page falls back to the CSS
+     transitions below and still works — a pitch deck gets opened on hotel wifi. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="data.js"></script>
 <script src="nav.js"></script>
 <script>
@@ -187,6 +212,56 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
   var esc = function(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(m){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]; }); };
 
+  /* ---- motion -------------------------------------------------------------
+     Adapted from MWG effect 109, "Two-Way Accordion Panels". Its layout is a
+     horizontal row of panels and does not transplant onto a vertical stack of
+     folders, so what is taken is its behaviour rather than its markup: the
+     back-eased lift, and above all the DIRECTIONAL entrance — the incoming
+     content arrives from whichever side you travelled from. Sweeping right
+     along the tabs throws each file in from the right; going back brings it
+     from the left. That is what makes a row of tabs read as one drawer being
+     riffled rather than six unrelated panels blinking.
+
+     Everything degrades: no GSAP, or reduced-motion set, and the original CSS
+     transitions take over untouched. */
+  var G = window.gsap;
+  var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var ANIM = !!G && !REDUCED;
+  if(ANIM) document.body.classList.add('gsap-on');
+
+  var LIFT = 11;                                    // how far a file is drawn up
+  function tabH(){                                  // --tab-h drops to 36 under 900px
+    var v = parseFloat(getComputedStyle(document.documentElement)
+              .getPropertyValue('--tab-h'));
+    return isNaN(v) ? 44 : v;
+  }
+
+  /* one flat list in document order, so direction still reads correctly when
+     the pointer crosses from one group into the next */
+  var ALL = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var lastIdx = -1;
+
+  function liftTab(t, up){
+    if(!ANIM) return;
+    G.to(t, {
+      height: tabH() + (up ? LIFT : 0),
+      duration: up ? 0.34 : 0.26,
+      ease: up ? 'back.out(2)' : 'power2.out',
+      overwrite: true
+    });
+  }
+
+  function swapFile(slot, html, dir){
+    slot.innerHTML = html;
+    if(!ANIM) return;
+    var node = slot.firstElementChild;
+    if(!node) return;
+    var d = (slot.clientWidth || 620) * 0.28;
+    G.fromTo(node,
+      {x: dir < 0 ? -d : d, autoAlpha: 0},
+      {x: 0, autoAlpha: 1, duration: 0.5, ease: 'back.out(1.3)', overwrite: true});
+  }
+
   /* what's showing in the open folder: the mark, the name, what it was, and
      one paragraph. The numbers, the pull quote and the frames all live on the
      case study itself — repeating them here just made the index noisy. */
@@ -205,11 +280,19 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
 
   function openFile(tab){
     var grp = tab.closest('.grp');
+
+    /* which way did we travel? that decides the side the file arrives from */
+    var idx = ALL.indexOf(tab);
+    var dir = (lastIdx === -1 || idx >= lastIdx) ? 1 : -1;
+
     document.querySelectorAll('.grp').forEach(function(g){
       if(g !== grp){
         g.classList.remove('open');
         var b = g.querySelector('.cat'); if(b) b.setAttribute('aria-expanded','false');
-        g.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('is-open'); });
+        g.querySelectorAll('.tab').forEach(function(t){
+          t.classList.remove('is-open');
+          liftTab(t, false);                 // and drop every file back in
+        });
         var fb = g.querySelector('.filebox'); if(fb) fb.innerHTML = '';   // put the file away
         var sh = g.querySelector('.sheet');
         if(sh){ sh.style.background = ''; sh.style.color = ''; }
@@ -217,11 +300,31 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
     });
     grp.classList.add('open');
     var btn = grp.querySelector('.cat'); if(btn) btn.setAttribute('aria-expanded','true');
-    grp.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('is-open', t === tab); });
+    grp.querySelectorAll('.tab').forEach(function(t){
+      var on = (t === tab);
+      t.classList.toggle('is-open', on);
+      liftTab(t, on);
+    });
     var slot = grp.querySelector('.filebox');
-    if(slot) slot.innerHTML = render(BY[tab.dataset.case]);
+    if(slot) swapFile(slot, render(BY[tab.dataset.case]), dir);
     var sheet = grp.querySelector('.sheet');
     if(sheet){ sheet.style.background = tab.dataset.bg; sheet.style.color = tab.dataset.fg; }
+
+    lastIdx = idx;
+  }
+
+  /* closing a drawer has to put its tabs down too, or one stays standing with
+     nothing under it */
+  function closeGroup(g){
+    g.classList.remove('open');
+    var b = g.querySelector('.cat'); if(b) b.setAttribute('aria-expanded','false');
+    g.querySelectorAll('.tab').forEach(function(t){
+      t.classList.remove('is-open');
+      liftTab(t, false);
+    });
+    var fb = g.querySelector('.filebox'); if(fb) fb.innerHTML = '';
+    var sh = g.querySelector('.sheet');
+    if(sh){ sh.style.background = ''; sh.style.color = ''; }
   }
 
   /* a tab is a link again — clicking one opens the full case study. Hovering
@@ -235,18 +338,22 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
   document.querySelectorAll('.grp .cat').forEach(function(btn){
     btn.addEventListener('click', function(){
       var g = btn.closest('.grp');
-      if(g.classList.contains('open')){
-        g.classList.remove('open');
-        btn.setAttribute('aria-expanded','false');
-        g.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('is-open'); });
-        var fb = g.querySelector('.filebox'); if(fb) fb.innerHTML = '';
-        var sh = g.querySelector('.sheet');
-        if(sh){ sh.style.background = ''; sh.style.color = ''; }
-        return;
-      }
+      if(g.classList.contains('open')){ closeGroup(g); return; }
       var first = g.querySelector('.tab');
       if(first) openFile(first);
     });
+  });
+
+  /* --tab-h halves at the 900px breakpoint, so a tab lifted at desktop height
+     keeps that inline height on a narrow screen and the row goes ragged. Re-run
+     the lift against the current token on resize. */
+  var rz;
+  addEventListener('resize', function(){
+    if(!ANIM) return;
+    clearTimeout(rz);
+    rz = setTimeout(function(){
+      ALL.forEach(function(t){ liftTab(t, t.classList.contains('is-open')); });
+    }, 160);
   });
 
   /* land with the Yum Yum Cha Group file already out of its folder. The

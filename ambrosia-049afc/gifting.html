@@ -16,7 +16,7 @@
   --ink:#E9EAE4; --bg:#0A0A0A; --dim:rgba(233,234,228,.44); --dimmer:rgba(233,234,228,.16);
   --red:#E4322B; --mono:"Space Mono",ui-monospace,Menlo,monospace;
   --sans:"Archivo",-apple-system,"Helvetica Neue",sans-serif;
-  --pad:clamp(20px,4vw,56px);
+  --pad:64px;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
@@ -42,11 +42,10 @@ a{color:inherit}
 .strip{margin:clamp(30px,5vh,54px) 0 0;display:flex;gap:6px;overflow:hidden;
   height:clamp(180px,30vh,300px);background:#141414}
 .strip figure{position:relative;flex:1 1 0;min-width:0;height:100%;margin:0;overflow:hidden;
-  transition:flex .6s cubic-bezier(.2,.7,.2,1),opacity .5s ease,filter .5s ease}
+  transition:flex .6s cubic-bezier(.2,.7,.2,1)}
 .strip img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.strip:hover figure{opacity:.42;filter:saturate(.3) brightness(.9)}
-.strip:hover figure:hover{opacity:1;filter:none;flex:2.4 1 0}
+.strip:hover figure:hover{flex:2.4 1 0}
 .strip figure:hover img{transform:scale(1.04)}
 .strip figcaption{position:absolute;left:0;right:0;bottom:0;padding:20px 12px 10px;opacity:0;
   background:linear-gradient(transparent,rgba(10,10,10,.9));transition:opacity .35s ease;
@@ -56,16 +55,13 @@ a{color:inherit}
 @media(max-width:760px){
   .strip{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:4px}
   .strip figure{height:auto;aspect-ratio:4/3}
-  .strip:hover figure{opacity:1;filter:none}
 }
 
 /* ---- per-row frames ---- */
 .shots{grid-column:2/4;display:grid;
   grid-template-columns:repeat(auto-fit,minmax(clamp(96px,11vw,148px),1fr));
   gap:8px;margin-top:26px}
-.shots img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#141414;
-  transition:opacity .4s ease}
-.row:hover .shots img{opacity:.92}
+.shots img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#141414}
 @media(max-width:900px){.shots{grid-column:2;grid-template-columns:repeat(3,1fr)}}
 
 /* ---- headline totals ---- */
@@ -142,6 +138,9 @@ a{color:inherit}
 .pager a{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--dim);text-decoration:none;transition:color .3s}
 .pager a:hover{color:var(--red)}
+
+/* audit 2026-08: uniform 64px outer margin; no grading tints on frames */
+@media(max-width:640px){:root{--pad:24px}}
 </style>
 </head>
 <body>

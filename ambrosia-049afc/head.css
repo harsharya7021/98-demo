@@ -24,7 +24,7 @@
   position:sticky; top:0; z-index:400;
   display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
   gap:clamp(14px,3vw,40px);
-  padding:11px calc(max(0px,(100% - 1500px))/2 + clamp(20px,3.6vw,52px));
+  padding:11px calc(max(0px,(100% - 1500px))/2 + 64px);
   background:var(--hd-bg);
   border-bottom:1px solid var(--hd-rule);
   -webkit-backdrop-filter:saturate(180%) blur(14px);
@@ -80,7 +80,7 @@
 @media(max-width:1040px){
   .sh-secs{display:none}
 }
-@media(max-width:520px){
-  .sitehead{gap:12px; padding-left:20px; padding-right:20px}
+@media(max-width:640px){
+  .sitehead{gap:12px; padding-left:24px; padding-right:24px}
   .sh-mark img{height:18px}
 }
