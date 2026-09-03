@@ -52,7 +52,7 @@ a{color:inherit}
 }
 
 /* one micro-label treatment, used everywhere small type appears */
-.lbl,.mast .code,.piece .k,.piece .tag,.piece .more,.rule i,.pal span,
+.lbl,.mast .code,.rule i,.pal span,
 .rules b,.pager a,.mosaic figcaption,.switch a,#lb .x{
   font-family:var(--sans);font-weight:500;letter-spacing:.18em;text-transform:uppercase}
 
@@ -83,63 +83,30 @@ a{color:inherit}
 .rule i{font-style:normal;font-size:10px;color:var(--rose)}
 .rule .ln{flex:1;height:1px;background:var(--dimmer)}
 
-/* ---- concept pieces: alternating editorial ---- */
-.piece{max-width:1500px;margin:0 auto clamp(40px,8vh,104px);padding:0 var(--pad);
-  display:grid;grid-template-columns:1.32fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;
-  opacity:0;transform:translateY(26px);
-  transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
-.piece.in{opacity:1;transform:none}
-.piece:nth-child(even) .shot{order:2}
-.piece .shot{position:relative;background:var(--frame)}
-.piece .shot img{display:block;width:100%;height:auto;cursor:zoom-in}
-.piece .shot .n{position:absolute;top:12px;left:12px;font-family:var(--sans);font-weight:500;
-  font-size:9px;letter-spacing:.2em;color:var(--blush);background:rgba(28,27,27,.78);padding:5px 9px}
-.piece h3{font-family:var(--serif);font-size:clamp(28px,3.6vw,50px);font-weight:400;
-  letter-spacing:-.008em;line-height:1.06}
-.piece .k{font-size:10px;color:var(--dim);margin-top:13px}
-.piece p{font-size:14.5px;line-height:1.72;color:var(--dim);margin-top:18px;max-width:52ch}
-.piece blockquote{margin-top:24px;padding-left:18px;border-left:2px solid var(--rose);
-  font-family:var(--serif);font-style:italic;font-size:clamp(19px,2vw,27px);font-weight:300;
-  line-height:1.35;color:var(--ink);max-width:34ch}
-.piece .did{list-style:none;margin-top:24px}
-.piece .did li{position:relative;padding-left:20px;margin-bottom:10px;font-size:13px;
-  line-height:1.6;color:var(--dim)}
-.piece .did li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:1px;background:var(--rose)}
-/* both were inline-block, so the frames link and the note tag sat shoulder to
-   shoulder on one line and ran into each other */
-.piece .tag{margin-top:22px;font-size:9px;color:var(--dim);
-  border:1px dashed var(--dimmer);padding:10px 12px;
-  display:block;width:fit-content;max-width:100%;line-height:1.7;letter-spacing:.14em}
-.piece .more{display:block;width:fit-content;margin-top:16px;font-size:9.5px;
-  color:var(--rose);text-decoration:none}
-.piece .more:hover{color:var(--ink)}
-/* A written entry with no photography of its own: title set against its body
-   in facing columns, so it holds the page instead of trailing down the left
-   third of it. Same measure as a piece that has an image beside it. */
-.piece.flat{grid-template-columns:1fr 1.18fr;align-items:start;
-  margin-bottom:clamp(36px,6.5vh,80px)}
-.piece.flat > div:first-child{padding-top:6px}
-.piece.flat .k{margin-top:15px}
-.piece.flat p{margin-top:0;max-width:54ch}
-@media(max-width:880px){.piece.flat{grid-template-columns:1fr}}
-@media(max-width:880px){
-  .piece{grid-template-columns:1fr;gap:22px}
-  .piece:nth-child(even) .shot{order:0}
-}
+/* The concept pieces — the finished statics and the written concepts — used to
+   run as section 01 above the board, in an alternating editorial grid. Both
+   campaign pages are the board alone now, so the whole component is gone
+   rather than left dark in the sheet: nothing emits .piece any more. */
 
 /* ---- the blush band ----------------------------------------------------
-   The colour break. Section 02 lifts onto Ambrosia's blush ground and the
-   type flips to their near-black. Redefining four tokens re-themes every
-   component inside it — no duplicated rules. */
+   The colour break, and now the whole page below the masthead. The band lifts
+   onto Ambrosia's blush ground and the type flips to their near-black.
+   Redefining four tokens re-themes every component inside it — no duplicated
+   rules.
+
+   The gaps above were sized to land after a long scroll of concept pieces.
+   With the band following the masthead directly, that stack of margins —
+   masthead padding, band margin, band padding, rule margin — read as a hole
+   in the page, so the two we own here are pulled in. */
 .band{background:var(--blush);
   --ink:#1C1B1B;
   --dim:rgba(28,27,27,.62);
   --dimmer:rgba(28,27,27,.18);
   --frame:#FFFFFF;
   color:var(--ink);
-  margin-top:clamp(56px,10vh,116px);
+  margin-top:clamp(34px,6vh,68px);
   padding:clamp(10px,2vh,26px) 0 clamp(60px,10vh,124px)}
-.band .rule{margin-top:clamp(44px,8vh,92px)}
+.band .rule{margin-top:clamp(20px,3.5vh,40px)}
 
 /* ---- board mosaic ---- */
 /* the second max-width overrode the first, shrinking the block to 64ch and
@@ -171,10 +138,10 @@ a{color:inherit}
    the hover; the figure underneath is the target and never moves. The caption
    keeps its pointer events, so the `source ↗` credit stays clickable. */
 /* --frame is a ground painted behind an image while it loads, and it works
-   everywhere an image sits still — .piece .shot keeps it. Here the
-   image no longer sits still: the throw slides it off its own box, and the
-   ground was left showing as a white rectangle behind every frame. The
-   mosaic's figures carry no ground now, so there is nothing to expose. */
+   anywhere an image sits still. Here the image no longer sits still: the throw
+   slides it off its own box, and the ground was left showing as a white
+   rectangle behind every frame. The mosaic's figures carry no ground now, so
+   there is nothing to expose. */
 .mosaic figure{cursor:default;background:none}
 .mosaic img{will-change:transform;pointer-events:none}
 .mosaic figcaption{pointer-events:auto}
@@ -218,11 +185,8 @@ a{color:inherit}
 
 <section class="mast" id="mast"></section>
 
-<div class="rule" id="ruleWork"><i id="workNum"></i><h2 id="workTitle"></h2><span class="ln"></span></div>
-<div id="pieces"></div>
-
 <div class="band">
-  <div class="rule"><i>02</i><h2>The board it gets shot against</h2><span class="ln"></span></div>
+  <div class="rule"><i>01</i><h2>The board it gets shot against</h2><span class="ln"></span></div>
   <div class="boardwrap"><p class="boardlede" id="boardLede"></p></div>
   <div class="pal" id="pal"></div>
   <div class="mosaic" id="mosaic"></div>
@@ -249,20 +213,23 @@ a{color:inherit}
   const W=window.WORK;
   const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
-  /* Two campaigns, one page. The board case carries the reference photography;
-     everything else in the section is our own concept work and leads the page.
-     Palette: The Usual's three hexes are quoted verbatim in its own summary
-     (sampled off the finished statics). Well Given's copy names cream and
-     burgundy without hexes — same two values, same campaign system. */
+  /* Two campaigns, one page each, and each page is the reference board — the
+     mood the campaign gets shot against, and nothing else. The concept pieces
+     that used to lead the page (the finished statics on The Usual, the four
+     written concepts on Well Given) are no longer shown: the board is the link
+     we send. Their entries stay in data.js, so putting them back is a matter of
+     rendering them again rather than rewriting them.
+
+     Palette: The Usual's three hexes were sampled off those statics and still
+     describe the board. Well Given's copy names cream and burgundy without
+     hexes — same two values, same campaign system. */
   const CAMPAIGNS={
     usual:{
       num:'Campaign one', board:'amb-board-usual', other:'wellgiven',
-      workTitle:'The statics and the mood',
       palette:[['#F4EFE8','Paper'],['#564230','Cocoa'],['#4B141E','Burgundy']]
     },
     wellgiven:{
       num:'Campaign two', board:'amb-board-gifting', other:'usual',
-      workTitle:'The concepts',
       palette:[['#F4EFE8','Cream'],['#4B141E','Burgundy']]
     }
   };
@@ -271,9 +238,7 @@ a{color:inherit}
   let key=q.get('c'); if(!CAMPAIGNS[key]) key='usual';
   const CFG=CAMPAIGNS[key];
   const sec=W.sections.find(s=>s.id===key);
-  const all=W.cases.filter(c=>c.sec===key);
-  const board=all.find(c=>c.id===CFG.board);
-  const pieces=all.filter(c=>c.id!==CFG.board);
+  const board=W.cases.find(c=>c.sec===key && c.id===CFG.board);
 
   document.title=sec.n+' — For Ambrosia';
   window.NAV.mount(key,'<nav class="switch" id="switch"></nav>');
@@ -295,51 +260,6 @@ a{color:inherit}
     '<h1>'+esc(sec.n)+'</h1>'+
     '<p class="sub">'+esc(sec.d)+'</p>'+
     '<p class="shift">Set in your own palette and typefaces.</p>';
-
-  /* The page used to open on a full-bleed hero frame, and the case it came
-     from was pulled out of the list below and written as a lede so the same
-     photograph did not run twice. The hero is gone, so nothing needs pulling
-     out: every piece runs once, in the editorial grid, in order. */
-  const rest=pieces;
-
-  /* ---- concept pieces ---- */
-  document.getElementById('workNum').textContent='01';
-  document.getElementById('workTitle').textContent=CFG.workTitle;
-
-  /* split in two so a piece with no photography can set its title against its
-     body in facing columns, instead of running down the left third of a very
-     wide page with nothing opposite it */
-  const titleBlock=c=>
-    '<h3>'+esc(c.n)+'</h3>'+
-    '<div class="k">'+esc(c.k)+'</div>';
-  const bodyBlock=(c,fr)=>
-    '<p>'+esc(c.s)+'</p>'+
-    (c.pull?'<blockquote>'+esc(c.pull)+'</blockquote>':'')+
-    (c.did&&c.did.length?'<ul class="did">'+c.did.map(d=>'<li>'+esc(d)+'</li>').join('')+'</ul>':'')+
-    (fr.length>1?'<a class="more" href="roll.html?c='+c.id+'">All '+fr.length+' frames ↗</a>':'')+
-    (c.note?'<div class="tag">'+esc(c.note)+'</div>':'');
-  const copyBlock=(c,fr)=>titleBlock(c)+bodyBlock(c,fr);
-
-  /* The badge only appears on a piece that has a photograph, but the count
-     used to run over every piece including the written ones — so the numbers
-     read 01 then 04 with nothing in between. Number the frames, not the
-     entries. */
-  let shot=0;
-  document.getElementById('pieces').innerHTML = rest.map((c,i)=>{
-    const fr=window.CURATION.framesFor(c);
-    /* A piece with no photography runs full width. Emitting an empty .shot
-       instead left half the grid blank, which reads as a failed image rather
-       than a deliberately written entry. */
-    if(!fr.length)
-      return '<article class="piece flat">'+
-        '<div>'+titleBlock(c)+'</div>'+
-        '<div>'+bodyBlock(c,fr)+'</div></article>';
-    return '<article class="piece">'+
-      '<div class="shot"><img loading="lazy" src="'+fr[0].src+'" alt="'+esc(c.n)+'"'+
-      (fr[0].w?' width="'+fr[0].w+'" height="'+fr[0].h+'"':'')+'>'+
-      '<span class="n">'+String(++shot).padStart(2,'0')+'</span></div>'+
-      '<div>'+copyBlock(c,fr)+'</div></article>';
-  }).join('');
 
   /* ---- the board ---- */
   document.getElementById('boardLede').textContent=board?board.s:'';
@@ -395,7 +315,7 @@ a{color:inherit}
   const io=new IntersectionObserver(es=>es.forEach(e=>{
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
   }),{rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.piece,.mosaic figure').forEach(el=>io.observe(el));
+  document.querySelectorAll('.mosaic figure').forEach(el=>io.observe(el));
 
   /* ---- MWG Free 001: throw and settle --------------------------------
      The real thing: InertiaPlugin converts the cursor's velocity into a
@@ -447,8 +367,8 @@ a{color:inherit}
     /* the mosaic's images are pointer-transparent so the flutter cannot
        re-trigger itself, so a click there lands on the figure */
     const fig=e.target.closest('.mosaic figure');
-    const im=fig ? fig.querySelector('img')
-                 : e.target.closest('.piece img');
+    if(!fig) return;
+    const im=fig.querySelector('img');
     if(!im) return;
     lbi.src=im.dataset.full||im.currentSrc||im.src; lb.classList.add('on');
   });
