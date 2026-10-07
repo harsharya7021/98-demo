@@ -230,6 +230,36 @@ a{color:inherit;text-decoration:none}
 .facts-list{display:grid;margin-top:.3em}
 .facts-list li{font-size:calc(var(--fs-small)*.94);line-height:1.5;padding:.5em 0 .46em;border-top:1px solid var(--rule)}
 .facts-list .links{display:flex;flex-wrap:wrap;gap:.45em;padding-top:.7em;border-top:1px solid var(--rule)}
+
+/* ---------- 03 what we heard: the heading and the paragraph, then five rows in two columns ---------- */
+.heard{display:grid;grid-template-rows:auto auto;align-content:center;gap:calc(var(--gap)*1.6)}
+.heard-rows{display:block;columns:2;column-gap:clamp(24px,calc(var(--u)*5),160px)}
+.heard-rows .row{grid-template-columns:minmax(6.4em,.3fr) minmax(0,1fr);gap:1.1em;padding:.7em 0 .64em;border-top:0;border-bottom:1px solid var(--rule);break-inside:avoid}
+.heard-rows .row dd{font-size:var(--fs-small);line-height:1.52}
+
+/* ---------- 06 the line: three lines to choose from, set large ---------- */
+.line .trio .k{font-size:calc(var(--fs-h3)*.92);line-height:1.12;font-style:italic;letter-spacing:-.01em}
+.line .trio>div{gap:.9em}
+
+/* ---------- 18 our work: six cases, each a name, what we did and what came of it ---------- */
+.cases{display:grid;grid-template-rows:auto auto;align-content:center;gap:calc(var(--gap)*1.1)}
+.cases .h2{font-size:calc(var(--fs-h2)*.72)}
+.cases-head{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+.case-list{display:grid}
+.case-list li{display:grid;grid-template-columns:minmax(9.6em,.24fr) minmax(0,1fr) minmax(11em,.34fr);gap:1.4em;align-items:baseline;padding:.56em 0 .5em;border-top:1px solid var(--rule)}
+.case-list li:last-child{border-bottom:1px solid var(--rule)}
+.c-who{font:500 calc(var(--fs-body)*1.08)/1.2 var(--serif);color:var(--fg)}
+.c-who small{display:block;font:400 var(--fs-label)/1.5 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fg3);margin-top:.15em}
+.c-what{font-size:var(--fs-small);line-height:1.5;text-wrap:pretty}
+.c-got{font:500 var(--fs-small)/1.45 var(--sans);color:var(--fg);text-wrap:pretty}
+
+/* ---------- 24 the retainer: the lines on the left, the figure on the right ---------- */
+.retainer{grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr)}
+.retainer .h2{font-size:calc(var(--fs-h2)*.84)}
+.ret-fig{gap:var(--gap);align-self:center}
+.ret-total{margin-top:0;padding-top:0;grid-template-columns:1fr;justify-items:start}
+.ret-total .q-together{text-align:left;justify-items:start}
+.ret-fig .ticks li{font-size:var(--fs-small)}
 .deck-link{display:inline-block;font:600 calc(var(--fs-label)*.92)/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--acc);padding:.55em .85em;border:1px solid var(--acc);border-radius:999px;transition:background .25s,color .25s}
 .deck-link[data-missing]{border-style:dashed;color:var(--fg3);border-color:var(--rule)}
 @media(hover:hover){.deck-link:not([data-missing]):hover{background:var(--acc);color:var(--bg)}}
@@ -514,7 +544,7 @@ a{color:inherit;text-decoration:none}
 /* the cover's photograph fills the right: the counter steps aside and the arrows stay on the paper */
 .deck.fx[data-slide="cover"] .c-count{display:none}
 .deck.fx[data-slide="cover"] .c-nav{right:calc(var(--sw)*40 + var(--gap)*2.4 - .7em)}
-.c-bar i{display:block;height:100%;width:100%;background:var(--c-strong);opacity:.55;transform-origin:left center;transform:scaleX(.0476)}
+.c-bar i{display:block;height:100%;width:100%;background:var(--c-strong);opacity:.55;transform-origin:left center;transform:scaleX(.04)}
 
 /* ---- the roster scrolls inside its slide once the deck has taken over, and the photograph beside it
    takes the room the words leave (up to its full size), so a longer sentence never pushes the page long ---- */
@@ -735,6 +765,14 @@ a{color:inherit;text-decoration:none}
   .bud-pack{grid-template-columns:minmax(0,1fr);gap:calc(var(--gap)*1.2)}
   .bud-group[data-g="get"] .rows{columns:1}
   .bud-group .row{grid-template-columns:minmax(0,1fr);gap:.15em;padding:.56em 0 .5em}
+  .heard,.cases{align-content:start}
+  .heard-rows{columns:1}
+  .heard-rows .row{grid-template-columns:minmax(0,1fr);gap:.2em}
+  .case-list li{grid-template-columns:minmax(0,1fr);gap:.25em;padding:.7em 0 .64em}
+  .c-got{padding-top:.1em}
+  .retainer{grid-template-columns:minmax(0,1fr)}
+  .ret-fig{align-self:auto}
+  .ret-total .q-big{font-size:clamp(30px,min(9vw,5vh),48px)}
 
   .who{grid-template-rows:auto auto}
   .portrait img{width:min(38vw,30vh);max-height:none}
@@ -801,6 +839,10 @@ a{color:inherit;text-decoration:none}
 @media screen and (min-aspect-ratio:1/1) and (max-height:700px){
   .deck.fx .q-t small{display:none}
   .deck.fx .bud-group .row{padding:.34em 0 .3em}
+  .deck.fx .heard-rows .row{padding:.46em 0 .42em}
+  .deck.fx .case-list li{padding:.4em 0 .36em}
+  .deck.fx .heard .lede,.deck.fx .cases .lede{display:none}
+  .deck.fx .heard-head,.deck.fx .cases-head{grid-template-columns:minmax(0,1fr)}
   .deck.fx .bud-bands small{display:none}
   .deck.fx .row{padding:.5em 0 .46em}
   .deck.fx .cr label{padding:.3em 0 .26em}
@@ -864,7 +906,7 @@ a{color:inherit;text-decoration:none}
     <div class="cover-copy">
       <p class="label" data-a>Prepared for Canvas, Karkardooma</p>
       <h1 class="h1" data-a>Getting Delhi talking about Canvas before Dhanteras.</h1>
-      <p class="lede" data-a>This proposal starts with the creator campaign you asked for, costed two ways with every line shown. After that it covers leasing, the brand, your own page and the other work we can do together.</p>
+      <p class="lede" data-a>This proposal starts with the creator campaign you asked for, costed two ways with every line shown. After that it covers leasing, the brand, your own page, a monthly retainer and the other work we can do together, and it answers what you asked us on 7 October.</p>
     </div>
   </div>
   <!-- The architect's render of Canvas (Confluence, design presentation of September 2025), as shared by Harsh on 7 Oct 2026 -->
@@ -905,11 +947,38 @@ a{color:inherit;text-decoration:none}
       </dl>
     </figure>
   </div>
-  <footer class="s-foot"><span class="note" data-a>Figures from your project presentation of March 2026 and the architect’s design presentation. Tell us if any of them has changed.</span></footer>
+  <footer class="s-foot"><span class="note" data-a>Figures from your project presentation of March 2026 and the architect’s design presentation. You told us on 7 October that the plan may grow; we will update them when it is fixed.</span></footer>
 </section>
 
 <!-- =====================================================================
-     03 · THE PLAN
+     03 · WHAT WE HEARD  (the meeting of 7 October 2026, from Harsh's transcript)
+     The client is weighing the extra FAR (offices and lawyers' chambers above the retail, towards
+     4.5 lakh sq ft, a relaunch in about six months); the units are for sale with a leasing rate kept
+     for brands and the retail floors retained; he asked to see our work for large accounts with what
+     it did, a campaign line for East Delhi, the brochures and the pages we run; he said the dates work;
+     he said the retainer "will have to happen". Pradeep Rai is President of the Supreme Court Bar
+     Association (scbaindia.org), and Harsh offered him as a route to the bar in the meeting itself.
+     ===================================================================== -->
+<section class="slide" id="heard" data-ground="paper" aria-label="What we heard">
+  <header class="s-top"><span class="label" data-a>What we heard</span></header>
+  <div class="s-body heard">
+    <div class="perf-head heard-head">
+      <h2 class="h2" data-a>What we took from our meeting on 7 October.</h2>
+      <p class="lede" data-a>You are weighing a bigger building, and you asked us for proof. This deck answers both, and the dates you said work are kept.</p>
+    </div>
+    <dl class="rows heard-rows" data-a>
+      <div class="row"><dt>The plan</dt><dd>You are weighing the extra FAR: offices and lawyers’ chambers of about 250 sq ft above the retail, towards 4.5 lakh sq ft, with a relaunch in about six months if you go that way. The campaign holds either way. It sells the address, next to the court and on the metro, and it builds the list of buyers before the plan is final.</dd></div>
+      <div class="row"><dt>The units</dt><dd>The units are for sale, with a leasing rate kept for brands, and the retail floors stay with you. So the creators speak to buyers, and our leasing work is for the brands on the retail floors, the food court included. Haldiram’s and McDonald’s sign through their franchise teams, and we can approach those too.</dd></div>
+      <div class="row"><dt>The lawyers</dt><dd>If the chambers go ahead, the buyer is a lawyer at the Karkardooma courts. We work with Pradeep Rai, the President of the Supreme Court Bar Association, and can ask him for a way to the bar.</dd></div>
+      <div class="row"><dt>What you asked to see</dt><dd>Our work for large accounts and what came of it, a campaign line for East Delhi, the brochures we have made and the pages we run. The line is on page 6 and the work on page 18. The brochures and the full case files come to you in print.</dd></div>
+      <div class="row"><dt>The dates</dt><dd>You said the dates on page 7 work: a go-ahead on Monday 12 October, bookings closed that Friday, the shoot from the 20th, the first reels on the 26th, the second round from 2 November, and the report by the 10th. The retainer you spoke of is on page 24.</dd></div>
+    </dl>
+  </div>
+  <footer class="s-foot"><span class="note" data-a>If we have any of this wrong, tell us and the deck changes the same day.</span></footer>
+</section>
+
+<!-- =====================================================================
+     04 · THE PLAN
      ===================================================================== -->
 <section class="slide" id="plan" data-ground="paper" aria-label="The plan">
   <header class="s-top"><span class="label" data-a>The plan</span></header>
@@ -939,7 +1008,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     04 · CREATORS  (fifteen names; untick, add from the bench)
+     05 · CREATORS  (fifteen names; untick, add from the bench)
      ===================================================================== -->
 <section class="slide" id="creators" data-ground="paper" aria-label="Creators">
   <header class="s-top"><span class="label" data-a>01 · Creators</span></header>
@@ -991,7 +1060,28 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     05 · THE FIRST THIRTY DAYS
+     06 · THE LINE  (he asked, on 7 October, what line we would give the campaign, "jaise M3M ka")
+     Three lines for three buyers, and one for the chambers if that plan goes ahead. The second
+     carries the figure he floated himself in the meeting ("investment starting at sawa crore").
+     ===================================================================== -->
+<section class="slide" id="line" data-ground="paper" aria-label="The line">
+  <header class="s-top"><span class="label" data-a>01 · The message</span></header>
+  <div class="s-body perf line">
+    <div class="perf-head">
+      <h2 class="h2" data-a>A line for East Delhi.</h2>
+      <p class="lede" data-a>You asked what line we would give the campaign. Here are three, each for a different buyer. We pick one with you before the first brief goes out, and the creators, the hoarding and the posts all carry it.</p>
+    </div>
+    <div class="trio" data-a>
+      <div><p class="k">“Next to the court, on the metro, in the middle of East Delhi.”</p><p>The address, said plainly. For the investor who has never been to Karkardooma, and for the broker who has to explain it in one breath. It works on the hoarding and as the first line of every reel.</p></div>
+      <div><p class="k">“Your own shop in Delhi, from ₹1.25 crore.”</p><p>The ticket, up front. You said it yourself: a figure that is easy to write and easy to say. The price does the shortlisting, so the enquiries that come are from people who can buy. The figure is yours to set, and the ad carries the RERA line.</p></div>
+      <div><p class="k">“East Delhi has waited long enough.”</p><p>For the family that crosses the river for everything. It gives the launch a reason, and it gives the creators something to say in their own words: what they have been crossing the Yamuna for, and what they will not have to.</p></div>
+    </div>
+  </div>
+  <footer class="s-foot"><span class="note" data-a>If the chambers go ahead: “A chamber of your own, two minutes from the court.” · A Hindi version follows the line you choose.</span></footer>
+</section>
+
+<!-- =====================================================================
+     07 · THE FIRST THIRTY DAYS
      ===================================================================== -->
 <section class="slide" id="sprint" data-ground="paper" aria-label="The first thirty days">
   <header class="s-top"><span class="label" data-a>02 · The first thirty days</span></header>
@@ -1017,7 +1107,7 @@ a{color:inherit;text-decoration:none}
         <li>The original artwork of the Canvas mark, as a vector file.</li>
         <li>The price list for the 150 units, which of them are still available, and who bought from you last time.</li>
         <li>The one message you want a buyer to remember.</li>
-        <li>One person who approves names and scripts, within four hours.</li>
+        <li>One person who approves names and scripts within four hours, and a first call with your marketing team.</li>
         <li>The phone and WhatsApp numbers for enquiries, and who will call them back.</li>
       </ul>
       <p class="aside" data-a>An enquiry that waits two days for a call back goes cold, and then the creators get blamed for it. So we should agree who calls back, and how quickly, before the first reel goes out.</p>
@@ -1027,7 +1117,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     06 · LEASING
+     08 · LEASING
      Harsh, 7 Oct 2026: outreach for leasing has begun and the first replies are in. Who he can reach:
      the restaurant groups named below, Anita Dongre's family office through an ISB alumnus, the owners
      and designers of Dhan Mill and Ambawatta One, and a vice-president for retail and F&B leasing whom
@@ -1055,7 +1145,7 @@ a{color:inherit;text-decoration:none}
       <p class="colhead" data-a><b>What we need from you first</b></p>
       <ul class="ticks" data-a>
         <li>Who handles leasing for you today. We work alongside them.</li>
-        <li>Whether you are selling the units or leasing them, and who signs a lease on a unit that is already sold.</li>
+        <li>Which units are for sale and which floors you keep. You said the retail stays with you; tell us which units those are.</li>
         <li>Which units can be combined. Restaurants like these take several thousand square feet each.</li>
         <li>The rent you expect, and the possession date.</li>
       </ul>
@@ -1065,7 +1155,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     07 · BRANDING & IDENTITY  (JD Jewellers as proof)
+     09 · BRANDING & IDENTITY  (JD Jewellers as proof)
      ===================================================================== -->
 <section class="slide" id="brand" data-ground="paper" aria-label="Branding and identity">
   <header class="s-top"><span class="label" data-a>04 · Branding &amp; identity</span></header>
@@ -1093,7 +1183,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     08 · THE MARK IN USE
+     10 · THE MARK IN USE
      Three mock-ups made by Ninety-Eight from Canvas's own mark and the architect's renders:
      the hoarding on the front set into the render of the building at dusk (tools/clean_render.py
      takes the placeholder shop names off it, tools/mock_building.py sets the hoarding in), the
@@ -1123,7 +1213,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     09 · EXHIBIT-1: THE PRODUCTION WHEEL
+     11 · EXHIBIT-1: THE PRODUCTION WHEEL
      ===================================================================== -->
 <section class="slide proof" id="proof-production" data-ground="night" aria-label="Exhibit 1: production">
   <header class="s-top"><span class="label" data-a>Exhibit-1 · production</span></header>
@@ -1161,7 +1251,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     10 · SOCIAL MEDIA
+     12 · SOCIAL MEDIA
      ===================================================================== -->
 <section class="slide" id="social" data-ground="paper" aria-label="Social media">
   <header class="s-top"><span class="label" data-a>05 · Social media</span></header>
@@ -1219,7 +1309,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     11 · YOUR PAGE  (the founder)
+     13 · YOUR PAGE  (the founder)
      ===================================================================== -->
 <section class="slide" id="founder" data-ground="paper" aria-label="Your page">
   <header class="s-top"><span class="label" data-a>06 · Your page</span></header>
@@ -1242,7 +1332,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     12 · EXHIBIT-2: ON AIR
+     14 · EXHIBIT-2: ON AIR
      ===================================================================== -->
 <section class="slide proof" id="proof-air" data-ground="night" aria-label="Exhibit 2: on air">
   <header class="s-top"><span class="label" data-a>Exhibit-2 · on air</span></header>
@@ -1280,7 +1370,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     13 · EXHIBIT-3: THE PRESS ROW
+     15 · EXHIBIT-3: THE PRESS ROW
      ===================================================================== -->
 <section class="slide proof" id="proof-press" data-ground="night" aria-label="Exhibit 3: press">
   <header class="s-top"><span class="label" data-a>Exhibit-3 · press</span></header>
@@ -1314,7 +1404,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     14 · EVERYTHING ELSE  (marketing, consulting, finance)
+     16 · EVERYTHING ELSE  (marketing, consulting, finance)
      ===================================================================== -->
 <section class="slide" id="more" data-ground="paper" aria-label="Everything else">
   <header class="s-top"><span class="label" data-a>07 · Everything else</span></header>
@@ -1358,7 +1448,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     15 · WHO BUILDS IT
+     17 · WHO BUILDS IT
      ===================================================================== -->
 <section class="slide" id="who" data-ground="paper" aria-label="Who builds it">
   <header class="s-top"><span class="label" data-a>Who builds it</span></header>
@@ -1380,7 +1470,31 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     16 · EXHIBIT-4: THE BRANDS
+     18 · OUR WORK  (he asked, on 7 October, to see the work behind the logos: what we did, what it did)
+     Every figure is as published in the case files on ninety-eight.in/cases.html (read on 8 Oct 2026).
+     "Reach" on that site is combined follower reach: the sum of the followers of the handles that posted.
+     ===================================================================== -->
+<section class="slide" id="cases" data-ground="paper" aria-label="Our work">
+  <header class="s-top"><span class="label" data-a>Our work</span></header>
+  <div class="s-body cases">
+    <div class="perf-head cases-head">
+      <h2 class="h2" data-a>What we did for other accounts, and what came of it.</h2>
+      <p class="lede" data-a>You asked to see the work behind the logos. Six cases from our files, with the figures as we published them.</p>
+    </div>
+    <ol class="case-list" data-a>
+      <li><span class="c-who">Meta<small>2021</small></span><span class="c-what">A six-month programme that brought thirty-plus YouTube creators onto Facebook’s video surface. We ran the creator side: sourcing, briefs, the monthly output, contracts and payments.</span><span class="c-got">30+ creators for six months, with Meta as the direct client</span></li>
+      <li><span class="c-who">Unacademy<small>2022</small></span><span class="c-what">We found YouTube educators with proven audiences and brought them onto Unacademy as live-class hosts, and stayed in the production loop until the format ran itself.</span><span class="c-got">The teachers’ audiences followed them onto the platform</span></li>
+      <li><span class="c-who">Happydent</span><span class="c-what">A six-week creator campaign, Sparkling Smile, built on the moment after the chew and on one hashtag the audience could join.</span><span class="c-got">Featured in Marketing Minds; the campaign won an award</span></li>
+      <li><span class="c-who">Farzi Cafe</span><span class="c-what">Twenty creators for Massive Restaurants’ modern Indian concept, with the founder, Zorawar Kalra, in the roster.</span><span class="c-got">6.49M combined reach, 13 verified handles: our largest single activation</span></li>
+      <li><span class="c-who">Flaunt by Duty Free<small>Noida</small></span><span class="c-what">A launch night for five brands under one roof: the creator stack, the invites, the visits choreographed, and the assets handed over after.</span><span class="c-got">6 creators, 1.70M combined reach, 18 story frames</span></li>
+      <li><span class="c-who">Ishant Sharma<small>since 2020</small></span><span class="c-what">His personal brand, run as a brand: positioning, content, podcasts, press and deals.</span><span class="c-got">Instagram likes 3.1M to 7.5M in a year; reel views 9.3M to 23.7M</span></li>
+    </ol>
+  </div>
+  <footer class="s-foot"><span class="note" data-a>Reach is combined follower reach, the sum of the followers of the handles that posted. The full case files are at ninety-eight.in/cases.html. For Canvas the figure we report is enquiries, by creator, and what each one cost.</span></footer>
+</section>
+
+<!-- =====================================================================
+     19 · EXHIBIT-4: THE BRANDS
      The "Proud to have worked with" dock from ninety-eight.in, as the site shows it:
      Osmo's Apple Dock Navigation Bar, the title landing letter by letter
      (madewithgsap 118), and the tile you point at finishing the sentence.
@@ -1418,7 +1532,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     17 · EXHIBIT-5: IN THE MEDIA
+     20 · EXHIBIT-5: IN THE MEDIA
      "The paparazzi won't leave us alone" from ninety-eight.in, as the site shows it:
      madewithgsap 087, a rail of cards built at run time from the rows below, each
      thrown back by the rail's speed as it comes into view. The rows are the site's own,
@@ -1449,7 +1563,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     18 · THE FIRST TWELVE WEEKS
+     21 · THE FIRST TWELVE WEEKS
      ===================================================================== -->
 <section class="slide" id="weeks" data-ground="paper" aria-label="The first twelve weeks">
   <header class="s-top"><span class="label" data-a>The first twelve weeks</span></header>
@@ -1471,7 +1585,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     19 · THE BUDGET  (the six ranges of the Canvas Budget page, on a slider)
+     22 · THE BUDGET  (the six ranges of the Canvas Budget page, on a slider)
      Built from budget/data.json by build.mjs: each "budget" placeholder is the markup for the range the page
      opens on, and the record for the slider (src/budget.js draws it again as the slider moves).
      The ranges and lines are Harsh's to confirm; the Canvas Budget artifact holds the same record.
@@ -1497,7 +1611,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- =====================================================================
-     20 · THE INVESTMENT  (the sprint two ways; the rest line by line)
+     23 · THE INVESTMENT  (the sprint two ways; the rest line by line)
      ===================================================================== -->
 <section class="slide" id="invest" data-ground="paper" aria-label="The investment">
   <header class="s-top"><span class="label" data-a>The investment</span></header>
@@ -1527,7 +1641,7 @@ a{color:inherit;text-decoration:none}
           <li><label><input type="checkbox" id="q-brand" data-price="250000" data-period="once" checked><span class="q-n">04</span><span class="q-t">Brand materials<small>Hoarding, brochure, sales gallery, templates. One time</small></span><span class="q-p">₹2,50,000</span></label></li>
           <li><label><input type="checkbox" id="q-found" data-price="150000" data-period="once" checked><span class="q-n">06</span><span class="q-t">Your page: the foundation<small>Positioning, bio, stories, the photo and film bank. One time</small></span><span class="q-p">₹1,50,000</span></label></li>
           <li><label><input type="checkbox" id="q-social" data-price="100000" data-period="month" checked><span class="q-n">05</span><span class="q-t">Social media<small>Both pages, one site shoot a month. Each month</small></span><span class="q-p">₹1,00,000</span></label></li>
-          <li><label><input type="checkbox" id="q-page" data-price="75000" data-period="month" checked><span class="q-n">06</span><span class="q-t">Your page: the run<small>Weekly content, podcasts, press. Each month</small></span><span class="q-p">₹75,000</span></label></li>
+          <li><label><input type="checkbox" id="q-page" data-price="75000" data-period="month" checked><span class="q-n">06</span><span class="q-t">Your page: the run<small>Weekly content, podcasts, press. Each month, or as part of the retainer on the next page</small></span><span class="q-p">₹75,000</span></label></li>
         </ul>
         <div class="q-total q-two" data-total="after">
           <p class="q-item"><span>One time</span><b class="q-sum" id="q-once">₹4,00,000</b></p>
@@ -1537,11 +1651,43 @@ a{color:inherit;text-decoration:none}
     </div>
     <p class="terms" data-a>Excluding GST at 18%. Creator fees, talent and print are paid at cost and approved by you before anything is booked. Our fees: half to begin and half on delivery for one-time work; monthly work in advance, with a three-month minimum. Usage rights on every creator post in writing. Leasing is charged only on success. Valid for thirty days.</p>
   </div>
-  <footer class="s-foot"><span class="note" data-a><span class="live-only">The sprint follows the names picked on page 4. </span>Our fee is inside the range published for agencies in India in 2026, 15 to 25% of creator spend. There is no separate campaign fee.</span></footer>
+  <footer class="s-foot"><span class="note" data-a><span class="live-only">The sprint follows the names picked on page 5. </span>Our fee is inside the range published for agencies in India in 2026, 15 to 25% of creator spend. There is no separate campaign fee.</span></footer>
 </section>
 
 <!-- =====================================================================
-     21 · THE NEXT STEP  (two ways to begin)
+     24 · THE RETAINER  (he said on 7 October that the retainer "will have to happen", and that a
+     listed agency has offered him 360 marketing at ₹3.5 lakh a month; the figure here is ours)
+     ===================================================================== -->
+<section class="slide" id="retainer" data-ground="paper" aria-label="The retainer">
+  <header class="s-top"><span class="label" data-a>The retainer</span></header>
+  <div class="s-body split retainer">
+    <div class="copy">
+      <h2 class="h2" data-a>One team on everything, every month.</h2>
+      <p class="lede" data-a>You said the retainer will have to happen. This is what ours covers, with one person answerable for all of it and Harsh on your account every week.</p>
+      <dl class="rows" data-a>
+        <div class="row"><dt>Both pages</dt><dd>The project page and the company page: twelve posts, eight reels, stories every day, and one site shoot a month.</dd></div>
+        <div class="row"><dt>Your page</dt><dd>Your own page every week, podcast bookings, and a press note the same week as any news.</dd></div>
+        <div class="row"><dt>Brokers</dt><dd>A WhatsApp broadcast every fortnight, and the sales kit kept current.</dd></div>
+        <div class="row"><dt>Ads</dt><dd>The creatives and the copy for Meta and Google, and the campaigns run. You pay the media spend at cost.</dd></div>
+        <div class="row"><dt>Creators</dt><dd>A booking or two a month for the moments that come up: a brand signing, a floor sold out, a festival. Fees at cost, with our 25%.</dd></div>
+      </dl>
+    </div>
+    <div class="copy ret-fig" data-a>
+      <div class="q-total ret-total">
+        <p class="q-together"><span class="q-label">Each month</span><b class="q-big">₹2,50,000</b></p>
+      </div>
+      <ul class="ticks">
+        <li>Three months minimum, paid month by month in advance. It starts after the sprint, or alongside it.</li>
+        <li>The two monthly lines on the investment page come to ₹1,75,000. The retainer adds the brokers, the ads and the press, and one bill.</li>
+        <li>A report every Monday with enquiries by source, and a sit-down with Harsh every fortnight.</li>
+      </ul>
+    </div>
+  </div>
+  <footer class="s-foot"><span class="note" data-a>Excluding GST at 18%. Creator fees, media spend and print are paid by you at cost. After the first three months, a month’s notice ends it.</span></footer>
+</section>
+
+<!-- =====================================================================
+     25 · THE NEXT STEP  (two ways to begin)
      ===================================================================== -->
 <section class="slide close" id="next" data-ground="brand" aria-label="The next step">
   <header class="s-top"><span class="label" data-a>The next step</span></header>
@@ -1553,7 +1699,7 @@ a{color:inherit;text-decoration:none}
       <ol class="ways" data-a>
         <li>
           <span class="way-k">A</span>
-          <span class="way-t">The sprint, creators only<small>The names picked on page 4, the briefs, the bookings and the weekly report. The creators shoot with their own teams.</small></span>
+          <span class="way-t">The sprint, creators only<small>The names picked on page 5, the briefs, the bookings and the weekly report. The creators shoot with their own teams.</small></span>
           <span class="way-p" id="way-a">₹20,00,000</span>
         </li>
         <li>
@@ -1573,7 +1719,7 @@ a{color:inherit;text-decoration:none}
      chrome: counter, arrows, progress
      ===================================================================== -->
 <div class="chrome" id="chrome">
-  <p class="c-count" aria-live="off"><span id="c-cur">01</span><i>/</i><span id="c-tot">21</span></p>
+  <p class="c-count" aria-live="off"><span id="c-cur">01</span><i>/</i><span id="c-tot">25</span></p>
   <div class="c-nav">
     <button type="button" id="c-prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button type="button" id="c-next" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
